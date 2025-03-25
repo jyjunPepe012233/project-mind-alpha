@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5534c37db7204f239e4d5faf96f3c70b, type: 3}
+  m_Name: Demon Flame
+  m_EditorClassIdentifier: 
+  itemId: 8
+  itemName: " \uB9C8\uC5FC"
+  itemDescription: "\uBD88\uC758 \uC5D0\uB108\uC9C0\uB97C \uB2E4\uB904 \uC801\uC744
+    \uD0DC\uC6B0\uB294 \uACF5\uACA9 \uB9C8\uBC95\uC73C\uB85C, \uB9C8\uBC95\uC0AC\uC758
+    \uC758\uC9C0\uC5D0 \uB530\uB77C \uBD88\uAF43\uC744 \uB9CC\uB4E4\uC5B4\uB0B8\uB2E4.
+    \uCD08\uBCF4\uC790\uBD80\uD130 \uACE0\uC218\uAE4C\uC9C0 \uC0AC\uC6A9\uD560 \uC218
+    \uC788\uC73C\uBA70, \uC219\uB828\uB3C4\uAC00 \uB192\uC744\uC218\uB85D \uBD88\uC758
+    \uD06C\uAE30\uC640 \uAC15\uB3C4\uB97C \uC790\uC720\uB86D\uAC8C \uC870\uC808\uD560
+    \uC218 \uC788\uB2E4."
+  itemImage: {fileID: 21300000, guid: 8ff6a1c3652e0494587401a225480085, type: 3}
+  itemRarity: 1
+  itemMaxCount: 1
+  itemCount: 0
+  categoryId: 3
+  memoryCost: 1
+  mpCost: 20
+  staminaCost: 20
+  mpCostDuring: 0
+  staminaCostDuring: 0
+  castPlayer: {fileID: 0}
+  isInputReleased: 1
+  spirit: {fileID: 5893720624626477688, guid: 599daf03cb365452ab163b5c43bb1cb6, type: 3}

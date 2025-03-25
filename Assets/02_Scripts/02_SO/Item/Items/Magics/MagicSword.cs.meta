@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 27c4d4d0b6c3c40ecbc5a0a487cd6802
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - itemImage: {instanceID: 0}
+  - castPlayer: {instanceID: 0}
+  - magicSword: {fileID: 8664716602644970348, guid: 30e34811b6787413ebfafd73a323a25b,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

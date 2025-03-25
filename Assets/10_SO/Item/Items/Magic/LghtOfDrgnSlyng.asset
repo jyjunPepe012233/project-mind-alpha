@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b992e96be6994dffab1860b6570ac40b, type: 3}
+  m_Name: LghtOfDrgnSlyng
+  m_EditorClassIdentifier: 
+  itemId: 5
+  itemName: "\uBA78\uB8E1\uC758 \uBE5B"
+  itemDescription: "\uC804\uC124\uC801\uC778 \uB9C8\uBC95\uC73C\uB85C, \uACE0\uB300
+    \uC6A9\uC758 \uD798\uC744 \uBE4C\uB824 \uAD11\uB300\uD55C \uBE5B\uC758 \uC5D0\uB108\uC9C0\uB97C
+    \uBC29\uCD9C\uD558\uC5EC \uC801\uC744 \uC815\uD654\uD558\uACE0 \uD30C\uAD34\uD55C\uB2E4.
+    \uC774 \uB9C8\uBC95\uC740 \uC0AC\uC6A9\uC790\uAC00 \uAC15\uB825\uD55C \uB9C8\uB098\uB97C
+    \uC18C\uBAA8\uD558\uBA70, \uD55C\uBC88 \uBC1C\uB3D9\uB418\uBA74 \uADF8 \uBC94\uC704\uC640
+    \uC704\uB825\uC740 \uC0C1\uC0C1\uC744 \uCD08\uC6D4\uD558\uB294 \uC218\uC900\uC5D0
+    \uC774\uB978\uB2E4. \uBA78\uB8E1\uC758 \uBE5B\uC740 \uC804\uC124\uC801\uC778
+    \uB9C8\uBC95\uC0AC\uB9CC\uC774 \uC0AC\uC6A9\uD560 \uC218 \uC788\uB294, \uAC00\uC7A5
+    \uAC15\uB825\uD55C \uB9C8\uBC95 \uC911 \uD558\uB098\uB85C \uAC04\uC8FC\uB41C\uB2E4."
+  itemImage: {fileID: 21300000, guid: 822339121107343b287adef890deff0b, type: 3}
+  itemRarity: 2
+  itemMaxCount: 1
+  itemCount: 0
+  categoryId: 3
+  memoryCost: 3
+  mpCost: 55
+  staminaCost: 35
+  mpCostDuring: 21
+  staminaCostDuring: 17
+  castPlayer: {fileID: 0}
+  isInputReleased: 0
+  damageData: {fileID: 11400000, guid: b7f265946d8e140b8aaa35ce5adf9654, type: 2}
+  damageTick: 0.2
+  magicObject: {fileID: 5664770137503069860, guid: bc4e1690c90ee4125b98ca1df131282d,
+    type: 3}
+  isBlasting: 0

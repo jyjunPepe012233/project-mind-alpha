@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107e3bc7397284226a6abe8059bf4b3f, type: 3}
+  m_Name: GrassChine
+  m_EditorClassIdentifier: 
+  itemId: 0
+  itemName: "\uCD08\uBC15"
+  itemDescription: 
+  itemImage: {fileID: 0}
+  itemRarity: 0
+  itemMaxCount: 1
+  itemCount: 0
+  categoryId: 3
+  memoryCost: 1
+  mpCost: 0
+  staminaCost: 0
+  mpCostDuring: 0
+  staminaCostDuring: 0
+  castPlayer: {fileID: 0}
+  isInputReleased: 1
+  projectile: {fileID: 325821750627238434, guid: ac7ef05f383cd488a8399427745d332f,
+    type: 3}

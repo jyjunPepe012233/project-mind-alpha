@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d854436ab6440795c8cfe9f97c2908, type: 3}
+  m_Name: SkeletonMiner_CombatStance
+  m_EditorClassIdentifier: 
+  attackActions:
+  - {fileID: 11400000, guid: 17f09230f4d464bc98849a048966262d, type: 2}
+  - {fileID: 11400000, guid: 346b1353df4ce4ae6b46eed40d378779, type: 2}
+  - {fileID: 11400000, guid: d8859a0298bd748d99ebf6e973457563, type: 2}
+  - {fileID: 11400000, guid: 5a9dae2a077d94aaebebf57604564b01, type: 2}
+  exitCombatStanceRadius: 14
+  combatPursueMinDistance: 1
+  combatPursueMaxDistance: 6
+  maxStrafeTime: 3.5

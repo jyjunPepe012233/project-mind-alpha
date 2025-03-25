@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/03_Prefabs/UI.meta
+guid: bfcc616131afc444696055dd738c51a0
+========
+guid: c7b80b24af8fd43548b4ab2bcbb65e7f
+>>>>>>>> dev-clientA:Assets/08_Animations/Animations/Player/Hit/DefenseMagic.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

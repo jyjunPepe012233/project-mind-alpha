@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adee05aa6708420cbfbe2328c7f42181, type: 3}
+  m_Name: Medium Blue Potion
+  m_EditorClassIdentifier: 
+  itemId: 6
+  itemName: "\uC911\uD615 \uD478\uB978 \uD3EC\uC158"
+  itemDescription: 
+  itemImage: {fileID: 21300000, guid: 7426369abbf99444dacacca2c26f107b, type: 3}
+  itemRarity: 0
+  itemMaxCount: 1
+  itemCount: 0
+  categoryId: 1
+  isConsumable: 1
+  usingCoolTime: 1
+  remainingCoolTime: 0
+  mpFillAmount: 80
+  healVfxPrefab: {fileID: 0}

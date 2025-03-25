@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d854436ab6440795c8cfe9f97c2908, type: 3}
+  m_Name: SkeletonWarrior_CombatStance
+  m_EditorClassIdentifier: 
+  attackActions:
+  - {fileID: 11400000, guid: 9961fd1eb85204bdcb8a31473ddd1c21, type: 2}
+  - {fileID: 11400000, guid: c193372a36d124d8f8ebe9df544fb6ad, type: 2}
+  - {fileID: 11400000, guid: 83a7f058925894c69a54018226adca1b, type: 2}
+  - {fileID: 11400000, guid: 56e2ad34fd5b542f996824a63e3d0594, type: 2}
+  exitCombatStanceRadius: 16
+  combatPursueMinDistance: 2.3
+  combatPursueMaxDistance: 8
+  maxStrafeTime: 4.5

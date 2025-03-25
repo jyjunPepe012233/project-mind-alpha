@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c134be9d927cf472188679fe2e28c972, type: 3}
+  m_Name: Lazer
+  m_EditorClassIdentifier: 
+  itemId: 0
+  itemName: "\uD3EC\uD1A4\uCE90\uB10C"
+  itemDescription: "\uD788\uD788 \uAD11\uC120\uBC1C\uC0AC"
+  itemImage: {fileID: 21300000, guid: 13e72b6832a7e4af98516a979ca1abdd, type: 3}
+  itemRarity: 0
+  itemMaxCount: 1
+  itemCount: 0
+  categoryId: 3
+  memoryCost: 1
+  mpCost: 8
+  staminaCost: 5
+  mpCostDuring: 0
+  staminaCostDuring: 0
+  castPlayer: {fileID: 0}
+  isInputReleased: 1
+  lazer: {fileID: 7280914768442363304, guid: a99395f8ff23f4b51b39a1a29db549e5, type: 3}
+  createHigh: 1.2

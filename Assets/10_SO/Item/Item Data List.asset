@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74f929e906cb455ba734024f85f7ddeb, type: 3}
+  m_Name: Item Data List
+  m_EditorClassIdentifier: 
+  weaponList:
+  - {fileID: 11400000, guid: e0191d9f3e3cf4ad293fcea0c7bc01bc, type: 2}
+  protectionList:
+  - {fileID: 11400000, guid: 79ee1f72431d9433caec6971842f7ac6, type: 2}
+  talismanList: []
+  toolList:
+  - {fileID: 11400000, guid: 6ab8a0eab9dca461eb7178d8d1b2ba2c, type: 2}
+  - {fileID: 11400000, guid: aa1236ea5ad7048a6a1919ed4c6daf74, type: 2}
+  - {fileID: 11400000, guid: 73aabb41e65a840a188fdace1deb0048, type: 2}
+  - {fileID: 11400000, guid: c6d57876cbd8e42d0a87412c57c31ee9, type: 2}
+  - {fileID: 11400000, guid: 8c29f7d1dd03f461c80ad5071b519e1c, type: 2}
+  - {fileID: 11400000, guid: 31ba63096da654d8f9b0a769875e55ef, type: 2}
+  magicList:
+  - {fileID: 11400000, guid: ae03470a4bda843eb9e4abfe84af54c1, type: 2}
+  - {fileID: 11400000, guid: 92e3add1df5e84ca382ebb4d6ba66260, type: 2}
+  - {fileID: 11400000, guid: b740be62c917e42a88681cf15cb1f0e1, type: 2}
+  - {fileID: 11400000, guid: 5f96f131cea5842b69587c5f180cca59, type: 2}
+  - {fileID: 11400000, guid: 4e2a8dc53f85347499897f86632ea28e, type: 2}

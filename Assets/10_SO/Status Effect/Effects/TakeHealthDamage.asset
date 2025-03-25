@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51f78ad7b55f347e2962b0a1cb0ab4a1, type: 3}
+  m_Name: TakeHealthDamage
+  m_EditorClassIdentifier: 
+  enumId: 0
+  damage:
+    physical: 0
+    magic: 0
+    fire: 0
+    frost: 0
+    lightning: 0
+    holy: 0
+  poiseBreakAmount: 0
+  hitDirection: 0

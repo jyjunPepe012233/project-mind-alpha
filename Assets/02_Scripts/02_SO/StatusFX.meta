@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/02_Scripts/02_SO/StatusFX.meta
+guid: 6da86f7e103b64912921cf9e481c8d27
+========
+guid: c4301b4c21ff34f58bcaa7a9e0fc0809
+>>>>>>>> 561e7e6c (feat :: Build InventoryUI , InventorySlot):Assets/07_Sprites/UI/HUD/Inventory/Image.meta
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
