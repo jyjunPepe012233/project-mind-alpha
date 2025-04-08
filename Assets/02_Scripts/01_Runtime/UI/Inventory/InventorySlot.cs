@@ -81,6 +81,7 @@ namespace MinD.Runtime.UI
                     _inventoryMenu.itemActionPanel.ShowPanel(item);
                 }
             }
+            
         }
 
         public Item GetCurrentItem()
