@@ -17,16 +17,16 @@ public class InventorySlotView : MonoBehaviour
     [SerializeField] private TextMeshProUGUI countTMP;
 
     // 슬롯에 아이템 표시
-    public void Set(Item itemSO, int count, bool isEquipped)
+    public void Set(Item item, int count, bool isEquipped)
     {
-        if (itemSO == null)
+        if (item == null)
         {
             Clear();
             return;
         }
 
         inventorySlotItemImage.enabled = true;
-        inventorySlotItemImage.sprite = itemSO.itemImage;
+        inventorySlotItemImage.sprite = item.itemImage;
 
         equipedTMP.gameObject.SetActive(isEquipped);
         countTMP.text = count > 1 ? count.ToString() : "";
