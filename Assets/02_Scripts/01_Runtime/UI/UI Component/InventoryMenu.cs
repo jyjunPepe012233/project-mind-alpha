@@ -21,7 +21,7 @@ namespace MinD.Runtime.UI
     public ScrollRect scrollRect;
     public List<Transform> categoryPolygon;
     public List<Transform> categoryPanels;
-    private List<List<InventorySlot>> categorySlots = new();
+    private List<List<InventorySlotTrash>> categorySlots = new();
 
     private int selectedSlotIndex = 0;
     private int inventoryWidth = 5;
@@ -44,7 +44,7 @@ namespace MinD.Runtime.UI
         {
             for (int i = 0; i < categoryPanels.Count; i++)
             {
-                List<InventorySlot> slots = CreateSlots(categoryPanels[i], 25, i);
+                List<InventorySlotTrash> slots = CreateSlots(categoryPanels[i], 25, i);
                 categorySlots.Add(slots);
             }
 
@@ -213,12 +213,12 @@ namespace MinD.Runtime.UI
         scrollRect.normalizedPosition = new Vector2(scrollRect.normalizedPosition.y, 0);
     }
 
-    void OnSlotSelected(InventorySlot selectedSlot)
+    void OnSlotSelected(InventorySlotTrash selectedSlotTrash)
     {
-        int selectedIndex = categorySlots[currentCategoryIndex].IndexOf(selectedSlot);
+        int selectedIndex = categorySlots[currentCategoryIndex].IndexOf(selectedSlotTrash);
         if (selectedIndex >= 0)
         {
-            itemActionPanel.ShowPanel(selectedSlot.GetCurrentItem());
+            itemActionPanel.ShowPanel(selectedSlotTrash.GetCurrentItem());
         }
     }
 
@@ -327,32 +327,32 @@ namespace MinD.Runtime.UI
         scrollRect.content.anchoredPosition = newContentPosition;
     }
 
-    public List<InventorySlot> CreateSlots(Transform panel, int slotCount, int categoryId)
+    public List<InventorySlotTrash> CreateSlots(Transform panel, int slotCount, int categoryId)
     {
-        List<InventorySlot> slots = new List<InventorySlot>();
+        List<InventorySlotTrash> slots = new List<InventorySlotTrash>();
 
         for (int i = 0; i < slotCount; i++)
         {
-            InventorySlot newSlot = AddSlot(panel, categoryId);
-            slots.Add(newSlot);
+            InventorySlotTrash newSlotTrash = AddSlot(panel, categoryId);
+            slots.Add(newSlotTrash);
         }
 
         return slots;
     }
 
-    InventorySlot AddSlot(Transform panel, int categoryId)
+    InventorySlotTrash AddSlot(Transform panel, int categoryId)
     {
         GameObject newSlotObject = Instantiate(slotPrefab, panel);
-        InventorySlot slot = newSlotObject.GetComponent<InventorySlot>();
+        InventorySlotTrash slotTrash = newSlotObject.GetComponent<InventorySlotTrash>();
 
-        slot.categoryId = categoryId;
+        slotTrash.categoryId = categoryId;
 
-        return slot;
+        return slotTrash;
     }
 
-    public void OnSlotClicked(InventorySlot clickedSlot)
+    public void OnSlotClicked(InventorySlotTrash clickedSlotTrash)
     {
-        int clickedIndex = categorySlots[currentCategoryIndex].IndexOf(clickedSlot);
+        int clickedIndex = categorySlots[currentCategoryIndex].IndexOf(clickedSlotTrash);
         if (clickedIndex >= 0)
         {
             SelectedSlotIndex = clickedIndex;
@@ -360,9 +360,9 @@ namespace MinD.Runtime.UI
             UpdateItemDetails();
         }
     }
-    public int GetSlotIndex(InventorySlot slot)
+    public int GetSlotIndex(InventorySlotTrash slotTrash)
     {
-        return categorySlots[currentCategoryIndex].IndexOf(slot);
+        return categorySlots[currentCategoryIndex].IndexOf(slotTrash);
     }
     public void UpdateInventoryUI()
     {

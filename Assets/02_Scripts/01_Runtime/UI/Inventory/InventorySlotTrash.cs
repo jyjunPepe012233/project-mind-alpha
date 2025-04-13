@@ -5,7 +5,7 @@ using NotImplementedException = System.NotImplementedException;
 
 namespace MinD.Runtime.UI
 {
-    public class InventorySlot : MonoBehaviour
+    public class InventorySlotTrash : MonoBehaviour
     {
         public Image itemImage;
         public Text itemCountText;
