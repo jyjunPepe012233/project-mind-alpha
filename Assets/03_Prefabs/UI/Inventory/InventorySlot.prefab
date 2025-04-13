@@ -428,7 +428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '%Equiped%'
+  m_text: Equiped
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 693486a1069ad4a419bc8d4e61ba420b, type: 2}
   m_sharedMaterial: {fileID: 6752858294846163275, guid: 693486a1069ad4a419bc8d4e61ba420b,
@@ -582,14 +582,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2442741700097551192}
-  - component: {fileID: 300082692046769640}
+  - component: {fileID: 7552698896624968332}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2442741700097551192
 RectTransform:
   m_ObjectHideFlags: 0
@@ -614,7 +614,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &300082692046769640
+--- !u!114 &7552698896624968332
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -623,11 +623,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8751404198801087733}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72671ed83be8a4b1aa04a07178a52eeb, type: 3}
+  m_Script: {fileID: 11500000, guid: 4de60078aace54cf1921f2799fc17eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySlotStroke: {fileID: 8173343062324894046}
-  inventorySelectedSlotStroke: {fileID: 9012154509323195422}
+  inventorySelectedSlotStroke: {fileID: 8493155832405597286}
   inventorySlotBackground: {fileID: 395066118656181959}
   inventorySlotItemImage: {fileID: 7242881351277534714}
   equipedTMP: {fileID: 1789023289985808688}
