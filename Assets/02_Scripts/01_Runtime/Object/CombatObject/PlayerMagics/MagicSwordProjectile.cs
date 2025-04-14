@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using MinD.Runtime.Entity;
 using MinD.Runtime.Utils;
+using MinD.SO.Item.Items;
 using MinD.Utility;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -29,20 +31,27 @@ public class MagicSwordProjectile : MonoBehaviour
     private Rigidbody rigidbody;
     private Collider collider;
     
-    private Player castPlayer;
+    private Player _castPlayer;
+    [SerializeField] private MagicSword _magicSword;
     
-    [SerializeField] private Vector3 startPosotion;
-    [SerializeField] private Vector3 readyPosition;
+    [SerializeField] private Vector3 _settingPosotion; // 셋 위치
+    [SerializeField] private float _setLerpSpace = 0.5f;
+    
+    [SerializeField] private float _speed;
     
     private bool isExploded;
-
+    
     public void OnEnable()
     {
+        _magicSword.OnMagicSwordSetEvent += StartSetSwordPosition;
+        _magicSword.OnMagicSwordShootEvent += StartShootCoroutine;
+        _magicSword.OnDestroyMagicSwordEvent += StartExplode;
         
         rigidbody = GetComponent<Rigidbody>();
-
         collider = GetComponent<Collider>();
         collider.enabled = false;
+
+        _castPlayer = _magicSword.castPlayer;
 
         magicProjectilePc = magicProjectileFx.GetComponent<ParticleSystem>();
         flightPc = flightFx.GetComponent<ParticleSystem>();
@@ -50,42 +59,48 @@ public class MagicSwordProjectile : MonoBehaviour
         ShootProjectilePc = ShootProjectileFx.GetComponent<ParticleSystem>();
 
     }
+
     
     /* ToDo :: 삭제 이펙트 만들기 */
 
-    public IEnumerator ShootCoroutine( BaseEntity target )
+    private void StartShootCoroutine()
+    {
+        Debug.Log("StartShootCoroutine");
+        _magicSword.OnMagicSwordShootEvent -= StartShootCoroutine;
+        StartCoroutine(ShootCoroutine());
+    }
+
+    private IEnumerator ShootCoroutine()
     {
         float elapsedTime = 0f;
-        float speed = 15;
         
-        PhysicUtility.IgnoreCollisionUtil(castPlayer, collider);
+        PhysicUtility.IgnoreCollisionUtil(_castPlayer, collider);
+        
+        GetComponent<Rigidbody>().isKinematic = false;
         
         ShootProjectilePc.Play();
         flightFx.SetActive(true);
-            
-        GetComponent<Rigidbody>().isKinematic = false;
-        
-        // PhysicUtility.IgnoreCollisionUtil(owner, collider); /* 기능안함 */
-        
         
         /* 콜라이더들 활성화 */
         collider.isTrigger = true;
-        collider.enabled = true; // use Colllier
+        collider.enabled = true;
         
-        if (target != null) // 적 감지 시 추척하여 발사
+        if (_castPlayer.combat.target != null) // 적 감지 시 추척하여 발사
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation,Quaternion.LookRotation((target.transform.position + new Vector3(0,target.transform.lossyScale.y * 1.2f,0) ) - transform.position), 360);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation,
+                Quaternion.LookRotation(_castPlayer.combat.target.transform.position  + new Vector3(0,_castPlayer.combat.target.transform.lossyScale.y * 1.2f,0) - transform.position)
+                , 360); // 처음엔 방향 설정
             
             while (true)
             {
                 elapsedTime += Time.deltaTime;
 
-                if (!target.isDeath)
+                if (!_castPlayer.combat.target.isDeath)
                 {
                     transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                        Quaternion.LookRotation(target.transform.position + new Vector3(0, /*1.5f*/ target.transform.lossyScale.y * 1.2f ,0) - transform.position), 360 * Time.deltaTime * 2);
+                        Quaternion.LookRotation(_castPlayer.combat.target.transform.position  + new Vector3(0, _castPlayer.combat.target.transform.lossyScale.y * 1.2f ,0) - transform.position), 360 * Time.deltaTime * 2);
                 }
-                rigidbody.velocity = transform.forward * speed;
+                rigidbody.velocity = transform.forward * _speed;
                 
                 if (elapsedTime >= 5)
                 {
@@ -103,15 +118,11 @@ public class MagicSwordProjectile : MonoBehaviour
             {
                 elapsedTime += Time.deltaTime;
                 
-                rigidbody.velocity = transform.forward * speed;
+                rigidbody.velocity = transform.forward * _speed;
                 
                 if (elapsedTime >= 3f)
                 {
                     yield return StartCoroutine(Explode());
-                    /*  이거 안됌, 왜?
-                     StartCoroutine(Explode()); 
-                     yield break;
-                     */
                     continue;
                 }
 
@@ -121,49 +132,61 @@ public class MagicSwordProjectile : MonoBehaviour
         }
         
     }
-    
-    
-    public IEnumerator SetSwordPosition(Player _owner, Vector3 position)
+
+
+    private void StartSetSwordPosition()
     {
-        castPlayer = _owner;
+        Debug.Log("StartSetSwordPosition");
+        _magicSword.OnMagicSwordSetEvent -= StartSetSwordPosition;
+        StartCoroutine(SetSwordPosition());
+    }
+    private IEnumerator SetSwordPosition()
+    {
+        float __high = 2.1f;
+        float __lerpSpace = 0.5f;
         
-        float high = 2.1f;
-        float lerpSpace = 0.5f;
-        
-        float elapsedTime = 0;
+        float __elapsedTime = 0;
         
         while (true) // 타겟 있을 시 카메라 따라가기, 평소에는 플레이어 시야
         {
-            elapsedTime += Time.deltaTime;
+            __elapsedTime += Time.deltaTime;
 
-            if (castPlayer.isLockOn)  // is LookOn
+            if (_castPlayer.isLockOn)  // is LookOn
             {
-                Vector3 lookTarget = castPlayer.transform.position - castPlayer.combat.target.transform.position;
+                Vector3 __targetDirection = _castPlayer.transform.position - _castPlayer.combat.target.transform.position;
 
                 // 카메라 기준
                 transform.position = Vector3.Lerp(transform.position,
-                    new Vector3(lookTarget.z * position.y, 0, lookTarget.x * position.x).normalized * 0.8f // 좌,우 방향벡터
-                    + new Vector3(0, position.x * position.y, 0) // 아래 방향벡터
-                    + new Vector3(0, high, 0) + castPlayer.transform.position // 상수 (사실아님)
-                    , lerpSpace);
+                    // new Vector3( __targetDirection.x * ( (__targetDirection.z * __targetDirection.x > 0) ? 1 : -1 )
+                    //         ,0 , __targetDirection.z * ( (__targetDirection.z * __targetDirection.x > 0) ? -1 : 1 ) )
+                    Vector3.Cross(__targetDirection, transform.up).normalized * _settingPosotion.x
+                    
+                    + _castPlayer.transform.forward * _settingPosotion.z
+                    + _castPlayer.transform.up * _settingPosotion.y
+                    
+                    + new Vector3(0,__high ,0) + _castPlayer.transform.position 
+                    , __lerpSpace);
                 
-                transform.rotation = Quaternion.LookRotation( castPlayer.combat.target.transform.position - transform.position);
+                transform.rotation = Quaternion.LookRotation( _castPlayer.combat.target.transform.position - transform.position);
                 
             }
             else
             {
                 // 플레이어 기준
                 transform.position = Vector3.Lerp(transform.position,
-                castPlayer.transform.right * position.x * 1.6f // 좌,우 방향벡터
-                + castPlayer.transform.up * position.y * position.z // 아래 방향벡터
-                + new Vector3(0, high, 0) + castPlayer.transform.position // 상수 (사실아님)
-                , lerpSpace);
-                transform.rotation = castPlayer.transform.rotation;
+                _castPlayer.transform.right * _settingPosotion.x // 좌,우 방향벡터
+                + _castPlayer.transform.forward * _settingPosotion.z // 앞 방향벡터
+                + _castPlayer.transform.up * _settingPosotion.y // 아래 방향벡터
+                
+                + new Vector3(0, __high, 0) + _castPlayer.transform.position // 상수 (사실아님)
+                , __lerpSpace);
+                
+                transform.rotation = _castPlayer.transform.rotation;
             }
             
-            if (elapsedTime >= 1.2f)
+            if (__elapsedTime >= 1.2f)
             {
-                StartCoroutine(ShootCoroutine(castPlayer.combat.target));
+                StartCoroutine(ShootCoroutine());
                 yield break;
             }
             
@@ -173,8 +196,14 @@ public class MagicSwordProjectile : MonoBehaviour
         
     }
 
+    private void StartExplode()
+    {
+        Debug.Log("StartExplode");
+        _magicSword.OnDestroyMagicSwordEvent -= StartExplode;
+        StartCoroutine(Explode());
+    }
 
-    public IEnumerator Explode()
+    private IEnumerator Explode()
     {
         if (!isExploded)
         {
@@ -186,14 +215,12 @@ public class MagicSwordProjectile : MonoBehaviour
             explosionPc.Play();
 
             rigidbody.velocity = Vector3.zero;
-            
-            // Destroy(gameObject, explosionFx.main.duration);
             Destroy(gameObject, 3);
 
             yield break;
         }
     }
-
+    
     public void OnTriggerEnter(Collider other)
     {
     if (!isExploded)

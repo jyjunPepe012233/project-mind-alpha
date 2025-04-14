@@ -27,5 +27,11 @@ MonoBehaviour:
   staminaCostDuring: 0
   castPlayer: {fileID: 0}
   isInputReleased: 1
-  magicSword: {fileID: 808210125412934667, guid: 30e34811b6787413ebfafd73a323a25b,
-    type: 3}
+  _magicSwordProjectileGamaObgect:
+  - {fileID: 6350895855214811529, guid: 00fdac1366c954f89a9d63a9855da796, type: 3}
+  - {fileID: 4208885299895906110, guid: daf4c5c33725446b7bf08998a37843f6, type: 3}
+  - {fileID: 89359126302765534, guid: 4c1a23e09fb2641f6b717d80ec2e7647, type: 3}
+  _magicSwordProjectiles:
+  - {fileID: 4934285030564274474, guid: 00fdac1366c954f89a9d63a9855da796, type: 3}
+  - {fileID: 1212960410826576889, guid: daf4c5c33725446b7bf08998a37843f6, type: 3}
+  - {fileID: 261123696842627825, guid: 4c1a23e09fb2641f6b717d80ec2e7647, type: 3}
