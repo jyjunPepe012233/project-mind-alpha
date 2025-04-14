@@ -11,14 +11,14 @@ public class Healing : Magic
     [FormerlySerializedAs("healingFx")] [SerializeField] private GameObject healingObj;
 
     private GameObject healing;
-    private HealingParticle healingPc;
+    private HealingEffect healingPc;
     
     public override void OnUse()
     {
         castPlayer.animation.PlayTargetAction("Healing",true,true,false,false);
 
         healing = Instantiate(healingObj,castPlayer.transform.position,castPlayer.transform.rotation, castPlayer.transform);
-        healingPc = healing.GetComponent<HealingParticle>();
+        healingPc = healing.GetComponent<HealingEffect>();
     }
 
     public override void Tick()

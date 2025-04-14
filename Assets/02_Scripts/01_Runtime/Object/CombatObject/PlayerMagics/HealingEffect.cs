@@ -4,7 +4,7 @@ using MinD.Runtime.Entity;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class HealingParticle : MonoBehaviour
+public class HealingEffect : MonoBehaviour
 {
     [SerializeField] private GameObject healingLightFx;
     [SerializeField] private GameObject magicCircleFx;
