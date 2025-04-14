@@ -7,7 +7,7 @@ namespace MinD.Runtime.DataBase {
 
 public class ItemDataBase : Singleton<ItemDataBase> {
 
-	[SerializeField] private ItemSoList itemSoList;
+	[SerializeField] private ItemSOList itemSoList;
 	[SerializeField] private List<Item> indexedItemList;
 
 
