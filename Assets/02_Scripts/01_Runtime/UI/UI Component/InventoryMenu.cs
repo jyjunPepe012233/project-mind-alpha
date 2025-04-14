@@ -26,7 +26,7 @@ namespace MinD.Runtime.UI
     private int selectedSlotIndex = 0;
     private int inventoryWidth = 5;
     [SerializeField] PlayerInventoryHandler playerInventory;
-    private ItemSoList itemSoList;
+    private ItemSOList itemSoList;
 
     private int currentCategoryIndex = 0;
 
