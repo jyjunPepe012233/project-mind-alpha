@@ -81,4 +81,9 @@ public class InventorySlot : MonoBehaviour
         count = newCount;
         UpdateView();
     }
+
+    public Item GetItem()
+    {
+        return item;
+    }
 }

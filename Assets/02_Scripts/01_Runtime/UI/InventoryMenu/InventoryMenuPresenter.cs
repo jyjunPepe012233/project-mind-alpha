@@ -11,7 +11,8 @@ public class InventoryMenuPresenter : PlayerMenu
 {
     [SerializeField] private InventoryMenuView inventoryMenuView;
     [SerializeField] private PlayerInventoryHandler playerInventoryHandler;
-
+    [SerializeField] private ItemDetailView itemDetailView;
+    
     private InventoryCategory currentCategory = InventoryCategory.Magic;
     private int selectedIndex = 0;
 
@@ -22,6 +23,11 @@ public class InventoryMenuPresenter : PlayerMenu
         if (playerInventoryHandler == null)
         {
             playerInventoryHandler = FindObjectOfType<PlayerInventoryHandler>();
+        }
+
+        if (itemDetailView == null)
+        {
+            itemDetailView = FindObjectOfType<ItemDetailView>();
         }
     }
 
@@ -77,7 +83,19 @@ public class InventoryMenuPresenter : PlayerMenu
 
         for (int i = 0; i < slots.Count; i++)
             slots[i].SetSelected(i == selectedIndex);
+
+        if (selectedIndex < slots.Count)
+        {
+            var selectedSlot = slots[selectedIndex];
+            var item = selectedSlot.GetItem();
+            itemDetailView.ShowItemDetails(item);
+        }
+        else
+        {
+            itemDetailView.Clear();
+        }
     }
+
 
     private void UpdateSlots()
     {
