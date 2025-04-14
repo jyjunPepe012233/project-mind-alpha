@@ -12,6 +12,7 @@ public class InventoryMenuPresenter : PlayerMenu
     [SerializeField] private InventoryMenuView inventoryMenuView;
     [SerializeField] private PlayerInventoryHandler playerInventoryHandler;
     [SerializeField] private ItemDetailView itemDetailView;
+    [SerializeField] private EquipmentView equipmentView;
     
     private InventoryCategory currentCategory = InventoryCategory.Magic;
     private int selectedIndex = 0;
@@ -29,6 +30,13 @@ public class InventoryMenuPresenter : PlayerMenu
         {
             itemDetailView = FindObjectOfType<ItemDetailView>();
         }
+
+        if (equipmentView == null)
+        {
+            equipmentView = FindObjectOfType<EquipmentView>();
+        }
+        
+        equipmentView.Initialize();
     }
 
     public override void Open()
@@ -38,6 +46,8 @@ public class InventoryMenuPresenter : PlayerMenu
         selectedIndex = 0;
         UpdateSelection();
         UpdateSlots();
+        
+        equipmentView.UpdateAllSlots();
     }
 
     public override void Close()
@@ -60,8 +70,22 @@ public class InventoryMenuPresenter : PlayerMenu
 
     public override void OnSelectInput()
     {
-        Debug.Log("선택 슬롯에서 아이템 액션 패널 실행");
+        var slots = inventoryMenuView.GetCurrentSlots((int)currentCategory);
+        if (slots == null || selectedIndex >= slots.Count) return;
+
+        var selectedSlot = slots[selectedIndex];
+        selectedSlot.ToggleEquippedState();
+
+        var item = selectedSlot.GetItem();
+        if (item == null) return;
+
+        item.isEquipped = !item.isEquipped;
+
+        UpdatePlayerEquipmentSlots(item);
+        UpdateSlots();
+        UpdateSelection();
     }
+
 
     public override void OnMoveTabInput(int inputDir)
     {
@@ -163,6 +187,115 @@ public class InventoryMenuPresenter : PlayerMenu
 
         return result;
     }
+    
+    private void UpdatePlayerEquipmentSlots(Item item)
+{
+    if (!item.isEquipped)
+    {
+        RemoveFromEquipment(item);
+        return;
+    }
+
+    switch (item.categoryId)
+    {
+        case 0: // Magic
+            if (item is Magic magicItem)
+            {
+                // Magic 슬롯에 아이템을 첫 번째 인덱스로 배치
+                for (int i = 0; i < playerInventoryHandler.magicSlots.Length; i++)
+                {
+                    if (playerInventoryHandler.magicSlots[i] == null) // 슬롯에 비어있는 공간이 있을 경우에만 삽입
+                    {
+                        playerInventoryHandler.magicSlots[i] = magicItem;
+                        equipmentView.UpdateAllSlots();
+                        break;
+                    }
+                }
+            }
+            break;
+
+        case 1: // Weapon
+            if (item is Weapon weaponItem)
+                playerInventoryHandler.weaponSlot = weaponItem;
+            equipmentView.UpdateAllSlots();
+            break;
+
+        case 2: // Tool
+            if (item is Tool toolItem)
+            {
+                // Tool 슬롯에 아이템을 첫 번째 인덱스로 배치
+                for (int i = 0; i < playerInventoryHandler.toolSlots.Length; i++)
+                {
+                    if (playerInventoryHandler.toolSlots[i] == null)
+                    {
+                        playerInventoryHandler.toolSlots[i] = toolItem;
+                        equipmentView.UpdateAllSlots();
+                        break;
+                    }
+                }
+            }
+            break;
+
+        case 3: // Protection
+            if (item is Protection protectionItem)
+                playerInventoryHandler.protectionSlot = protectionItem;
+            equipmentView.UpdateAllSlots();
+            break;
+
+        default:
+            Debug.LogWarning($"알 수 없는 categoryId: {item.categoryId}");
+            break;
+    }
+}
+
+private void RemoveFromEquipment(Item item)
+{
+    switch (item.categoryId)
+    {
+        case 0: // Magic
+            if (item is Magic magicItem)
+            {
+                for (int i = 0; i < playerInventoryHandler.magicSlots.Length; i++)
+                {
+                    if (playerInventoryHandler.magicSlots[i] == magicItem)
+                    {
+                        playerInventoryHandler.magicSlots[i] = null;
+                        equipmentView.UpdateAllSlots();
+                        break;
+                    }
+                }
+            }
+            break;
+
+        case 1: // Weapon
+            if (item is Weapon weaponItem && playerInventoryHandler.weaponSlot == weaponItem)
+                playerInventoryHandler.weaponSlot = null;
+            equipmentView.UpdateAllSlots();
+            break;
+
+        case 2: // Tool
+            if (item is Tool toolItem)
+            {
+                for (int i = 0; i < playerInventoryHandler.toolSlots.Length; i++)
+                {
+                    if (playerInventoryHandler.toolSlots[i] == toolItem)
+                    {
+                        playerInventoryHandler.toolSlots[i] = null;
+                        equipmentView.UpdateAllSlots();
+                        break;
+                    }
+                }
+            }
+            break;
+
+        case 3: // Protection
+            if (item is Protection protectionItem && playerInventoryHandler.protectionSlot == protectionItem)
+                playerInventoryHandler.protectionSlot = null;
+            equipmentView.UpdateAllSlots();
+            break;
+    }
+}
+
 
 
     private class ItemSlotData
