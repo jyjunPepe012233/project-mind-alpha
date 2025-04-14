@@ -113,7 +113,7 @@ public abstract class Enemy : BaseEntity, IWorldIndexable {
 	}
 
 	protected override void OnDeath() {
-		isDeath = true;
+		base.OnDeath();
 	}
 	
 	
