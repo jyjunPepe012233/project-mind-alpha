@@ -114,6 +114,21 @@ public class PlayerInventoryHandler : EntityOwnedHandler {
 			} else
 				return false;
 		}
+		
+		#region UI_PROCESS
+		InteractionPanelController panelController = FindObjectOfType<InteractionPanelController>();
+		if (panelController != null)
+		{
+			panelController.ShowLootingPanel(itemInList);
+		}
+			
+		// TODO: Temp. it just for make prototype successfully
+		if (itemInList.categoryId == 3)
+		{
+			Player.player.inventory.magicSlots[Player.player.inventory.magicSlots.Count(i => i != null)] = itemInList as Magic;
+			FindObjectOfType<MagicQuickSlot>().UpdateUI();
+		}
+		#endregion
 
 
 		// WORKING NORMALLY

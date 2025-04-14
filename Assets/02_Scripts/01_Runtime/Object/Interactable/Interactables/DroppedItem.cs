@@ -59,12 +59,6 @@ public class DroppedItem : Interactable, IWorldIndexable {
 
 		if (interactor.inventory.AddItem(item.itemId, itemCount, false)) {
 			// ADD ITEM IS CLEARLY WORK ELSE ITEM IS EXCEEDED
-
-			InteractionPanelController panelController = FindObjectOfType<InteractionPanelController>();
-			if (panelController != null)
-			{
-				panelController.ShowLootingPanel(item);
-			}
 			
 			interactor.interaction.RemoveInteractableInList(this);
 			interactor.interaction.RefreshInteractableList();
@@ -73,7 +67,6 @@ public class DroppedItem : Interactable, IWorldIndexable {
 			// TODO: Temp. it just for make prototype successfully
 			if (item.categoryId == 3)
 			{
-				Debug.Log(interactor.inventory.magicSlots.Length);
 				interactor.inventory.magicSlots[interactor.inventory.magicSlots.Count(i => i != null)] = item as Magic;
 				FindObjectOfType<MagicQuickSlot>().UpdateUI();
 			}
