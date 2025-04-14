@@ -88,6 +88,18 @@ public class CreateObjectMenu {
 				sceneView.ShowNotification(new GUIContent("The new target option wasn't bound to entity"));
 	}
 	
+	[MenuItem("GameObject/Create With MinD/Create Boss Room Entrance", false, int.MinValue + 3)]
+	public static void CreateNewBossRoomEntrance() {
+
+		// CREATE NEW ITEM
+		GameObject newItem = new GameObject("Boss Room Entrance", typeof(BossRoomEntrance), typeof(BoxCollider));
+
+		GameObjectUtility.SetParentAndAlign(newItem, Selection.activeGameObject);
+
+		Undo.RegisterCreatedObjectUndo(newItem, "Create Boss Room Entrance");
+		Selection.activeGameObject = newItem;
+	}
+	
 }
 
 }

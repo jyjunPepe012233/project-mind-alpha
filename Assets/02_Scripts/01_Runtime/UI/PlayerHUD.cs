@@ -17,6 +17,7 @@ public class PlayerHUD : MonoBehaviour {
     [Header("[ Burst Popup ]")]
     public PlayableDirector youDiedPopup;
     public PlayableDirector anchorDiscoveredPopup;
+    public PlayableDirector legendFelledPopup;
     
     [Header("[ Black Screen ]")]
     public Image blackScreen;

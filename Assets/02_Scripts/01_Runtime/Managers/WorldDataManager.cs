@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using MinD.Runtime.Entity;
 using MinD.Runtime.Object.Interactables;
-using MinD.SO.Item;
 using MinD.Structs;
 using MinD.Utility;
 using UnityEngine;
@@ -17,8 +16,11 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 	private Dictionary<int, bool> _isAnchorsDiscovered = new(); // TODO: his is temp. Need change to referencing the save data
 	public int latestUsedAnchorId;
 
-	private Dictionary<int, DroppedItem> _worldPlacedItems = new ();
-	private Dictionary<int, bool> _isPlacedItemsCollected = new ();
+	private Dictionary<int, DroppedItem> _worldPlacedItems = new();
+	private Dictionary<int, bool> _isPlacedItemsCollected = new();
+
+	private Dictionary<int, BossRoomEntrance> _worldEntrances = new();
+	private Dictionary<int, bool> _isBossesFelled = new();
 
 	
 	private PlayerInventoryData _playerInventoryData;
@@ -57,12 +59,23 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 			_worldPlacedItems[_searchedItem[i].worldIndex] = _searchedItem[i];
 		}
 	}
+	private void FindBossRoomEntranceOnWorld() {
+		BossRoomEntrance[] _searchedEntrance = FindObjectsOfType<BossRoomEntrance>();
+		// Find anchors on world by key(anchor information id)
+
+		for (int i = 0; i < _searchedEntrance.Length; i++) {
+			if (!_searchedEntrance[i].hasBeenIndexed) {
+				throw new UnityException("Hasn't been indexed!");
+			}
+			_worldEntrances[_searchedEntrance[i].worldIndex] = _searchedEntrance[i];
+		}
+	}
 	
 	
 	public AsyncOperation LoadWorldScene() {
 
 		if (_currentReloadSceneAsync == null) {
-			_currentReloadSceneAsync = SceneManager.LoadSceneAsync(WorldUtility.SCENENAME_dungeon);
+			_currentReloadSceneAsync = SceneManager.LoadSceneAsync(WorldUtility.SCENENAME_test);
 			StartCoroutine(ProcessLoadWorldSceneAsync());
 			
 		} else {
@@ -90,7 +103,7 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 		LoadGuffinsAnchorData();
 		LoadPlacedItemData();
 		// TODO: Load world object data
-		// TODO: Load Enemy(Normal Enemies, Bosses) Data
+		LoadBossData();
 		Player.player.LoadData();
 		Player.player.inventory.LoadItemData(_playerInventoryData);
 	}
@@ -112,6 +125,17 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 			_worldPlacedItems[i].LoadDataAsPlacedItem(_isPlacedItemsCollected[i]);
 		}
 	}
+
+	private void LoadBossData()
+	{
+		for (int i = 0; i < _worldEntrances.Count; i++) {
+			// TODO: This code is temp. should references save data
+			if (!_isPlacedItemsCollected.ContainsKey(i)) {
+				_isPlacedItemsCollected[i] = false;
+			}
+			_worldEntrances[i].LoadBossData(_isBossesFelled[i]);
+		}
+	}
 	
 
 	public void SaveGameData() {
@@ -123,7 +147,7 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 		SaveGuffinsAnchorData();
 		SavePlacedItemData(); // TODO: Save with item dropped by enemy
 		// TODO: SAVE WORLD OBJECT DATA
-		// TODO: SAVE ENEMY DATA
+		SaveBossData();
 		// TODO: SAVE PLAYER DATA
 		SavePlayerData();
 	}
@@ -139,6 +163,14 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 			_isPlacedItemsCollected[i] = _worldPlacedItems[i] == null;
 		}
 	}
+	private void SaveBossData()
+	{
+		for (int i = 0; i < _worldEntrances.Count; i++)
+		{
+			_isBossesFelled[i] = _worldEntrances[i].isFelled;
+		}
+	}
+	
 	private void SavePlayerData() {
 
 		PlayerInventoryHandler inventory = Player.player.inventory; 

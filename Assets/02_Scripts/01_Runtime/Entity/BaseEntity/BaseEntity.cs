@@ -54,7 +54,11 @@ public abstract class BaseEntity : MonoBehaviour {
 
 	public abstract void OnDamaged(TakeHealthDamage damage);
 
-	protected abstract void OnDeath();
+	protected virtual void OnDeath()
+	{
+		isDeath = true;
+		dieAction.Invoke();
+	}
 }
 
 }

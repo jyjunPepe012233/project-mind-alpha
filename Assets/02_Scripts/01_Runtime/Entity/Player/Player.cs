@@ -188,7 +188,8 @@ public class Player : BaseEntity {
     }
 
     protected override void OnDeath() {
-        isDeath = true;
+        
+        base.OnDeath();
         
         // CANCEL ACTIONS
         combat.CancelMagicOnGetHit();
