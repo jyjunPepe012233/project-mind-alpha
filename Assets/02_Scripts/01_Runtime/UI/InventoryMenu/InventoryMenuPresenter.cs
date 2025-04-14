@@ -123,9 +123,9 @@ public class InventoryMenuPresenter : PlayerMenu
         int categoryId = category switch
         {
             InventoryCategory.Magic => 0,
-            InventoryCategory.Staff => 18,
-            InventoryCategory.Tool => 1,
-            InventoryCategory.Protection => 2,
+            InventoryCategory.Staff => 1,
+            InventoryCategory.Tool => 2,
+            InventoryCategory.Protection => 3,
             _ => -1
         };
 
