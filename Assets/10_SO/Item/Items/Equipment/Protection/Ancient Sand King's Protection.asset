@@ -22,7 +22,8 @@ MonoBehaviour:
   itemRarity: 2
   itemMaxCount: 1
   itemCount: 0
-  categoryId: 2
+  categoryId: 3
+  isEquipped: 0
   negationBoost:
     _physical: 0.95
     _magic: 0.7

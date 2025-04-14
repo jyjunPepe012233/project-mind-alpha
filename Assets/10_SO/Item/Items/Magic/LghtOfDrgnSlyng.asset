@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b992e96be6994dffab1860b6570ac40b, type: 3}
   m_Name: LghtOfDrgnSlyng
   m_EditorClassIdentifier: 
-  itemId: 5
+  itemId: 9
   itemName: "\uBA78\uB8E1\uC758 \uBE5B"
   itemDescription: "\uC804\uC124\uC801\uC778 \uB9C8\uBC95\uC73C\uB85C, \uACE0\uB300
     \uC6A9\uC758 \uD798\uC744 \uBE4C\uB824 \uAD11\uB300\uD55C \uBE5B\uC758 \uC5D0\uB108\uC9C0\uB97C
@@ -27,7 +27,8 @@ MonoBehaviour:
   itemRarity: 2
   itemMaxCount: 1
   itemCount: 0
-  categoryId: 3
+  categoryId: 0
+  isEquipped: 0
   memoryCost: 3
   mpCost: 55
   staminaCost: 35
