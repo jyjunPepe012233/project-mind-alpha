@@ -25,6 +25,9 @@ namespace MinD.SO.Item
 		public int categoryId;
 
 		public bool isEquipped;
+		
+		[HideInInspector] public int equippedOrder = -1;
+
 	}
 	
 }

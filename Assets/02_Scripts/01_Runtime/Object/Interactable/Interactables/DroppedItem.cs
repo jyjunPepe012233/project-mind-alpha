@@ -71,12 +71,12 @@ public class DroppedItem : Interactable, IWorldIndexable {
 
 			
 			// TODO: Temp. it just for make prototype successfully
-			if (item.categoryId == 3)
-			{
-				Debug.Log(interactor.inventory.magicSlots.Length);
-				interactor.inventory.magicSlots[interactor.inventory.magicSlots.Count(i => i != null)] = item as Magic;
-				FindObjectOfType<MagicQuickSlot>().UpdateUI();
-			}
+			// if (item.categoryId == 3)
+			// {
+			// 	Debug.Log(interactor.inventory.magicSlots.Length);
+			// 	interactor.inventory.magicSlots[interactor.inventory.magicSlots.Count(i => i != null)] = item as Magic;
+			// 	FindObjectOfType<MagicQuickSlot>().UpdateUI();
+			// }
 			canInteraction = false;
 
 			StartCoroutine(FadeOutDestroy(2));

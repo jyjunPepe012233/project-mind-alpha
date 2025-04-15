@@ -459,6 +459,32 @@ public class PlayerInventoryHandler : EntityOwnedHandler {
 		quickSlotUIManager?.UpdateToolQuickSlot(currentToolSlot);
 		PlayerInputManager.Instance.swapToolInput = 0;
 	}
+	public void SortEquippedToolSlots()
+	{
+		var equippedTools = toolSlots
+			.Where(tool => tool != null && tool.isEquipped)
+			.ToList();
+
+		// 정렬된 아이템을 앞에서부터 채움
+		for (int i = 0; i < toolSlots.Length; i++)
+		{
+			toolSlots[i] = i < equippedTools.Count ? equippedTools[i] : null;
+		}
+	}
+
+	public void SortEquippedMagicSlots()
+	{
+		var equippedMagics = magicSlots
+			.Where(magic => magic != null && magic.isEquipped)
+			.ToList();
+
+		// 정렬된 아이템을 앞에서부터 채움
+		for (int i = 0; i < magicSlots.Length; i++)
+		{
+			magicSlots[i] = i < equippedMagics.Count ? equippedMagics[i] : null;
+		}
+	}
+
 }
 
 }

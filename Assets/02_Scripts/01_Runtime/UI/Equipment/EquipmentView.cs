@@ -46,6 +46,8 @@ public class EquipmentView : MonoBehaviour
         UpdateCategorySlots(InventoryCategory.Magic, playerInventoryHandler.magicSlots);
         UpdateSingleCategorySlot(InventoryCategory.Staff, playerInventoryHandler.weaponSlot);
         UpdateSingleCategorySlot(InventoryCategory.Protection, playerInventoryHandler.protectionSlot);
+        playerInventoryHandler.SortEquippedToolSlots();
+        playerInventoryHandler.SortEquippedMagicSlots();
     }
 
     private void UpdateCategorySlots(InventoryCategory category, Item[] items)
@@ -109,51 +111,33 @@ public class EquipmentView : MonoBehaviour
     // 정렬 함수
     private List<ItemSlotData> GetSortedItems(InventoryCategory category)
     {
-        int categoryId = category switch
+        Item[] sourceSlots = category switch
         {
-            InventoryCategory.Magic => 0,
-            InventoryCategory.Staff => 1,
-            InventoryCategory.Tool => 2,
-            InventoryCategory.Protection => 3,
-            _ => -1
+            InventoryCategory.Magic => playerInventoryHandler.magicSlots,
+            InventoryCategory.Tool => playerInventoryHandler.toolSlots,
+            _ => null
         };
 
-        if (playerInventoryHandler == null)
+        if (sourceSlots == null)
         {
-            Debug.LogError("playerInventoryHandler가 null입니다.");
+            Debug.LogError($"{category} 슬롯 정보가 없습니다.");
             return new List<ItemSlotData>();
         }
 
-        if (playerInventoryHandler.playerItemList == null)
+        List<ItemSlotData> sortedList = new();
+
+        foreach (var item in sourceSlots)
         {
-            Debug.LogError("PlayerItemList가 null입니다.");
-            return new List<ItemSlotData>();
+            if (item != null && item.isEquipped)
+            {
+                sortedList.Add(new ItemSlotData(item, item.itemCount, true));
+            }
         }
 
-        var allItems = playerInventoryHandler.playerItemList;
-
-        var filteredItems = allItems
-            .Where(item => item != null && item.categoryId == categoryId)
-            .ToList();
-
-        var result = new List<ItemSlotData>();
-
-        // 장착된 아이템 먼저 처리
-        foreach (var item in filteredItems)
-        {
-            if (item.isEquipped)
-                result.Insert(0, new ItemSlotData(item, item.itemCount, true));  // 장착된 아이템은 앞에 배치
-        }
-
-        // 장착되지 않은 아이템 뒤에 처리
-        foreach (var item in filteredItems)
-        {
-            if (!item.isEquipped)
-                result.Add(new ItemSlotData(item, item.itemCount, false));  // 장착되지 않은 아이템은 뒤에 배치
-        }
-
-        return result;
+        return sortedList;
     }
+
+
 
     private class ItemSlotData
     {

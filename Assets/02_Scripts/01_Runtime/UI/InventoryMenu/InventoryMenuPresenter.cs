@@ -18,6 +18,9 @@ public class InventoryMenuPresenter : PlayerMenu
     private int selectedIndex = 0;
 
     private const int RowSize = 5;
+    
+    private int equipOrderCounter = 0;
+
 
     public void Awake()
     {
@@ -153,40 +156,41 @@ public class InventoryMenuPresenter : PlayerMenu
             _ => -1
         };
 
-        if (playerInventoryHandler == null)
-        {
-            Debug.LogError("playerInventoryHandler가 null입니다.");
+        if (playerInventoryHandler == null || playerInventoryHandler.playerItemList == null)
             return new List<ItemSlotData>();
-        }
-
-        if (playerInventoryHandler.playerItemList == null)
-        {
-            Debug.LogError("PlayerItemList가 null입니다.");
-            return new List<ItemSlotData>();
-        }
-
-        var allItems = playerInventoryHandler.playerItemList;
-
-        var filteredItems = allItems
-            .Where(item => item != null && item.categoryId == categoryId)
-            .ToList();
 
         var result = new List<ItemSlotData>();
 
-        foreach (var item in filteredItems)
+        // 장착된 아이템 정렬: 슬롯 배열 순서 기준
+        Item[] equippedSlotArray = category switch
         {
-            if (item.isEquipped)
-                result.Insert(0, new ItemSlotData(item, item.itemCount, true));
+            InventoryCategory.Magic => playerInventoryHandler.magicSlots,
+            InventoryCategory.Tool => playerInventoryHandler.toolSlots,
+            _ => null
+        };
+
+        if (equippedSlotArray != null)
+        {
+            foreach (var item in equippedSlotArray)
+            {
+                if (item != null && item.isEquipped && item.categoryId == categoryId)
+                    result.Add(new ItemSlotData(item, item.itemCount, true));
+            }
         }
 
-        foreach (var item in filteredItems)
+        // 장착되지 않은 아이템: playerItemList에서 필터
+        var unequippedItems = playerInventoryHandler.playerItemList
+            .Where(item => item != null && item.categoryId == categoryId && !item.isEquipped);
+
+        foreach (var item in unequippedItems)
         {
-            if (!item.isEquipped)
-                result.Add(new ItemSlotData(item, item.itemCount, false));
+            result.Add(new ItemSlotData(item, item.itemCount, false));
         }
 
         return result;
     }
+
+
     
     private void UpdatePlayerEquipmentSlots(Item item)
 {
@@ -195,7 +199,7 @@ public class InventoryMenuPresenter : PlayerMenu
         RemoveFromEquipment(item);
         return;
     }
-
+    item.equippedOrder = equipOrderCounter++;
     switch (item.categoryId)
     {
         case 0: // Magic
@@ -207,6 +211,7 @@ public class InventoryMenuPresenter : PlayerMenu
                     if (playerInventoryHandler.magicSlots[i] == null) // 슬롯에 비어있는 공간이 있을 경우에만 삽입
                     {
                         playerInventoryHandler.magicSlots[i] = magicItem;
+                        item.equippedOrder = -1;
                         equipmentView.UpdateAllSlots();
                         break;
                     }
@@ -217,6 +222,7 @@ public class InventoryMenuPresenter : PlayerMenu
         case 1: // Weapon
             if (item is Weapon weaponItem)
                 playerInventoryHandler.weaponSlot = weaponItem;
+            item.equippedOrder = -1;
             equipmentView.UpdateAllSlots();
             break;
 
@@ -229,6 +235,7 @@ public class InventoryMenuPresenter : PlayerMenu
                     if (playerInventoryHandler.toolSlots[i] == null)
                     {
                         playerInventoryHandler.toolSlots[i] = toolItem;
+                        item.equippedOrder = -1;
                         equipmentView.UpdateAllSlots();
                         break;
                     }
@@ -239,6 +246,7 @@ public class InventoryMenuPresenter : PlayerMenu
         case 3: // Protection
             if (item is Protection protectionItem)
                 playerInventoryHandler.protectionSlot = protectionItem;
+            item.equippedOrder = -1;
             equipmentView.UpdateAllSlots();
             break;
 
@@ -260,6 +268,7 @@ private void RemoveFromEquipment(Item item)
                     if (playerInventoryHandler.magicSlots[i] == magicItem)
                     {
                         playerInventoryHandler.magicSlots[i] = null;
+                        item.equippedOrder = -1;
                         equipmentView.UpdateAllSlots();
                         break;
                     }
@@ -270,6 +279,7 @@ private void RemoveFromEquipment(Item item)
         case 1: // Weapon
             if (item is Weapon weaponItem && playerInventoryHandler.weaponSlot == weaponItem)
                 playerInventoryHandler.weaponSlot = null;
+            item.equippedOrder = -1;
             equipmentView.UpdateAllSlots();
             break;
 
@@ -281,6 +291,7 @@ private void RemoveFromEquipment(Item item)
                     if (playerInventoryHandler.toolSlots[i] == toolItem)
                     {
                         playerInventoryHandler.toolSlots[i] = null;
+                        item.equippedOrder = -1;
                         equipmentView.UpdateAllSlots();
                         break;
                     }
@@ -291,6 +302,7 @@ private void RemoveFromEquipment(Item item)
         case 3: // Protection
             if (item is Protection protectionItem && playerInventoryHandler.protectionSlot == protectionItem)
                 playerInventoryHandler.protectionSlot = null;
+            item.equippedOrder = -1;
             equipmentView.UpdateAllSlots();
             break;
     }
