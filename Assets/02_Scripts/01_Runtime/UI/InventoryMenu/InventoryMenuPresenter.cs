@@ -155,35 +155,66 @@ public class InventoryMenuPresenter : PlayerMenu
     }
 
     private List<ItemSlotData> GetSortedItems(InventoryCategory category)
+{
+    int categoryId = category switch
     {
-        int categoryId = category switch
+        InventoryCategory.Magic => 0,
+        InventoryCategory.Staff => 1,
+        InventoryCategory.Tool => 2,
+        InventoryCategory.Protection => 3,
+        _ => -1
+    };
+
+    if (playerInventoryHandler == null || playerInventoryHandler.playerItemList == null)
+        return new List<ItemSlotData>();
+
+    var result = new List<ItemSlotData>();
+
+    // 기존 방식: Magic, Tool 카테고리는 equipped 슬롯 배열과 playerItemList를 별도로 관리
+    if (category == InventoryCategory.Magic || category == InventoryCategory.Tool)
+    {
+        Item[] equippedSlotArray = category switch
         {
-            InventoryCategory.Magic => 0,
-            InventoryCategory.Staff => 1,
-            InventoryCategory.Tool => 2,
-            InventoryCategory.Protection => 3,
-            _ => -1
+            InventoryCategory.Magic => playerInventoryHandler.magicSlots,
+            InventoryCategory.Tool => playerInventoryHandler.toolSlots,
+            _ => null
         };
 
-        if (playerInventoryHandler == null || playerInventoryHandler.playerItemList == null)
-            return new List<ItemSlotData>();
+        if (equippedSlotArray != null)
+        {
+            foreach (var item in equippedSlotArray)
+            {
+                if (item != null && item.isEquipped && item.categoryId == categoryId)
+                    result.Add(new ItemSlotData(item, item.itemCount, true));
+            }
+        }
 
-        var result = new List<ItemSlotData>();
-
-        // 모든 아이템을 playerItemList에서 필터링하고, isEquipped 여부로 정렬
+        // 장착되지 않은 아이템만 추가 (플레이어 인벤토리 리스트에서)
+        var unequippedItems = playerInventoryHandler.playerItemList
+            .Where(item => item != null && item.categoryId == categoryId && !item.isEquipped);
+        foreach (var item in unequippedItems)
+        {
+            result.Add(new ItemSlotData(item, item.itemCount, false));
+        }
+    }
+    // 새 방식: Staff, Protection은 장착되어도 playerItemList에 남아있고, isEquipped 표시만 함
+    else if (category == InventoryCategory.Staff || category == InventoryCategory.Protection)
+    {
         var categoryItems = playerInventoryHandler.playerItemList
             .Where(item => item != null && item.categoryId == categoryId)
-            .OrderByDescending(item => item.isEquipped) // 장착된 아이템이 먼저 오게
-            .ThenBy(item => item.equippedOrder)         // 장착 순서 유지
+            .OrderByDescending(item => item.isEquipped)  // 장착된 아이템이 위에 표시되도록
+            .ThenBy(item => item.equippedOrder)            // 장착 순서 유지
             .ToList();
 
         foreach (var item in categoryItems)
         {
             result.Add(new ItemSlotData(item, item.itemCount, item.isEquipped));
         }
-
-        return result;
     }
+
+    return result;
+}
+
 
 
 
