@@ -38,13 +38,16 @@ public class PlayerInventoryHandler : EntityOwnedHandler {
 	
 	[Header("[ Debug ]")]
 	public Magic equipMagic;
-	
-	[HideInInspector] public QuickSlotUIManager quickSlotUIManager;
 
-	private void Start()
+	[SerializeField] private QuickSlotPresenter quickSlotPresenter;
+
+	private void Awake()
 	{
-		quickSlotUIManager = FindObjectOfType<QuickSlotUIManager>();
+		if (quickSlotPresenter == null)
+			quickSlotPresenter = FindObjectOfType<QuickSlotPresenter>();	
 	}
+
+
 	public void OnValidate() {
 		if (equipMagic != null) {
 			EquipMagic(equipMagic, 0);
@@ -412,7 +415,7 @@ public class PlayerInventoryHandler : EntityOwnedHandler {
 					break;
 				}
 			}
-
+			quickSlotPresenter.HandleInput(Vector2.down);
 		} else if (PlayerInputManager.Instance.swapMagicInput == -1) {
 			while (true) {
 				currentMagicSlot = (currentMagicSlot - 1 + magicSlots.Length) % magicSlots.Length;
@@ -420,8 +423,8 @@ public class PlayerInventoryHandler : EntityOwnedHandler {
 					break;
 				}
 			}
+			quickSlotPresenter.HandleInput(Vector2.up);
 		}
-		quickSlotUIManager?.UpdateMagicQuickSlot(currentMagicSlot);
 		PlayerInputManager.Instance.swapMagicInput = 0;
 	}
 
@@ -447,6 +450,7 @@ public class PlayerInventoryHandler : EntityOwnedHandler {
 					break;
 				}
 			}
+			quickSlotPresenter.HandleInput(Vector2.right);
 			
 		} else if (PlayerInputManager.Instance.swapToolInput == -1) {
 			while (true) {
@@ -454,31 +458,37 @@ public class PlayerInventoryHandler : EntityOwnedHandler {
 				if (toolSlots[currentToolSlot] != null) {
 					break;
 				}
+				
 			}
+			quickSlotPresenter.HandleInput(Vector2.left);
 		}
-		quickSlotUIManager?.UpdateToolQuickSlot(currentToolSlot);
+		
+		
 		PlayerInputManager.Instance.swapToolInput = 0;
+	}
+
+	public void UpdateQuickSlots()
+	{
+		quickSlotPresenter.UpdateQuickSlots();
 	}
 	public void SortEquippedToolSlots()
 	{
 		var equippedTools = toolSlots
 			.Where(tool => tool != null && tool.isEquipped)
 			.ToList();
-
-		// 정렬된 아이템을 앞에서부터 채움
+	
 		for (int i = 0; i < toolSlots.Length; i++)
 		{
 			toolSlots[i] = i < equippedTools.Count ? equippedTools[i] : null;
 		}
 	}
-
+	
 	public void SortEquippedMagicSlots()
 	{
 		var equippedMagics = magicSlots
 			.Where(magic => magic != null && magic.isEquipped)
 			.ToList();
-
-		// 정렬된 아이템을 앞에서부터 채움
+	
 		for (int i = 0; i < magicSlots.Length; i++)
 		{
 			magicSlots[i] = i < equippedMagics.Count ? equippedMagics[i] : null;

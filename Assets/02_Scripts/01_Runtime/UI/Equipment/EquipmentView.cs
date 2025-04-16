@@ -48,6 +48,7 @@ public class EquipmentView : MonoBehaviour
         UpdateSingleCategorySlot(InventoryCategory.Protection, playerInventoryHandler.protectionSlot);
         playerInventoryHandler.SortEquippedToolSlots();
         playerInventoryHandler.SortEquippedMagicSlots();
+        playerInventoryHandler.UpdateQuickSlots();
     }
 
     private void UpdateCategorySlots(InventoryCategory category, Item[] items)
