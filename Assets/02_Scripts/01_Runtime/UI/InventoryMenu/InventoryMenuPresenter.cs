@@ -170,34 +170,21 @@ public class InventoryMenuPresenter : PlayerMenu
 
         var result = new List<ItemSlotData>();
 
-        // 장착된 아이템 정렬: 슬롯 배열 순서 기준
-        Item[] equippedSlotArray = category switch
-        {
-            InventoryCategory.Magic => playerInventoryHandler.magicSlots,
-            InventoryCategory.Tool => playerInventoryHandler.toolSlots,
-            _ => null
-        };
+        // 모든 아이템을 playerItemList에서 필터링하고, isEquipped 여부로 정렬
+        var categoryItems = playerInventoryHandler.playerItemList
+            .Where(item => item != null && item.categoryId == categoryId)
+            .OrderByDescending(item => item.isEquipped) // 장착된 아이템이 먼저 오게
+            .ThenBy(item => item.equippedOrder)         // 장착 순서 유지
+            .ToList();
 
-        if (equippedSlotArray != null)
+        foreach (var item in categoryItems)
         {
-            foreach (var item in equippedSlotArray)
-            {
-                if (item != null && item.isEquipped && item.categoryId == categoryId)
-                    result.Add(new ItemSlotData(item, item.itemCount, true));
-            }
-        }
-
-        // 장착되지 않은 아이템: playerItemList에서 필터
-        var unequippedItems = playerInventoryHandler.playerItemList
-            .Where(item => item != null && item.categoryId == categoryId && !item.isEquipped);
-
-        foreach (var item in unequippedItems)
-        {
-            result.Add(new ItemSlotData(item, item.itemCount, false));
+            result.Add(new ItemSlotData(item, item.itemCount, item.isEquipped));
         }
 
         return result;
     }
+
 
 
     
@@ -221,10 +208,10 @@ public class InventoryMenuPresenter : PlayerMenu
                     {
                         playerInventoryHandler.magicSlots[i] = magicItem;
                         item.equippedOrder = -1;
-                        equipmentView.UpdateAllSlots();
                         break;
                     }
                 }
+                equipmentView.UpdateAllSlots();
             }
             break;
 
@@ -245,10 +232,11 @@ public class InventoryMenuPresenter : PlayerMenu
                     {
                         playerInventoryHandler.toolSlots[i] = toolItem;
                         item.equippedOrder = -1;
-                        equipmentView.UpdateAllSlots();
+                        
                         break;
                     }
                 }
+                equipmentView.UpdateAllSlots();
             }
             break;
 

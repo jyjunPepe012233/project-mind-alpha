@@ -18,12 +18,13 @@ MonoBehaviour:
     \uBAA8\uB798\uD3ED\uD48D\uC758 \uD798\uC744 \uB2F4\uC544 \uB9CC\uB4E0 \uBC29\uC5B4\uAD6C\uB85C,
     \uCC29\uC6A9\uC790\uB97C \uAC15\uB825\uD55C \uC218\uD638\uC790\uC774\uC790 \uD30C\uAD34\uC790\uB85C
     \uB9CC\uB4E0\uB2E4."
-  itemImage: {fileID: 21300000, guid: 6695601adcc1d4a0b946a31da31b6c19, type: 3}
+  itemImage: {fileID: 21300000, guid: e139074658cad4ebab8f85abab12720f, type: 3}
   itemRarity: 2
   itemMaxCount: 1
   itemCount: 0
   categoryId: 3
   isEquipped: 0
+  equippedOrder: -1
   negationBoost:
     _physical: 0.95
     _magic: 0.7
