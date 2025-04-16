@@ -13,6 +13,7 @@ public class InventoryMenuPresenter : PlayerMenu
     [SerializeField] private PlayerInventoryHandler playerInventoryHandler;
     [SerializeField] private ItemDetailView itemDetailView;
     [SerializeField] private EquipmentView equipmentView;
+    [SerializeField] private FadeCanvasGroup fadeCanvasGroup;
     
     private InventoryCategory currentCategory = InventoryCategory.Magic;
     private int selectedIndex = 0;
@@ -20,6 +21,10 @@ public class InventoryMenuPresenter : PlayerMenu
     private const int RowSize = 5;
     
     private int equipOrderCounter = 0;
+    
+    [Header("[ CanvasGroup ]")]
+    public CanvasGroup quickSlots;
+    public CanvasGroup statusGroup;
 
 
     public void Awake()
@@ -51,11 +56,15 @@ public class InventoryMenuPresenter : PlayerMenu
         UpdateSlots();
         
         equipmentView.UpdateAllSlots();
+        fadeCanvasGroup.FadeOut(quickSlots);
+        fadeCanvasGroup.FadeOut(statusGroup);
     }
 
     public override void Close()
     {
         inventoryMenuView.SetActiveInventoryMenu(false);
+        fadeCanvasGroup.FadeIn(quickSlots);
+        fadeCanvasGroup.FadeIn(statusGroup);
     }
 
     public override void OnInputWithDirection(Vector2 inputDir)
