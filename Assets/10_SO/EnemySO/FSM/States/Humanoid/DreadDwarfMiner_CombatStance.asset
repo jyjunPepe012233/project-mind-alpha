@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d854436ab6440795c8cfe9f97c2908, type: 3}
   m_Name: DreadDwarfMiner_CombatStance
   m_EditorClassIdentifier: 
-  attackActions: []
+  attackActions:
+  - {fileID: 11400000, guid: f59e1fd7492954884863e500eca72d4c, type: 2}
+  - {fileID: 11400000, guid: 95b00cf8089634e63b9fa52acf515b84, type: 2}
+  - {fileID: 11400000, guid: 2c00ef104e7924b7d93d302b6de0177e, type: 2}
   exitCombatStanceRadius: 11
   combatPursueMinDistance: 1.5
   combatPursueMaxDistance: 3.5
