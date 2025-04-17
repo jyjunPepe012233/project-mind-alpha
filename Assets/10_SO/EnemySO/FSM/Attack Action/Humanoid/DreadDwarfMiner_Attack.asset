@@ -15,12 +15,12 @@ MonoBehaviour:
   actionWeight: 1
   motionStateName: Attack
   actionRecoveryTime: 1
-  rotateInAttackAction: 0
+  rotateInAttackAction: 1
   minAngle: -35
   maxAngle: 35
   minDistance: 0
   maxDistance: 2
   canRepeatAction: 1
-  canPerformCombo: 0
+  canPerformCombo: 1
   chanceToCombo: 0.5
   comboAttack: {fileID: 0}
