@@ -62,14 +62,6 @@ public class DroppedItem : Interactable, IWorldIndexable {
 			
 			interactor.interaction.RemoveInteractableInList(this);
 			interactor.interaction.RefreshInteractableList();
-
-			
-			// TODO: Temp. it just for make prototype successfully
-			if (item.categoryId == 3)
-			{
-				interactor.inventory.magicSlots[interactor.inventory.magicSlots.Count(i => i != null)] = item as Magic;
-				FindObjectOfType<MagicQuickSlot>().UpdateUI();
-			}
       
 			canInteraction = false;
 
