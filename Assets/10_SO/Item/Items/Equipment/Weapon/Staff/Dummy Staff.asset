@@ -22,7 +22,8 @@ MonoBehaviour:
   itemRarity: 0
   itemMaxCount: 3
   itemCount: 0
-  categoryId: 3
+  categoryId: 1
+  isEquipped: 0
   weaponPrefab: {fileID: 6419165690001192968, guid: 742b7c14a7c424bba83041964b11dcd0,
     type: 3}
   weaponPositionOffset: {x: 0.016, y: 0.115, z: -0.221}

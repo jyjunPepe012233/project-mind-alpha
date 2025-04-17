@@ -4,7 +4,7 @@ using UnityEngine;
 namespace MinD.SO.Item {
 
 [CreateAssetMenu(fileName = "Item SO List", menuName = "MinD/Item/SO List", order = int.MinValue)]
-public class ItemSoList : ScriptableObject {
+public class ItemSOList : ScriptableObject {
 
 	public List<Weapon> weaponList;
 	public List<Protection> protectionList;

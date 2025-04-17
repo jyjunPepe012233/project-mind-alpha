@@ -118,6 +118,8 @@ public class PlayerCombatHandler : EntityOwnedHandler {
 
 			useTool.OnUse(((Player)owner));
 			useTool.remainingCoolTime = useTool.usingCoolTime;
+			var quickSlot = FindObjectOfType<QuickSlot>();
+			quickSlot.StartCooldownOnToolSlot(useTool.usingCoolTime);
 		}
 	}
 

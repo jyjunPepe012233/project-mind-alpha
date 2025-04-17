@@ -23,6 +23,11 @@ namespace MinD.SO.Item
 		[Header("[ Runtime Data ]")] public int itemCount = 0;
 
 		public int categoryId;
+
+		public bool isEquipped;
+		
+		[HideInInspector] public int equippedOrder = -1;
+
 	}
 	
 }

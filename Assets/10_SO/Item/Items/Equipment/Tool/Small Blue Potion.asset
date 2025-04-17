@@ -19,7 +19,8 @@ MonoBehaviour:
   itemRarity: 0
   itemMaxCount: 1
   itemCount: 0
-  categoryId: 1
+  categoryId: 2
+  isEquipped: 0
   isConsumable: 1
   usingCoolTime: 1
   remainingCoolTime: 0

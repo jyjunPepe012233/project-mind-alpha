@@ -229,6 +229,10 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 
 
 	public void OpenMenu(PlayerMenu menu, bool openWithForce = false) {
+		
+		if (FadeCanvasGroup.isFading) {
+			return;
+		}
 
 		if (currentShowingMenu != null) {
 			
@@ -249,6 +253,10 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 	}
 	
 	public void CloseMenu(PlayerMenu menu) {
+		
+		if (FadeCanvasGroup.isFading) {
+			return;
+		}
 
 		if (!menu.Equals(currentShowingMenu)) {
 			throw new UnityException("!! " + menu.name + " IS NOT CURRENT MENU! \n" + "CURRENT MENU IS " + currentShowingMenu.name);

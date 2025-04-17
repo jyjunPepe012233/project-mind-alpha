@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c134be9d927cf472188679fe2e28c972, type: 3}
   m_Name: Lazer
   m_EditorClassIdentifier: 
-  itemId: 0
+  itemId: 10
   itemName: "\uD3EC\uD1A4\uCE90\uB10C"
   itemDescription: "\uD788\uD788 \uAD11\uC120\uBC1C\uC0AC"
   itemImage: {fileID: 21300000, guid: 13e72b6832a7e4af98516a979ca1abdd, type: 3}
   itemRarity: 0
   itemMaxCount: 1
   itemCount: 0
-  categoryId: 3
+  categoryId: 0
+  isEquipped: 0
   memoryCost: 1
   mpCost: 8
   staminaCost: 5

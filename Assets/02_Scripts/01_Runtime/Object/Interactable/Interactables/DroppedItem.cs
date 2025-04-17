@@ -70,6 +70,7 @@ public class DroppedItem : Interactable, IWorldIndexable {
 				interactor.inventory.magicSlots[interactor.inventory.magicSlots.Count(i => i != null)] = item as Magic;
 				FindObjectOfType<MagicQuickSlot>().UpdateUI();
 			}
+      
 			canInteraction = false;
 
 			StartCoroutine(FadeOutDestroy(2));
