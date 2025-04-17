@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d854436ab6440795c8cfe9f97c2908, type: 3}
+  m_Name: DreadDwarfMiner_CombatStance
+  m_EditorClassIdentifier: 
+  attackActions:
+  - {fileID: 11400000, guid: f59e1fd7492954884863e500eca72d4c, type: 2}
+  - {fileID: 11400000, guid: 95b00cf8089634e63b9fa52acf515b84, type: 2}
+  - {fileID: 11400000, guid: 2c00ef104e7924b7d93d302b6de0177e, type: 2}
+  exitCombatStanceRadius: 11
+  combatPursueMinDistance: 1.5
+  combatPursueMaxDistance: 3.5
+  maxStrafeTime: 5
