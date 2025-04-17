@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class InventoryMenuView : MonoBehaviour
 {
-    [Header("인벤토리 프리펩")] 
-    [SerializeField] private GameObject inventoryMenu;
-    
     [Header("카테고리 컨텐츠들")]
     [SerializeField] private GameObject magicContents;
     [SerializeField] private GameObject staffContents;
@@ -83,10 +80,5 @@ public class InventoryMenuView : MonoBehaviour
     public List<InventorySlot> GetCurrentSlots(int categoryId)
     {
         return slotMap.ContainsKey(categoryId) ? slotMap[categoryId] : null;
-    }
-
-    public void SetActiveInventoryMenu(bool isOpen)
-    {
-        inventoryMenu.SetActive(isOpen);
     }
 }

@@ -9,6 +9,10 @@ using UnityEngine;
 
 public class InventoryMenuPresenter : PlayerMenu
 {
+    [Header("인벤토리")] 
+    [SerializeField] private CanvasGroup inventoryMenu;
+    
+    [Header("참조")]
     [SerializeField] private InventoryMenuView inventoryMenuView;
     [SerializeField] private PlayerInventoryHandler playerInventoryHandler;
     [SerializeField] private ItemDetailView itemDetailView;
@@ -49,20 +53,20 @@ public class InventoryMenuPresenter : PlayerMenu
 
     public override void Open()
     {
-        inventoryMenuView.SetActiveInventoryMenu(true);
         inventoryMenuView.SetActiveCategory((int)currentCategory);
         selectedIndex = 0;
-        UpdateSelection();
         UpdateSlots();
         
-        equipmentView.UpdateAllSlots();
+        
         fadeCanvasGroup.FadeOut(quickSlots);
         fadeCanvasGroup.FadeOut(statusGroup);
+        
+        equipmentView.UpdateAllSlots();
+        UpdateSelection();
     }
 
     public override void Close()
     {
-        inventoryMenuView.SetActiveInventoryMenu(false);
         fadeCanvasGroup.FadeIn(quickSlots);
         fadeCanvasGroup.FadeIn(statusGroup);
     }

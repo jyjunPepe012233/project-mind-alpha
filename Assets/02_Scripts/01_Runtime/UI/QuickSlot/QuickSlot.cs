@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -119,7 +120,31 @@ public class QuickSlot : MonoBehaviour
         currentToolIndex = (currentToolIndex + direction + equippedTools.Count) % equippedTools.Count;
         UpdateToolQuickSlot();
     }
-    
-    
 
+    // Cooldown method for the Tool slot center image
+    public void StartCooldownOnToolSlot(float cooldownDuration)
+    {
+        if (toolQuickSlots.Count >= 3)
+        {
+            // Start a coroutine to handle cooldown
+            StartCoroutine(CooldownCoroutine(toolQuickSlots[1], cooldownDuration));
+        }
+    }
+
+    // Coroutine to handle cooldown and reset fill amount
+    private IEnumerator CooldownCoroutine(Image toolSlotImage, float cooldownDuration)
+    {
+        float elapsedTime = 0f;
+
+        // Gradually increase the fillAmount from 0 to 1
+        while (elapsedTime < cooldownDuration)
+        {
+            toolSlotImage.fillAmount = Mathf.Lerp(0, 1, elapsedTime / cooldownDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure it ends at 1
+        toolSlotImage.fillAmount = 1;
+    }
 }

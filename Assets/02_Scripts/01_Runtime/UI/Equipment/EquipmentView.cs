@@ -4,6 +4,7 @@ using System.Linq;
 using MinD.Enums;
 using MinD.Runtime.Entity;
 using MinD.SO.Item;
+using UnityEngine.UI;
 
 public class EquipmentView : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class EquipmentView : MonoBehaviour
     [SerializeField] private Transform magicSlotParent;
     [SerializeField] private Transform staffSlotParent;
     [SerializeField] private Transform protectionSlotParent;
+    
+    [SerializeField] private Image protectionImage;
 
     private Dictionary<InventoryCategory, List<EquipmentSlotView>> slotMap;
     private PlayerInventoryHandler playerInventoryHandler;
@@ -56,12 +59,10 @@ public class EquipmentView : MonoBehaviour
         if (!slotMap.TryGetValue(category, out var slotViews))
             return;
 
-        // 정렬된 아이템 목록 가져오기
         var sortedItems = GetSortedItems(category);
 
         int slotIndex = 0;
-        
-        // 장착된 아이템만 할당
+    
         foreach (var itemData in sortedItems)
         {
             if (itemData.IsEquipped && slotIndex < slotViews.Count)
@@ -71,7 +72,6 @@ public class EquipmentView : MonoBehaviour
             }
         }
 
-        // 남은 슬롯 비우기
         for (int i = slotIndex; i < slotViews.Count; i++)
         {
             slotViews[i].ClearSlot();
@@ -86,9 +86,27 @@ public class EquipmentView : MonoBehaviour
         if (slotViews.Count > 0)
         {
             if (item != null)
+            {
                 slotViews[0].SetItem(item.itemImage, true); // 장착된 아이템 처리
+
+                // Protection일 경우 protectionImage에도 이미지 설정
+                if (category == InventoryCategory.Protection && protectionImage != null)
+                {
+                    protectionImage.sprite = item.itemImage;
+                    protectionImage.enabled = true;
+                }
+            }
             else
+            {
                 slotViews[0].ClearSlot();
+
+                // Protection일 경우 protectionImage 비활성화
+                if (category == InventoryCategory.Protection && protectionImage != null)
+                {
+                    protectionImage.sprite = null;
+                    protectionImage.enabled = false;
+                }
+            }
         }
 
         // 첫 번째 슬롯을 제외한 나머지 슬롯은 비우기
@@ -97,6 +115,7 @@ public class EquipmentView : MonoBehaviour
             slotViews[i].ClearSlot();
         }
     }
+
 
     public void ClearAll()
     {
