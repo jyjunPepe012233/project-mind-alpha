@@ -87,8 +87,10 @@ public abstract class Enemy : BaseEntity, IWorldIndexable {
 		locomotion = GetComponent<EnemyLocomotionHandler>();
 		combat = GetComponent<EnemyCombatHandler>();
 		utility = GetComponent<EnemyUtilityHandler>();
-		
-		
+
+
+		navAgent.updatePosition = false;
+		navAgent.updateRotation = false;
 		
 		// SET START POSITION
 		// TODO: Remake this method with save data
@@ -110,6 +112,7 @@ public abstract class Enemy : BaseEntity, IWorldIndexable {
 
 	private void LateUpdate() {
 		locomotion.ResetMoveDirectionParameter();
+		navAgent.nextPosition = transform.position;
 	}
 
 	protected override void OnDeath() {
