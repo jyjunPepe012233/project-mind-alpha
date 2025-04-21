@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 329bd44861d843b69537f8788337cfe8, type: 3}
-  m_Name: DreadDwarfMiner_Attack
+  m_Name: AshenDemon_Attack1
   m_EditorClassIdentifier: 
   actionWeight: 1
-  motionStateName: Attack
+  motionStateName: Attack1
   actionRecoveryTime: 1
   rotateInAttackAction: 1
   minAngle: -35
   maxAngle: 35
-  minDistance: 0
-  maxDistance: 2
+  minDistance: 1
+  maxDistance: 3
   canRepeatAction: 1
-  canPerformCombo: 0
+  canPerformCombo: 1
   chanceToCombo: 0.5
   comboAttack: {fileID: 0}
