@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: 851836264764812657}
   - component: {fileID: 4053536585858596517}
   - component: {fileID: 511460921484606819}
+  - component: {fileID: 1598635237595300416}
   m_Layer: 5
   m_Name: Player HUD
   m_TagString: Untagged
@@ -643,6 +644,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeDuration: 0.5
+--- !u!114 &1598635237595300416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 759530017025794245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f7ec0a401b844a0bb0b48a0b077d10d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpbarUI: {fileID: 1762799728094279144}
+  canvas: {fileID: 7881486766797425797}
+  offset: {x: 0, y: -5, z: 0}
+  scaleFactor: 10
+  minScale: 0.5
+  maxScale: 2
 --- !u!1 &801686344435716119
 GameObject:
   m_ObjectHideFlags: 0
@@ -19621,7 +19640,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5305181367407216371, guid: 3e8bf1b5e1ce8410c91a4d9c8b2fd206, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -19629,6 +19649,12 @@ PrefabInstance:
 --- !u!224 &250434995707718789 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7532075505637220115, guid: 3e8bf1b5e1ce8410c91a4d9c8b2fd206,
+    type: 3}
+  m_PrefabInstance: {fileID: 7781929374874432406}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1762799728094279144 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8324990267612956286, guid: 3e8bf1b5e1ce8410c91a4d9c8b2fd206,
     type: 3}
   m_PrefabInstance: {fileID: 7781929374874432406}
   m_PrefabAsset: {fileID: 0}
