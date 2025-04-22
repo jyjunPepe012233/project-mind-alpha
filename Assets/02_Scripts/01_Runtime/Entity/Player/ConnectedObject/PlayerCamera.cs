@@ -284,6 +284,7 @@ public class PlayerCamera : MonoBehaviour {
 
 			if (transform.InverseTransformPoint(option.position).x < 0) {
 				currentTargetOption = option;
+				owner.combat.target = currentTargetOption.GetComponentInParent<BaseEntity>(); // TARGET UPDATE
 				return;
 			}
 		}
@@ -297,6 +298,7 @@ public class PlayerCamera : MonoBehaviour {
 
 			if (transform.InverseTransformPoint(option.position).x > 0) {
 				currentTargetOption = option;
+				owner.combat.target = currentTargetOption.GetComponentInParent<BaseEntity>(); // TARGET UPDATE
 				return;
 			}
 		}

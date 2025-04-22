@@ -11,10 +11,13 @@ public class QuickSlot : MonoBehaviour
     [Header("Magic QuickSlot UI")]
     public List<Image> magicQuickSlots; // 왼, 가운데, 오
     public TextMeshProUGUI magicNameTMP;
+    public Image magicEffectImage;
 
     [Header("Tool QuickSlot UI")]
     public List<Image> toolQuickSlots;
     public TextMeshProUGUI toolNameTMP;
+    public Image cooldownImage;
+    public Image toolEffectImage;
 
     [SerializeField] private Item[] magicSlots;
     [SerializeField] private Item[] toolSlots;
@@ -110,6 +113,7 @@ public class QuickSlot : MonoBehaviour
 
         currentMagicIndex = (currentMagicIndex + direction + equippedMagics.Count) % equippedMagics.Count;
         UpdateMagicQuickSlot();
+        PlaySwapEffect(magicEffectImage); 
     }
 
     public void HandleToolSlotSwapping(int direction)
@@ -119,32 +123,56 @@ public class QuickSlot : MonoBehaviour
 
         currentToolIndex = (currentToolIndex + direction + equippedTools.Count) % equippedTools.Count;
         UpdateToolQuickSlot();
+        PlaySwapEffect(toolEffectImage);
     }
 
     // Cooldown method for the Tool slot center image
     public void StartCooldownOnToolSlot(float cooldownDuration)
     {
-        if (toolQuickSlots.Count >= 3)
+        if (cooldownImage != null)
         {
-            // Start a coroutine to handle cooldown
-            StartCoroutine(CooldownCoroutine(toolQuickSlots[1], cooldownDuration));
+            StartCoroutine(CooldownCoroutine(cooldownDuration));
         }
     }
 
-    // Coroutine to handle cooldown and reset fill amount
-    private IEnumerator CooldownCoroutine(Image toolSlotImage, float cooldownDuration)
+    private IEnumerator CooldownCoroutine(float cooldownDuration)
     {
         float elapsedTime = 0f;
+        cooldownImage.fillAmount = 1f; // 시작은 가득 참
 
-        // Gradually increase the fillAmount from 0 to 1
         while (elapsedTime < cooldownDuration)
         {
-            toolSlotImage.fillAmount = Mathf.Lerp(0, 1, elapsedTime / cooldownDuration);
             elapsedTime += Time.deltaTime;
+            cooldownImage.fillAmount = Mathf.Lerp(1f, 0f, elapsedTime / cooldownDuration);
             yield return null;
         }
 
-        // Ensure it ends at 1
-        toolSlotImage.fillAmount = 1;
+        cooldownImage.fillAmount = 0f; // 끝에 확실히 비움
     }
+    private void PlaySwapEffect(Image effectImage)
+    {
+        if (effectImage == null) return;
+        StartCoroutine(FadeEffect(effectImage));
+    }
+
+    private IEnumerator FadeEffect(Image image, float fadeTime = 0.2f)
+    {
+        float elapsed = 0f;
+
+        // 1. 투명하게
+        Color color = image.color;
+        color.a = 0f;
+        image.color = color;
+
+        elapsed = 0f;
+        while (elapsed < fadeTime)
+        {
+            elapsed += Time.deltaTime;
+            color.a = Mathf.Lerp(1f, 0f, elapsed / fadeTime);
+            image.color = color;
+            yield return null;
+        }
+    }
+
+
 }

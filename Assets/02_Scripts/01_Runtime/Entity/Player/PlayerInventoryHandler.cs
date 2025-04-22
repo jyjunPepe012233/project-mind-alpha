@@ -105,23 +105,34 @@ public class PlayerInventoryHandler : EntityOwnedHandler {
 		// IF ITEM INSTANCE IS NOT CREATED
 		if (itemInList == null)
 			itemInList = CreateItem(itemId);
-
-
+		
 		// IF ITEM COUNT WILL EXCEEDS MAX COUNT
-		if (itemInList.itemCount + amount > itemInList.itemMaxCount) {
-
-			if (deleteExceededItem) {
-
+		if (itemInList.itemCount + amount > itemInList.itemMaxCount)
+		{
+			if (deleteExceededItem)
+			{
 				itemInList.itemCount = itemInList.itemMaxCount;
+
+		
+				InteractionPanelController.Instance?.ShowLootingPanel(itemInList);
+
 				return true;
-			} else
+			}
+			else
+			{
 				return false;
+			}
 		}
 		
 		// WORKING NORMALLY
+
 		itemInList.itemCount += amount;
+
+		InteractionPanelController.Instance?.ShowLootingPanel(itemInList);
+
 		return true;
 	}
+
 
 	public bool ReduceItem(int itemId, int amount = 1) {
 
