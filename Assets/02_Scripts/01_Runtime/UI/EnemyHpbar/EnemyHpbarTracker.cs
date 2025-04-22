@@ -14,8 +14,9 @@ public class EnemyHpbarTracker : MonoBehaviour
 
     private Camera mainCamera;
 
-    private Target targetComponent;
-    private Target previousTarget;
+    private Enemy previousEnemy;
+    private float targetLostTimer = 0f;
+    private float targetGraceDuration = 2f;
 
     private void Awake()
     {
@@ -25,47 +26,63 @@ public class EnemyHpbarTracker : MonoBehaviour
 
     private void Update()
     {
-        if (!IsValidTarget(out targetComponent))
+        bool hasTarget = TryGetTargetEnemy(out Enemy enemy);
+
+        if (hasTarget)
         {
+            if (enemy != previousEnemy)
+            {
+                ResetHpbar(enemy);
+            }
+
+            previousEnemy = enemy;
+            targetLostTimer = 0f;
+
+            UpdateHpbarPosition(enemy);
+        }
+        else
+        {
+            if (previousEnemy != null)
+            {
+                targetLostTimer += Time.deltaTime;
+
+                if (targetLostTimer < targetGraceDuration)
+                {
+                    UpdateHpbarPosition(previousEnemy);
+                    return;
+                }
+            }
+
+            previousEnemy = null;
             hpbarUI.gameObject.SetActive(false);
-            return;
         }
-
-        if (targetComponent != previousTarget)
-        {
-            ResetHpbar(targetComponent);
-        }
-
-        previousTarget = targetComponent;
-
-        UpdateHpbarPosition(targetComponent);
     }
 
-    private bool IsValidTarget(out Target target)
+    private bool TryGetTargetEnemy(out Enemy enemy)
     {
-        target = null;
+        enemy = null;
 
         var combatTarget = Player.player.combat.target;
 
         if (!Player.player.isLockOn || combatTarget == null)
             return false;
 
-        target = combatTarget.GetComponent<Target>();
-
-        return target != null;
+        enemy = combatTarget.GetComponent<Enemy>();
+        return enemy != null;
     }
 
-    private void ResetHpbar(Target target)
+    private void ResetHpbar(Enemy enemy)
     {
-        if (enemyHpbar != null && target != null)
-        {
-            enemyHpbar.ResetAll(target.CurrentHealth, target.MaxHealth);
-        }
+        var attributeHandler = enemy.GetComponent<EnemyAttributeHandler>();
+        float maxHp = attributeHandler != null ? attributeHandler.MaxHp : 100f;
+        float curHp = enemy.CurHp;
+
+        enemyHpbar.ResetAll(curHp, maxHp);
     }
 
-    private void UpdateHpbarPosition(Target target)
+    private void UpdateHpbarPosition(Enemy enemy)
     {
-        Transform targetTransform = target.transform;
+        Transform targetTransform = enemy.transform;
         float enemyHeight = targetTransform.localScale.y;
         Vector3 dynamicOffset = offset + new Vector3(0, enemyHeight * 0.5f, 0);
         Vector3 worldPos = targetTransform.position + dynamicOffset;
@@ -81,7 +98,7 @@ public class EnemyHpbarTracker : MonoBehaviour
         hpbarUI.gameObject.SetActive(true);
         hpbarUI.position = screenPos;
 
-        UpdateHpbarInfo(target);
+        UpdateHpbarInfo(enemy);
     }
 
     private void UpdateScale(Transform targetTransform)
@@ -91,8 +108,12 @@ public class EnemyHpbarTracker : MonoBehaviour
         hpbarUI.localScale = Vector3.one * scale;
     }
 
-    private void UpdateHpbarInfo(Target target)
+    private void UpdateHpbarInfo(Enemy enemy)
     {
-        enemyHpbar.UpdateHealthBar(target.CurrentHealth, target.MaxHealth); 
+        var attributeHandler = enemy.GetComponent<EnemyAttributeHandler>();
+        float maxHp = attributeHandler != null ? attributeHandler.MaxHp : 100f;
+        float curHp = enemy.CurHp;
+
+        enemyHpbar.UpdateHealthBar(curHp, maxHp);
     }
 }
