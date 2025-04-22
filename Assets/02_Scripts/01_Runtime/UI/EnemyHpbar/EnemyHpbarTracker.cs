@@ -6,7 +6,7 @@ public class EnemyHpbarTracker : MonoBehaviour
     [Header("References")]
     [SerializeField] private RectTransform hpbarUI;
     [SerializeField] private Canvas canvas;
-    [SerializeField] private Vector3 offset = new Vector3(0, 5f, 0);
+    [SerializeField] private Vector3 offset = new Vector3(0, 2f, 0);
     [SerializeField] private float scaleFactor = 10f;
     [SerializeField] private float minScale = 0.5f;
     [SerializeField] private float maxScale = 2f;
@@ -84,7 +84,7 @@ public class EnemyHpbarTracker : MonoBehaviour
     {
         Transform targetTransform = enemy.transform;
         float enemyHeight = targetTransform.localScale.y;
-        Vector3 dynamicOffset = offset + new Vector3(0, enemyHeight * 0.5f, 0);
+        Vector3 dynamicOffset = new Vector3(0, enemyHeight * offset.y, 0);
         Vector3 worldPos = targetTransform.position + dynamicOffset;
         Vector3 screenPos = mainCamera.WorldToScreenPoint(worldPos);
 

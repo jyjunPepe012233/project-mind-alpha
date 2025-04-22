@@ -658,7 +658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpbarUI: {fileID: 1762799728094279144}
   canvas: {fileID: 7881486766797425797}
-  offset: {x: 0, y: 4, z: 0}
+  offset: {x: 0, y: 2, z: 0}
   scaleFactor: 10
   minScale: 0.5
   maxScale: 2
