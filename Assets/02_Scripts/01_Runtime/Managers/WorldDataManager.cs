@@ -75,7 +75,7 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 	public AsyncOperation LoadWorldScene() {
 
 		if (_currentReloadSceneAsync == null) {
-			_currentReloadSceneAsync = SceneManager.LoadSceneAsync(WorldUtility.SCENENAME_test);
+			_currentReloadSceneAsync = SceneManager.LoadSceneAsync(WorldUtility.SCENENAME_dungeon);
 			StartCoroutine(ProcessLoadWorldSceneAsync());
 			
 		} else {
