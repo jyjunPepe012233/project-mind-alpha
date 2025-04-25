@@ -79,7 +79,7 @@ namespace MinD.Runtime.Managers
 			OnBossFightFinish?.Invoke(isBossFelled);
 		}
 
-		private Enemy GetCurrentBoss()
+		public Enemy GetCurrentBoss()
 		{
 			if (currentBossFight != null)
 			{
