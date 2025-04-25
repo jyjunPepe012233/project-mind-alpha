@@ -6,6 +6,8 @@ namespace MinD.SO.EnemySO {
 
 [CreateAssetMenu(menuName = "MinD/Enemy SO/Enemy Attribute", fileName = "Enemy Attribute")]
 public class EnemyAttribute : ScriptableObject {
+	
+	public string name; // 한국어
 
 	[Header("[ Status ]")]
 	public int maxHp; 

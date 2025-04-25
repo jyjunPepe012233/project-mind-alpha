@@ -16,14 +16,15 @@ public class BossRoomEntrance : Interactable, IWorldIndexable
     public event Action<Enemy, BossFightInfoSo> OnEnter;
     
     [SerializeField] private Enemy boss;
-    [SerializeField] private BossFightInfoSo bossFightInfo;
-    [SerializeField] private GameObject gateTransform;
+    [SerializeField] private BossFightInfoSo bossFightInfo; 
+    [SerializeField] private GameObject obstacleTransform;
     [SerializeField] private Transform reachTransform;
 
-    [HideInInspector] public bool isFelled;
+    private bool isCleared = false;
+    public bool IsCleared => isCleared;
 
-    private bool _hasBeenIndexed;
-    private int _worldIndex;
+    [SerializeField, HideInInspector] private bool _hasBeenIndexed;
+    [SerializeField, HideInInspector] private int _worldIndex;
     public bool hasBeenIndexed
     {
         get => _hasBeenIndexed;
@@ -35,26 +36,21 @@ public class BossRoomEntrance : Interactable, IWorldIndexable
         set => _worldIndex = value;
     }
 
-    private void Awake()
-    {
-        boss.dieAction += FellBoss;
-    }
-
     public override void Interact(Player interactor)
     {
         OnEnter?.Invoke(boss, bossFightInfo);
+
+        canInteraction = false;
+        
         interactor.interaction.RemoveInteractableInList(this);
         interactor.interaction.RefreshInteractableList();
 
-        StartCoroutine(EnterBossRoomCoroutine());
+        StartCoroutine(PlayEnteringBossRoomAction());
+        
+        BossFightManager.Instance.OnBossFightFinish += OnBossFightFinish;
     }
 
-    private void FellBoss()
-    {
-        isFelled = true;
-    }
-
-    private IEnumerator EnterBossRoomCoroutine()
+    private IEnumerator PlayEnteringBossRoomAction()
     {
         Player.player.animation.PlayTargetAction("Anchor_Discover", true, true, false, false);
         
@@ -71,8 +67,20 @@ public class BossRoomEntrance : Interactable, IWorldIndexable
 
     public void LoadBossData(bool hasBeenFelled)
     {
-        gateTransform?.SetActive(hasBeenFelled);
-        GetComponent<Collider>().enabled = false;
+        obstacleTransform?.SetActive(!hasBeenFelled);
+        GetComponent<Collider>().enabled = !hasBeenFelled;
     }
-    
+
+    private void OnBossFightFinish(bool isBossFelled)
+    {
+        Debug.Log("Line76 " + isBossFelled);
+        
+        if (isBossFelled)
+        {
+            LoadBossData(true);
+            isCleared = true;
+        }
+
+        BossFightManager.Instance.OnBossFightFinish -= OnBossFightFinish;
+    }
 }

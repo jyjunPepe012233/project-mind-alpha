@@ -38,7 +38,9 @@ public class GameManager : Singleton<GameManager> {
 		Debug.Log("Scene Changed To '" + newScene.name + "'. \n Is This World Scene = " + WorldUtility.IsWorldScene(newScene));
 		
 		PlayerHUDManager.Instance.FadeOutFromBlack(TIME_FirstGameLoadedFadeOut);
+		WorldDataManager.Instance.FindAllWorldIndexable();
 		WorldDataManager.Instance.LoadGameData();
+		BossFightManager.Instance.Instantiate();
 
 		willAwakeWithAnchorIdle = false;
 		willAwakeFromLatestAnchor = false;
@@ -109,6 +111,7 @@ public class GameManager : Singleton<GameManager> {
 		IndexingObjects<Enemy>();
 		IndexingObjects<GuffinsAnchor>();
 		IndexingObjects<DroppedItem>();
+		IndexingObjects<BossRoomEntrance>();
 	}
 	public void ClearBakeData() {
 
@@ -124,6 +127,7 @@ public class GameManager : Singleton<GameManager> {
 		ClearObjectsIndex<Enemy>();
 		ClearObjectsIndex<GuffinsAnchor>();
 		ClearObjectsIndex<DroppedItem>();
+		ClearObjectsIndex<BossRoomEntrance>();
 	}
 	#endif
 }

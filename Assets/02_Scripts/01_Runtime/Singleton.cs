@@ -1,11 +1,12 @@
 using MinD.Utility;
+using Unity.VisualScripting;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace MinD.Runtime {
 
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
+public class Singleton<T> : MonoBehaviour where T : Singleton<T> {
 
     private static T instance;
 
@@ -24,6 +25,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
                     } else {
                         DontDestroyOnLoad(instance);
                     }
+                    instance.OnSceneChanged(new Scene(), SceneManager.GetActiveScene());
 
                 }
 
@@ -35,12 +37,21 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour {
     }
 
     protected void Awake() {
-        if (Instance != this) {
+        if (instance != null) {
+            Debug.Log("Singleton Instance already exists. Destroy " + gameObject.name);
             Destroy(gameObject);
-            return;
         }
-        
-        SceneManager.activeSceneChanged += OnSceneChanged;
+        else
+        {
+            instance = this as T;
+            
+            SceneManager.activeSceneChanged += OnSceneChanged;
+            if (transform != transform.root) {
+                DontDestroyOnLoad(transform.root);
+            } else {
+                DontDestroyOnLoad(transform);
+            }
+        }
     }
     
 

@@ -1,41 +1,92 @@
+using System;
 using MinD.Runtime.Entity;
 using MinD.Runtime.UI;
 using MinD.SO.Game;
 using MinD.SO.Item;
+using MinD.Utility;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MinD.Runtime.Managers
 {
 
 	public class BossFightManager : Singleton<BossFightManager>
 	{
+		public event Action OnBossFightStart;
+		public event Action<bool> OnBossFightFinish; // bool1: is boss felled?
+		
+		public bool IsBossFightStarted => currentBossFight != null;
+		
 		private BossFightInfoSo currentBossFight;
+		private Enemy currentBoss;
 
-		private void Awake()
+		public void Instantiate()
 		{
-			base.Awake();
-			
-			BossRoomEntrance[] allEnterance = FindObjectsOfType<BossRoomEntrance>();
-			foreach (BossRoomEntrance e in allEnterance)
+		}
+		
+		
+		protected override void OnSceneChanged(Scene oldScene, Scene newScene) {
+
+			if (WorldUtility.IsWorldScene(newScene))
 			{
-				e.OnEnter += StartBossFight;
+				BossRoomEntrance[] allEntrances = FindObjectsOfType<BossRoomEntrance>();
+				foreach (BossRoomEntrance e in allEntrances)
+				{
+					e.OnEnter += Instance.StartBossFight;
+				}
 			}
 		}
 
 		private void StartBossFight(Enemy instantiatedBoss, BossFightInfoSo bossFightInfo)
 		{
-			instantiatedBoss.dieAction += StopBossFight;
+			if (instantiatedBoss == null)
+			{
+				return;
+			}
+
+			if (bossFightInfo == null)
+			{
+				return;
+			}
+			
+			instantiatedBoss.dieAction += () => FinishBossFight(true);
+			Player.player.dieAction += () => FinishBossFight(false);
 			currentBossFight = bossFightInfo;
+			currentBoss = instantiatedBoss;
+			
+			OnBossFightStart?.Invoke();
 		}
 
-		private void StopBossFight()
+		private void FinishBossFight(bool isBossFelled)
 		{
-			if (currentBossFight.reward != null)
+			if (currentBossFight == null)
 			{
-				Player.player.inventory.AddItem(currentBossFight.reward.itemId, 1);
+				return;
 			}
-			currentBossFight = null;
 			
-			PlayerHUDManager.Instance.PlayBurstPopup(PlayerHUDManager.playerHUD.legendFelledPopup);
+			if (isBossFelled)
+			{
+				if (currentBossFight.reward != null)
+				{
+					Player.player.inventory.AddItem(currentBossFight.reward.itemId, 1);
+				}
+				PlayerHUDManager.Instance.PlayBurstPopup(PlayerHUDManager.playerHUD.legendFelledPopup);
+			}
+
+			currentBossFight = null;
+			currentBoss = null;
+
+			OnBossFightFinish?.Invoke(isBossFelled);
+		}
+
+		private Enemy GetCurrentBoss()
+		{
+			if (currentBossFight != null)
+			{
+				return null;
+			}
+
+			return (currentBoss != null) ? currentBoss : null;
 		}
 	}
 

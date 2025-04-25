@@ -32,9 +32,14 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 
 
 	protected override void OnSceneChanged(Scene oldScene, Scene newScene) {
-		if (WorldUtility.IsWorldScene(newScene)) {
+	}
+
+	public void FindAllWorldIndexable()
+	{
+		if (WorldUtility.IsThisWorldScene()) {
 			FindGuffinsAnchorOnWorld();
 			FindPlacedItemOnWorld();
+			FindBossRoomEntranceOnWorld();
 		}
 	}
 	private void FindGuffinsAnchorOnWorld() {
@@ -75,7 +80,7 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 	public AsyncOperation LoadWorldScene() {
 
 		if (_currentReloadSceneAsync == null) {
-			_currentReloadSceneAsync = SceneManager.LoadSceneAsync(WorldUtility.SCENENAME_test);
+			_currentReloadSceneAsync = SceneManager.LoadSceneAsync(WorldUtility.SCENENAME_dungeon);
 			StartCoroutine(ProcessLoadWorldSceneAsync());
 			
 		} else {
@@ -130,8 +135,8 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 	{
 		for (int i = 0; i < _worldEntrances.Count; i++) {
 			// TODO: This code is temp. should references save data
-			if (!_isPlacedItemsCollected.ContainsKey(i)) {
-				_isPlacedItemsCollected[i] = false;
+			if (!_isBossesFelled.ContainsKey(i)) {
+				_isBossesFelled[i] = false;
 			}
 			_worldEntrances[i].LoadBossData(_isBossesFelled[i]);
 		}
@@ -167,7 +172,7 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 	{
 		for (int i = 0; i < _worldEntrances.Count; i++)
 		{
-			_isBossesFelled[i] = _worldEntrances[i].isFelled;
+			_isBossesFelled[i] = _worldEntrances[i].IsCleared;
 		}
 	}
 	

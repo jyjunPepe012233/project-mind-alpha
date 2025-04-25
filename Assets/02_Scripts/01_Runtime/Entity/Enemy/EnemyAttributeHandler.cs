@@ -8,6 +8,11 @@ public class EnemyAttributeHandler : BaseEntityAttributeHandler {
 	
 	[SerializeField] private EnemyAttribute attributeSO;
 
+	public string Name
+	{
+		get => attributeSO.name;
+	}
+	
 	public override int MaxHp {
 		get => attributeSO.maxHp;
 		set {
