@@ -44,7 +44,6 @@ public class BossHpbar : MonoBehaviour
 
     private void OnDisable()
     {
-        if (BossFightManager.Instance == null) return;
         BossFightManager.Instance.OnBossFightStart -= HandleBossFightStart;
         BossFightManager.Instance.OnBossFightFinish -= HandleBossFightFinish;
     }
@@ -62,14 +61,11 @@ public class BossHpbar : MonoBehaviour
         boss = BossFightManager.Instance.GetCurrentBoss();
         if (boss == null)
         {
-            Debug.LogError("[BossHpbar] Boss is NULL after BossFightStart!");
             return;
         }
-
-        Debug.Log("[BossHpbar] Boss fight started with boss: " + boss.name);
-
+        
         IsBossFighting = true;
-        bossNameTMP.text = boss.name;
+        bossNameTMP.text = boss.attribute.Name;
         lastHp = boss.CurHp;
         accumulatedDamage = 0;
         damageTMP.text = "";

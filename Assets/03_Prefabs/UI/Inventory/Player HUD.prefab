@@ -2304,7 +2304,7 @@ MonoBehaviour:
   damagedHpBar: {fileID: 3640613521409426362}
   bossNameTMP: {fileID: 6282750040211599498}
   damageTMP: {fileID: 2819458242184166541}
-  damagedHpLerpSpeed: 1.5
+  damagedHpLerpSpeed: 2
   fadeDuration: 0.5
   fadeDelay: 2
   damagedHpDelay: 1
@@ -5726,7 +5726,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -413.02173, y: 6.9674377}
+  m_AnchoredPosition: {x: -413.02173, y: 14.7}
   m_SizeDelta: {x: 169, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4813391186371095418
@@ -5785,13 +5785,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
-  m_fontSizeBase: 20.75
+  m_fontSize: 23
+  m_fontSizeBase: 23
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -7846,7 +7846,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 317.17822, y: 6.9674377}
+  m_AnchoredPosition: {x: 317.17822, y: 11}
   m_SizeDelta: {x: 169, y: 15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &352868920854444689
@@ -7877,7 +7877,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 693486a1069ad4a419bc8d4e61ba420b, type: 2}
   m_sharedMaterial: {fileID: 6752858294846163275, guid: 693486a1069ad4a419bc8d4e61ba420b,
@@ -7905,7 +7907,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20.75
+  m_fontSize: 72
   m_fontSizeBase: 20.75
   m_fontWeight: 400
   m_enableAutoSizing: 1
