@@ -11,6 +11,7 @@ public class EnemyHpbarTracker : MonoBehaviour
     [SerializeField] private float minScale = 0.5f;
     [SerializeField] private float maxScale = 2f;
     [SerializeField] private EnemyHpbar enemyHpbar;
+    [SerializeField] private BossHpbar bossHpbar;
 
     private Camera mainCamera;
 
@@ -26,6 +27,8 @@ public class EnemyHpbarTracker : MonoBehaviour
 
     private void Update()
     {
+        if (bossHpbar.IsBossFighting)
+            return;
         bool hasTarget = TryGetTargetEnemy(out Enemy enemy);
 
         if (hasTarget)

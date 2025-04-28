@@ -81,7 +81,7 @@ namespace MinD.Runtime.Managers
 
 		public Enemy GetCurrentBoss()
 		{
-			if (currentBossFight != null)
+			if (currentBossFight == null)
 			{
 				return null;
 			}
