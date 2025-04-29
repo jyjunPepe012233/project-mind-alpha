@@ -92,6 +92,7 @@ namespace MinD.Runtime.Object.Interactables {
             }
 
             if (!isOpened) {
+                interactor.animation.PlayTargetAction("Anchor_Discover", true, true, false, false);
                 Open();
             }
         }

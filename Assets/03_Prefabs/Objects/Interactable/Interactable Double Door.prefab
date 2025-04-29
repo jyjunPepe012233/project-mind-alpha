@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6635178833024449610}
   - component: {fileID: 7288987214805636720}
   m_Layer: 0
-  m_Name: LeftSideDoor
+  m_Name: PrimaryDoor(Left)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 675071829557194699}
   - component: {fileID: 276756269115382395}
   m_Layer: 0
-  m_Name: RightSideDoor
+  m_Name: SecondaryDoor(Right)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -322,8 +322,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3811431261073915196}
   - {fileID: 6764572549068035172}
+  - {fileID: 3811431261073915196}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -270.656, z: 0}
 --- !u!33 &4420185547612351675
