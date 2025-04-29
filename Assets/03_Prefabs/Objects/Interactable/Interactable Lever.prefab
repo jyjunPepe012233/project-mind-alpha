@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 572841612915492035}
   - component: {fileID: 4796773966917389072}
   - component: {fileID: 6147535916064624943}
+  - component: {fileID: 8839535383670590437}
   m_Layer: 0
   m_Name: Interactable Lever
   m_TagString: Untagged
@@ -212,3 +213,21 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.25476518
   m_Center: {x: -0.0000038146973, y: 0.5, z: 0.4}
+--- !u!114 &8839535383670590437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7002320653375048225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d1985f4b96e4f3db28b9bf031832427, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canInteraction: 1
+  interactionText: 
+  lever: {fileID: 0}
+  targetDoor: {fileID: 0}
+  oneTimeUse: 1
+  rotationSpeed: 60
