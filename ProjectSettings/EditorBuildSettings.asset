@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/01_Scenes/PrototypeMap.unity
     guid: dec1703bfe2ed41d7a2371cb3fffe770
   - enabled: 1
-    path: Assets/01_Scenes/PrototypeDungeon.unity
+    path: Assets/01_Scenes/PrototypeDungeon2.unity
     guid: 5a329d32ce45c405793cad10871b13c2
   m_configObjects: {}
