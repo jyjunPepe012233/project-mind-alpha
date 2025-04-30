@@ -18,7 +18,7 @@ namespace MinD.Runtime.Object.Interactables {
 
         [Header("Door Settings")]
         [SerializeField] private DoorType doorType = DoorType.Single;
-        [SerializeField] private float openSpeed = 10f;
+        [SerializeField] private float openSpeed = 60f;
         [SerializeField] private bool isLocked = false;
         
         [Header("Door Configuration")]
