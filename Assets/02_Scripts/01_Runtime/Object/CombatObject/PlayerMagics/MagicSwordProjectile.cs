@@ -81,7 +81,7 @@ public class MagicSwordProjectile : MonoBehaviour
                 if (!_castPlayer.combat.target.isDeath)
                 {
                     transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                        Quaternion.LookRotation(_castPlayer.combat.target.transform.position  + new Vector3(0, _castPlayer.combat.target.transform.lossyScale.y * 1.2f ,0) - transform.position), 360 * Time.deltaTime * 2);
+                        Quaternion.LookRotation(_castPlayer.combat.target.transform.position  + new Vector3(0, _castPlayer.combat.target.transform.lossyScale.y * 1.2f ,0) - transform.position), 15 * Time.deltaTime);
                 }
                 rigidbody.velocity = (transform.forward * (5 + ( elapsedTime * (elapsedTime /2 )* 3f) * _speed ));
                 
