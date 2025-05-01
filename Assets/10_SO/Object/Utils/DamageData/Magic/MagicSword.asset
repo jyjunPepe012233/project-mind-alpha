@@ -20,5 +20,7 @@ MonoBehaviour:
     lightning: 0
     holy: 0
   totalDamage: 70
-  poiseBreakDamage: 15
+  poiseBreakDamage: 50
   absorbMp: 0
+  isDirectional: 0
+  damageDirection: {x: 0, y: 0, z: 0}
