@@ -50,8 +50,14 @@ MonoBehaviour:
   lowerPosition: {x: -0.76000214, y: 8.795, z: -46.014347}
   moveSpeed: 2
   waitTimeAtPosition: 1
-  moveSound: {fileID: 0}
-  arriveSound: {fileID: 0}
+  startAtUpperPosition: 0
+  passengerParent: {fileID: 8149134655749669283}
+  passengerLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  detectionBoxSize: {x: 5, y: 1, z: 5}
+  detectionBoxOffset: {x: -2.5, y: 1, z: 2.5}
+  useKinematicAttachment: 1
 --- !u!1001 &3728349858209359790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124,6 +130,21 @@ PrefabInstance:
         type: 3}
       propertyPath: oneTimeUse
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839535383670590437, guid: 1c24b35dd6a2a4a14832746497f62fb0,
+        type: 3}
+      propertyPath: targetLift
+      value: 
+      objectReference: {fileID: 427573185516828303}
+    - target: {fileID: 8839535383670590437, guid: 1c24b35dd6a2a4a14832746497f62fb0,
+        type: 3}
+      propertyPath: controlsDoor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8839535383670590437, guid: 1c24b35dd6a2a4a14832746497f62fb0,
+        type: 3}
+      propertyPath: controlsLift
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -58,7 +58,7 @@ namespace MinD.Runtime.Object.Interactables
         public override void Interact(Player interactor)
         {
             // 상호작용이 불가능하거나 사용된 레버이거나 회전 중인 경우 상호작용 방지
-            if (!canInteraction || isUsed || isRotating || targetLift.IsMoving())
+            if (!canInteraction || isUsed || isRotating || (controlsLift && targetLift != null && targetLift.IsMoving()))
             {
                 return;
             }
