@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4ffe80b7014a5e925130dbc5ee9cb9, type: 3}
   m_Name: AshenDemon_PursueTarget
   m_EditorClassIdentifier: 
-  giveUpDistance: 13
-  enterCombatStanceRadius: 7
+  giveUpDistance: 18
+  enterCombatStanceRadius: 11

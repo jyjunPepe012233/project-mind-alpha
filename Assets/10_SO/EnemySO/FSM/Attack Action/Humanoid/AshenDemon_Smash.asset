@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionWeight: 1
   motionStateName: Smash
-  actionRecoveryTime: 1
-  rotateInAttackAction: 1
-  minAngle: -120
-  maxAngle: 120
-  minDistance: 4
-  maxDistance: 8.5
+  actionRecoveryTime: 0.7
+  rotateInAttackAction: 0
+  minAngle: -25
+  maxAngle: 25
+  minDistance: 3
+  maxDistance: 5.5
   canRepeatAction: 0
   canPerformCombo: 0
   chanceToCombo: 0.5

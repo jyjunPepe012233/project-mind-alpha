@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionWeight: 1
   motionStateName: Attack1
-  actionRecoveryTime: 1
-  rotateInAttackAction: 1
+  actionRecoveryTime: 0.3
+  rotateInAttackAction: 0
   minAngle: -35
   maxAngle: 35
-  minDistance: 1
-  maxDistance: 3
+  minDistance: 2.5
+  maxDistance: 3.5
   canRepeatAction: 1
-  canPerformCombo: 1
+  canPerformCombo: 0
   chanceToCombo: 0.5
   comboAttack: {fileID: 0}
