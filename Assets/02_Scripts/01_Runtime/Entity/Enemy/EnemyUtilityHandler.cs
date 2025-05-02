@@ -16,12 +16,27 @@ public class EnemyUtilityHandler : EntityOwnedHandler {
 	public GameObject InstantiatePrefab(string targetObject) {
 
 		foreach (GameObject prefab in prefabs) {
-			if (prefab.name == targetObject) {
-				return Instantiate(prefab);
+			if (prefab.name == targetObject)
+			{
+				GameObject instantiated = Instantiate(prefab);
+				DamageCollider[] dcComponents = instantiated.GetComponentsInChildren<DamageCollider>(true);
+				foreach (DamageCollider dc in dcComponents)
+				{
+					dc.blackList.Add(owner);
+				}
+				return instantiated;
 			}
 		}
 
 		throw new UnityException("!! CAN'T FIND " + owner.name + " OWNED OBJECT THE NAMED " + targetObject);
+	}
+
+	public GameObject InstantiatePrefabOnSelf(string targetObject)
+	{
+		GameObject prefab = InstantiatePrefab(targetObject);
+		prefab.transform.position = owner.transform.position;
+		prefab.transform.forward = new Vector3(owner.transform.forward.x, 0, owner.transform.forward.z);
+		return prefab;
 	}
 
 	public void EnableObject(string targetObjects) {
