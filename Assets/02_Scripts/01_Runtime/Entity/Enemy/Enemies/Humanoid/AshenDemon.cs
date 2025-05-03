@@ -21,6 +21,8 @@ namespace MinD.Runtime.Entity.Enemies {
 
 		private void Update()
 		{
+			base.Update();
+			
 			if (swordTrail.isPlaying && !swordTrailActiveReference.activeInHierarchy)
 			{
 				swordTrail.Stop();

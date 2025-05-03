@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: AshenDemon_PursueTarget
   m_EditorClassIdentifier: 
   giveUpDistance: 18
-  enterCombatStanceRadius: 11
+  enterCombatStanceRadius: 15

@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329bd44861d843b69537f8788337cfe8, type: 3}
   m_Name: AshenDemon_DodgeBack
   m_EditorClassIdentifier: 
-  actionWeight: 1
+  actionWeight: 0.3
   motionStateName: DodgeBack
   actionRecoveryTime: 0.5
   rotateInAttackAction: 0
   minAngle: -15
   maxAngle: 15
   minDistance: 0
-  maxDistance: 3
-  canRepeatAction: 1
+  maxDistance: 4
+  canRepeatAction: 0
   canPerformCombo: 0
   chanceToCombo: 0.5
   comboAttack: {fileID: 0}

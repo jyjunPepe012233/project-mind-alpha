@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 329bd44861d843b69537f8788337cfe8, type: 3}
   m_Name: AshenDemon_RunAttack
   m_EditorClassIdentifier: 
-  actionWeight: 1
+  actionWeight: 4
   motionStateName: RunAttack
   actionRecoveryTime: 0.3
   rotateInAttackAction: 0
-  minAngle: -5
-  maxAngle: 5
-  minDistance: 5.5
+  minAngle: -10
+  maxAngle: 10
+  minDistance: 5
   maxDistance: 6
   canRepeatAction: 0
   canPerformCombo: 0
