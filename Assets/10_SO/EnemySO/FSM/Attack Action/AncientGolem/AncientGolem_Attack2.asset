@@ -18,7 +18,7 @@ MonoBehaviour:
   rotateInAttackAction: 0
   minAngle: -10
   maxAngle: 10
-  minDistance: 7
+  minDistance: 6
   maxDistance: 11
   canRepeatAction: 0
   canPerformCombo: 0

@@ -14,7 +14,8 @@ public class GolemIdleState : HumanoidIdleState {
 		
 		if (self.currentTarget == null) {
 			return this;
-		} else
+			
+		} else if (Vector3.Distance(self.transform.position, self.currentTarget.transform.position) < absoluteDetectRadius)
 		{
 			GolemEnemy selfG = self as GolemEnemy;
 			if (!selfG.IsRised)
@@ -23,7 +24,10 @@ public class GolemIdleState : HumanoidIdleState {
 			}
 			return self.pursueTargetState;
 		}
-		
+		else
+		{
+			return this;
+		}
 	}
 	
 }

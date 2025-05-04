@@ -34,6 +34,7 @@ public abstract class GolemEnemy : HumanoidEnemy
 			poiseBreakTimer += Time.deltaTime;
 			if (poiseBreakTimer > poiseBreakDuration)
 			{
+				isPoiseBroked = false;
 				poiseBreakTimer = 0;
 				animation.PlayTargetAnimation("Stun_End", 0.1f, true, true);
 			}
@@ -51,7 +52,7 @@ public abstract class GolemEnemy : HumanoidEnemy
 			animation.PlayTargetAnimation("Stun_Start", 0.1f, true, true);
 		}
 
-		if (isPerformingAction)
+		if (!isPerformingAction)
 		{
 			base.OnDamaged(damage);
 		}

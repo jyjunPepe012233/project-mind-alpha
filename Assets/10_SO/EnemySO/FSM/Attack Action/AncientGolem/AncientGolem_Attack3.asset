@@ -16,9 +16,9 @@ MonoBehaviour:
   motionStateName: Attack3
   actionRecoveryTime: 0.5
   rotateInAttackAction: 1
-  minAngle: -5
-  maxAngle: 5
-  minDistance: 6
+  minAngle: -10
+  maxAngle: 10
+  minDistance: 5
   maxDistance: 8
   canRepeatAction: 0
   canPerformCombo: 0

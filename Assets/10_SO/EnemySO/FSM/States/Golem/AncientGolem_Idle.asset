@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectAngle: 60
   detectRadius: 28
-  absoluteDetectRadius: 10
+  absoluteDetectRadius: 21
