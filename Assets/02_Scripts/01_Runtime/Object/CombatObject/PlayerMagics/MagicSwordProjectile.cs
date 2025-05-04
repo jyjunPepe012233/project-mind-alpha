@@ -71,7 +71,7 @@ public class MagicSwordProjectile : MonoBehaviour
         if (_castPlayer.isLockOn) // 적 감지 시 추척하여 발사
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                Quaternion.LookRotation(_castPlayer.combat.target.transform.position  + new Vector3(0,_castPlayer.combat.target.transform.lossyScale.y * 1.2f,0) - transform.position)
+                Quaternion.LookRotation(_castPlayer.camera.currentTargetOption.transform.position - transform.position)
                 , 360); // 처음엔 방향 설정
             
             while (!isExploded)
