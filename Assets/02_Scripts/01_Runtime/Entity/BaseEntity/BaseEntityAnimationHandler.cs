@@ -9,7 +9,7 @@ public abstract class BaseEntityAnimationHandler : EntityOwnedHandler {
 	
 	public void LerpMoveDirectionParameter(float horizontal, float vertical) {
 
-		locomotionParam = Vector2.Lerp(locomotionParam, new Vector2(horizontal, vertical), Time.deltaTime * moveDirectionLerpSpeed);
+		locomotionParam = Vector2.MoveTowards(locomotionParam, new Vector2(horizontal, vertical), Time.deltaTime * moveDirectionLerpSpeed * 0.33f);
 		foreach (AnimatorControllerParameter parameter in owner.animator.parameters) {
 
 			if (parameter.name == "Horizontal")
