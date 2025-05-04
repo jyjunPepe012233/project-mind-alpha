@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bde953cfb6c046d285c5e6e0fbd4359, type: 3}
+  m_Name: AncientGolem
+  m_EditorClassIdentifier: 
+  name: "\uB0A8\uACA8\uC9C4 \uC218\uD638\uC0C1"
+  maxHp: 3200
+  moveSpeed: 0.95
+  angularSpeed: 65
+  damageNegation:
+    _physical: 0.55
+    _magic: 0.85
+    _fire: 0.85
+    _frost: 0.85
+    _lightning: 0.85
+    _holy: 0.85
+  poiseBreakResistance: 70
+  corpseFadeTime: 5
