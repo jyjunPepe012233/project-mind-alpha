@@ -24,4 +24,4 @@ MonoBehaviour:
     _lightning: 0.45
     _holy: 0.45
   poiseBreakResistance: 65
-  corpseFadeTime: 10
+  corpseFadeTime: 5

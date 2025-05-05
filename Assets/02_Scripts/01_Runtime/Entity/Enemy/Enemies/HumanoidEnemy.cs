@@ -79,7 +79,7 @@ public abstract class HumanoidEnemy : Enemy {
 		
 		PhysicUtility.SetActiveChildrenColliders(transform, false, WorldUtility.damageableLayerMask);
 
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(attribute.corpseFadeTime);
 		Destroy(gameObject);
 	}
 	
