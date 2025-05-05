@@ -315,7 +315,7 @@ public class PlayerCamera : MonoBehaviour {
 		// SORTING TARGET OPTIONS BY PROXIMITY
 		availableTargets = availableTargets.OrderBy(target => Vector3.Distance(owner.transform.position, target.transform.position)).ToList();
 		// 카메라와의 좌우 방향 절대값(크기)를 기준으로 정렬
-		availableTargetsABAA = availableTargets.OrderBy(option => Mathf.Abs(Vector3.SignedAngle(currentTargetOption.position - transform.position, option.position - transform.position, Vector3.up))).ToList();
+		availableTargetsABAA = availableTargets.OrderBy(option => Mathf.Abs(Vector3.SignedAngle(transform.forward, option.position - transform.position, Vector3.up))).ToList();
 	}
 
 	private IEnumerator MoveLockOnCool()
