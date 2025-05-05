@@ -172,8 +172,11 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 		burstPopupDirector.Play();
 
 		yield return new WaitForSeconds((float)burstPopupDirector.duration);
-		
-		burstPopupDirector.gameObject.SetActive(false);
+
+		if (burstPopupDirector != null)
+		{
+			burstPopupDirector.gameObject.SetActive(false);
+		}
 
 	}
 

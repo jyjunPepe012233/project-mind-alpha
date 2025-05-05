@@ -111,11 +111,10 @@ public class Player : BaseEntity {
         attribute.SetBaseAttributesAsPerStats();
         attribute.CalculateAttributesByEquipment();
         PlayerHUDManager.Instance.RefreshAllStatusBar();
-        
 
 
         
-        // TODO: Load camera direction
+        
         #region LOAD_CHARACTER_TRANSFORM_DATA
         Vector3 playerPosition = default;
         Vector3 playerDirx = default;
@@ -140,7 +139,7 @@ public class Player : BaseEntity {
         
         transform.forward = playerDirx;
         #endregion
-        
+        camera.MoveCameraToAppropriatePosition();
         
         if (GameManager.Instance.willAwakeWithAnchorIdle) {
             animation.PlayTargetAction("Anchor_Idle", 0, true, true, false, false);

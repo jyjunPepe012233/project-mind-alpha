@@ -111,6 +111,11 @@ public class PlayerCombatHandler : EntityOwnedHandler {
 
 			Tool useTool = ((Player)owner).inventory.toolSlots[((Player)owner).inventory.currentToolSlot];
 
+			if (useTool == null)
+			{
+				return;
+			}
+			
 			if (useTool.remainingCoolTime > 0) {
 				return;
 			}

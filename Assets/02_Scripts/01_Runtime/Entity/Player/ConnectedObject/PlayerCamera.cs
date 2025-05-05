@@ -53,6 +53,11 @@ public class PlayerCamera : MonoBehaviour {
 	private float releaseLockOnTimer;
 
 
+	public void MoveCameraToAppropriatePosition()
+	{
+		targetCameraArm = owner.transform.position + Quaternion.Euler(transform.eulerAngles) * cameraOffset;
+		cameraArm = targetCameraArm;
+	}
 
 	public void HandleCamera() {
 
