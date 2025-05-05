@@ -29,6 +29,7 @@ public class DreadDwarfMinerQuake : MonoBehaviour
 	{
 		_waitingVfx.Play();
 		yield return new WaitForSeconds(_quakeTiming);
+		_waitingVfx.Stop();
 		_quakeVfx.Play();
 		damageCollider.gameObject.SetActive(true);
 		yield return new WaitForSeconds(_damageColliderLifeTime);
