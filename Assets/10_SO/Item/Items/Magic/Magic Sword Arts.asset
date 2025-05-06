@@ -51,10 +51,10 @@ MonoBehaviour:
   _magicSwordArtsTrajectoryObj: {fileID: 8841716291074279972, guid: ab4c532911e314931a8e9bb36b8e1cc2,
     type: 3}
   _damageDatas:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: c22efd748f3514230840b53bd6bb3e57, type: 2}
+  - {fileID: 11400000, guid: ac4a7806c3306434dad4ec5def254781, type: 2}
+  - {fileID: 11400000, guid: e5886e47547e74f7497f4d099be05807, type: 2}
+  - {fileID: 11400000, guid: 18f5b7e79dd1142b5af397ac5a6fc4e5, type: 2}
   _chargeToTargetScale:
   - {x: 1.6, y: 1.1, z: 1}
   - {x: 2.1, y: 1.5, z: 1.2}

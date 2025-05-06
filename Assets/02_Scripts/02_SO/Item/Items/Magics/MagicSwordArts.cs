@@ -91,6 +91,8 @@ public class MagicSwordArts : Magic
                     
         _sword = Instantiate(_magicSwordArtsSwordObj);
         _swordOfMagicSword = _sword.GetComponent<MagicSwordArtsSword>();
+        
+        _swordOfMagicSword._damageCollider.soData = _damageDatas[0];
         ChargingStep0();
         
         // ChargingStep0(); 
@@ -143,6 +145,7 @@ public class MagicSwordArts : Magic
                     if (_chargeLevel == 2)
                     {
                         Debug.Log("ChargingStep3");
+                        _swordOfMagicSword._damageCollider.soData = _damageDatas[3];
                         ChargingStep3();
                     }
                     _chargeLevel = 3;
@@ -152,6 +155,7 @@ public class MagicSwordArts : Magic
                     if (_chargeLevel == 1)
                     {
                         Debug.Log("ChargingStep2");
+                        _swordOfMagicSword._damageCollider.soData = _damageDatas[2];
                         ChargingStep2();
                     }
                     _chargeLevel = 2;
@@ -161,6 +165,7 @@ public class MagicSwordArts : Magic
                     if (_chargeLevel == 0)
                     {
                         Debug.Log("ChargingStep1");
+                        _swordOfMagicSword._damageCollider.soData = _damageDatas[1];
                         ChargingStep1();
                     }
                     _chargeLevel = 1;

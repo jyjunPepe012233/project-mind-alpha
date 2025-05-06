@@ -29,12 +29,14 @@ public class MagicSwordArtsSword : MonoBehaviour
     private ParticleSystem _chargeLevel3_ParticleSystem;
     private ParticleSystem _slash_ParticleSystem;
     
-    [SerializeField] private DamageCollider _damageCollider;
-    [SerializeField] private Collider _collider;
+    [SerializeField] public DamageCollider _damageCollider;
+    [SerializeField] private CapsuleCollider _collider;
     
     
     [HideInInspector] public Player _castPlayer;
     
+    
+    /* Todo :: 콜라이더 사이즈 문제있음 */
     
     private void Awake()
     {
@@ -102,6 +104,8 @@ public class MagicSwordArtsSword : MonoBehaviour
         {
             __elapsedTime += Time.deltaTime;
             transform.localScale = Vector3.Lerp( transform.localScale, __targetSize ,0.25f);
+            _collider.height = __targetSize.x * 1.8f;
+            _collider.radius = __targetSize.y / 5;
 
             yield return null;
         }
