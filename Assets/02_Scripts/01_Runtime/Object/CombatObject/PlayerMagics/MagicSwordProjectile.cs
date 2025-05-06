@@ -70,9 +70,9 @@ public class MagicSwordProjectile : MonoBehaviour
         
         if (_castPlayer.isLockOn) // 적 감지 시 추척하여 발사
         {
-            transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                Quaternion.LookRotation(_castPlayer.combat.target.transform.position  + new Vector3(0,_castPlayer.combat.target.transform.lossyScale.y * 1.2f,0) - transform.position)
-                , 360); // 처음엔 방향 설정
+            // transform.rotation = Quaternion.RotateTowards(transform.rotation,
+            //     Quaternion.LookRotation(_castPlayer.combat.target.transform.position  + new Vector3(0,_castPlayer.combat.target.transform.lossyScale.y * 1.2f,0) - transform.position)
+            //     , 360); // 처음엔 방향 설정
             
             while (!isExploded)
             {
@@ -81,7 +81,7 @@ public class MagicSwordProjectile : MonoBehaviour
                 if (!_castPlayer.combat.target.isDeath)
                 {
                     transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                        Quaternion.LookRotation(_castPlayer.combat.target.transform.position  + new Vector3(0, _castPlayer.combat.target.transform.lossyScale.y * 1.2f ,0) - transform.position), 360 * Time.deltaTime * 2);
+                        Quaternion.LookRotation(_castPlayer.combat.target.transform.position  + new Vector3(0, _castPlayer.combat.target.transform.lossyScale.y * 1.2f ,0) - transform.position), 8 * Time.deltaTime);
                 }
                 rigidbody.velocity = (transform.forward * (5 + ( elapsedTime * (elapsedTime /2 )* 3f) * _speed ));
                 
