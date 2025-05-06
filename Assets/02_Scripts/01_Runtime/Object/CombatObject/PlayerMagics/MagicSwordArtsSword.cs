@@ -27,58 +27,24 @@ public class MagicSwordArtsSword : MonoBehaviour
     private ParticleSystem _chargeLevel2_ParticleSystem;
     private ParticleSystem _chargeLevel3_ParticleSystem;
     
-    [SerializeField] public  GameObject _gameObject;
     [SerializeField] private DamageCollider _damageCollider;
     [SerializeField] private Collider _collider;
     
-    // [Header("[ Set State ]")]
-    // [Space(5)]
-    // [SerializeField] private DamageData[] _damageDatas = new DamageData[4]; // 0: 차징X 부터, 차징 단계에 따른 것
-    // [SerializeField] private Vector3[] _chargeToTargetScale = new Vector3[3];
     
     [HideInInspector] public Player _castPlayer;
     
-    // private GameObject _swordObj;
-    // private MagicSwordArtsSword _swordObjofSwordClass;
-    
-    // [HideInInspector] public bool _isHandler = true;
     
     private void Awake()
     {
-        _damageCollider.enabled = false;
-        // PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
-        
-        // _chargeLevel1_ParticleSystem = chargeLevel1_Effect?.GetComponent<ParticleSystem>();
-        // _chargeLevel2_ParticleSystem = chargeLevel2_Effect?.GetComponent<ParticleSystem>();
-        // _chargeLevel3_ParticleSystem = chargeLevel3_Effect?.GetComponent<ParticleSystem>();
-        
-        // _chargeLevel0_ParticleSystem = chargeLevel0_Effect.GetComponent<ParticleSystem>();
-
-        // _chargeLevel0_ParticleSystem?.Play(true);
-
-        // _sword = GetComponent<GameObject>();
-
     }
 
     private void Update()
     {
-        // if (_isHandler)
-        // {
-        //     Debug.Log((_swordObj == null)? "_swordObj is null":"_swordObj is not null");
-        //     Debug.Log((_swordObj.transform == null)? "_swordObj.tranfrom is null":"_swordObj.trasform is not null");
-        //     
-        //     Debug.Log("_sword.isHandler : " + _swordObjofSwordClass._isHandler);
-        //     Debug.Log(_swordObj.transform.position);
-        //     
-        //     _swordObj.transform.position = _castPlayer.equipment.rightHand.position;
-        //     
-        // }
         if (_castPlayer != null)
         {
             transform.position = _castPlayer.equipment.rightHand.position;
             transform.rotation = _castPlayer.equipment.rightHand.rotation;
         }
-        
     }
 
 
@@ -86,43 +52,30 @@ public class MagicSwordArtsSword : MonoBehaviour
     {
         _castPlayer = __castPlayer;
         PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
-        // _chargeLevel0_ParticleSystem?.Play(true);
-        
-        // Debug.Log("MagicSword Create");
-        //
-        // _castPlayer = __castPlayer;
-        //
-        // Debug.Log("MagicSwordCreater : __castPlayer is " + ((__castPlayer == null)?"null":"not null"));
-        // Debug.Log("MagicSwordCreater : _castPlayer is "  + (( _castPlayer == null)?"null":"not null"));
-        //
-        // _swordObj = Instantiate(_gameObject);
-        // _swordObjofSwordClass = _swordObj.GetComponent<MagicSwordArtsSword>();
-        //
-        // _swordObjofSwordClass._isHandler = false;
-        //
-        // Debug.Log("");
-        // _swordObj.SetActive(true);
+
+        chargeLevel0_Effect.SetActive(true);
+        _chargeLevel0_ParticleSystem?.Play(true);
     }
     
     public void ChargeLevel1_SetParticle()
     {
-        // 파티클 생성 범위, 수치 조정 및 검 크기 조정
+        Debug.Log("ChargeLevel1_SetParticle");
+        chargeLevel1_Effect.SetActive(true);
         _chargeLevel1_ParticleSystem?.Play(true);
-        // StartCoroutine(SetScale(_chargeToTargetScale[0]));
     }
     
     public void ChargeLevel2_SetParticle()
     {
-        // 파티클 생성 범위, 수치 조정 및 검 크기 조정
+        Debug.Log("ChargeLevel2_SetParticle");
+        chargeLevel2_Effect.SetActive(true);
         _chargeLevel2_ParticleSystem?.Play(true);
-        // StartCoroutine(SetScale(_chargeToTargetScale[1]));
     }
     
     public void ChargeLevel3_SetParticle()
     {
-        // 파티클 생성 범위, 수치 조정 및 검 크기 조정
+        Debug.Log("ChargeLevel3_SetParticle");
+        chargeLevel3_Effect.SetActive(true);
         _chargeLevel3_ParticleSystem?.Play(true);
-        // StartCoroutine(SetScale(_chargeToTargetScale[2]));
      }
 
     public void SetScale(Vector3 __targetScale)
@@ -144,14 +97,22 @@ public class MagicSwordArtsSword : MonoBehaviour
     
     public void MagicSword_Slash(DamageData __damagedata)
     {
-        _damageCollider.enabled = true;
-
         _damageCollider.soData = __damagedata;
     }
+
+    public void Explode()
+    {
+        Destroy(gameObject);
+        
+        //tartCoroutine(ExplodeCoroutine());
+    }
     
-    // private IEnumerator Explode()
-    // {
-    //     
-    // }
+    private IEnumerator ExplodeCoroutine()
+    {
+        
+        
+        yield break;
+        // yield return null;
+    }
     
 }

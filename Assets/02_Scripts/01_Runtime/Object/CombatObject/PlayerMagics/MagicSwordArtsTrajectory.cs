@@ -81,7 +81,7 @@ public class MagicSwordArtsTrajectory : MonoBehaviour
     
     public void OnDestroy() // 그냥 사라짐 (카리아의 대검 참고) 
     {
-        _magicSwordArtsSword._gameObject.SetActive(false);
+        // _magicSwordArtsSwor.SetActive(false);
     }
     
 }
