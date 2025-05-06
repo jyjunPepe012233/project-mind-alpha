@@ -20,12 +20,14 @@ public class MagicSwordArtsSword : MonoBehaviour
     [SerializeField] private GameObject chargeLevel1_Effect;
     [SerializeField] private GameObject chargeLevel2_Effect;
     [SerializeField] private GameObject chargeLevel3_Effect;
+    [SerializeField] private GameObject slash_Effect;
     [Space(20)]
     
     private ParticleSystem _chargeLevel0_ParticleSystem;
     private ParticleSystem _chargeLevel1_ParticleSystem;
     private ParticleSystem _chargeLevel2_ParticleSystem;
     private ParticleSystem _chargeLevel3_ParticleSystem;
+    private ParticleSystem _slash_ParticleSystem;
     
     [SerializeField] private DamageCollider _damageCollider;
     [SerializeField] private Collider _collider;
@@ -36,6 +38,11 @@ public class MagicSwordArtsSword : MonoBehaviour
     
     private void Awake()
     {
+        _chargeLevel0_ParticleSystem = chargeLevel0_Effect.GetComponent<ParticleSystem>();
+        _chargeLevel1_ParticleSystem = chargeLevel1_Effect.GetComponent<ParticleSystem>();
+        _chargeLevel2_ParticleSystem = chargeLevel2_Effect.GetComponent<ParticleSystem>();
+        _chargeLevel3_ParticleSystem = chargeLevel3_Effect.GetComponent<ParticleSystem>();
+        _slash_ParticleSystem = slash_Effect.GetComponent<ParticleSystem>();
     }
 
     private void Update()
@@ -47,7 +54,12 @@ public class MagicSwordArtsSword : MonoBehaviour
         }
     }
 
-
+    public void Slash_setParticle()
+    {
+        slash_Effect.SetActive(true);
+        _slash_ParticleSystem?.Play(true);
+    }
+    
     public void ChargeLevel0_SetParticle(Player __castPlayer)
     {
         _castPlayer = __castPlayer;
@@ -97,22 +109,22 @@ public class MagicSwordArtsSword : MonoBehaviour
     
     public void MagicSword_Slash(DamageData __damagedata)
     {
+        _chargeLevel0_ParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _chargeLevel1_ParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _chargeLevel2_ParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        _chargeLevel3_ParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        
         _damageCollider.soData = __damagedata;
     }
 
     public void Explode()
     {
         Destroy(gameObject);
-        
-        //tartCoroutine(ExplodeCoroutine());
     }
     
     private IEnumerator ExplodeCoroutine()
     {
-        
-        
         yield break;
-        // yield return null;
     }
     
 }

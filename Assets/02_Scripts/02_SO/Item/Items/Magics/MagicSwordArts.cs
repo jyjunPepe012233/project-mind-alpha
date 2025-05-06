@@ -19,12 +19,11 @@ public class MagicSwordArts : Magic
     [SerializeField] private MagicSwordArtsSword _magicSwordArtsSword;
     [SerializeField] private GameObject _magicSwordArtsSwordObj;
     [SerializeField] private GameObject _magicSwordArtsTrajectoryObj;
-    
     private MagicSwordArtsTrajectory _magicSwordArtsTrajectory;
     
     [Header("[ Set State ]")]
     [Space(5)]
-    [SerializeField] private DamageData[] _damageDatas = new DamageData[3]; // 0: 차징X 부터, 차징 단계에 따른 것
+    [SerializeField] private DamageData[] _damageDatas = new DamageData[4]; // 0: 차징X 부터, 차징 단계에 따른 것
     [SerializeField] private Vector3[] _chargeToTargetScale = new Vector3[3];
 
     
@@ -34,7 +33,6 @@ public class MagicSwordArts : Magic
     [SerializeField] private GameObject[] _magicSword;
     [FormerlySerializedAs("magicSwordProjectile")] [SerializeField] private MagicSwordProjectile[] _magicSwordProjectile;
     
-    
     private bool _doAttack;             // 공격 하고 있는가.
     private bool _doComboStandby;       // 공격 후 콤보 공격 사용을 대기 중인가
     private bool _comboAttack;          // 현재 공격이 콤보 어택인가
@@ -43,7 +41,8 @@ public class MagicSwordArts : Magic
 
     // 생성된 마법검 관리 및 저장 변수
     private GameObject _sword;
-    private MagicSwordArtsSword _swordOfMagicSword;  
+    private MagicSwordArtsSword _swordOfMagicSword;
+    private MagicSwordArtsTrajectory _swordTrajectory;
     
     // 현재 차지 레벨과 차지를 진행한 시간
     private float _chargeElapsedTime = 0;
@@ -52,12 +51,15 @@ public class MagicSwordArts : Magic
     /* ToDo
      0. 열심히 하기..?
      1. 파티클 크기 연동 안됨 - 차징단계에 따른 크기변화
-     2. 차징 고치기, 차징 안됨
+     2. 차징 고치기, 차징 안됨 ㅅㅂ
+     3. 록온 관련 기능 구현하gi
      */
     
-    private void Awake()
+    private void OnEnable()
     {
         _magicSwordArtsTrajectory = _magicSwordArtsTrajectoryObj.GetComponent<MagicSwordArtsTrajectory>();
+        _swordTrajectory = Instantiate(_magicSwordArtsTrajectory);
+
     }
 
     public override void OnUse()
@@ -75,6 +77,8 @@ public class MagicSwordArts : Magic
         {
             PlayChargeAttack();
         }
+        
+        
     }
     private void PlayDefultAttack()
     {
@@ -100,15 +104,15 @@ public class MagicSwordArts : Magic
         castPlayer.animation.PlayTargetAction("MagicSwrodArt_Combo", true, true, false, false);
     }
     
-    
     public override void Tick()
     {
         // 중간에 차징 끓고 공격하는 조건문 - 문제가 심각함
-                if (isInputReleased && !_doAttack && !_comboAttack && _ReadyAttack)
-                {
-                    Debug.Log("not full Charge Attack");
-                    ChargeCompleate();
-                }
+        if (isInputReleased && _ReadyAttack && !_doAttack)
+        {
+            Debug.Log("not full Charge Attack");
+            ChargeCompleate();
+        }
+        
         
         // 애니메이션 종료시 끝내기
         if (!castPlayer.isPerformingAction) 
@@ -120,21 +124,22 @@ public class MagicSwordArts : Magic
         Debug.Log("isInputReleased : " + isInputReleased);
         
         // 차징 시간에 따른 차징 단계 - 볼 거 있음
+        
         if (_doCharging)
         {
             _chargeElapsedTime += Time.deltaTime;
             
-            // 0.6s ~ 2.2s
+            // 0.6s ~ 3s
             // 파티클 활성화 주석 상태임
             // 차징 시간에 따른 차징 단계의 변화
             switch (_chargeElapsedTime)
             {
-                case > 1.6f:
+                case > 2.4f:
                     Debug.Log("Charge Compleate");
                     ChargeCompleate();
                     break;
                 
-                case > 1.4f:
+                case > 1.5f:
                     if (_chargeLevel == 2)
                     {
                         Debug.Log("ChargingStep3");
@@ -160,9 +165,11 @@ public class MagicSwordArts : Magic
                     }
                     _chargeLevel = 1;
                     break;
+                
             }
-            
         }
+        
+        
     }
 
     public override void OnReleaseInput()
@@ -189,6 +196,7 @@ public class MagicSwordArts : Magic
         
     }
     
+    
     async void StandbyAdditionalUse()
         {
             _doComboStandby = true ;
@@ -200,7 +208,7 @@ public class MagicSwordArts : Magic
     {
         if (_comboAttack)
         {
-            ComAttack();
+            ComboAttack();
         }
         else if (!_comboAttack)
         {
@@ -210,7 +218,7 @@ public class MagicSwordArts : Magic
         
     }
 
-    private void ComAttack()
+    private void ComboAttack() // 콤보시 스킬
     {
         Debug.Log("PlayCombo Attack");
     }
@@ -221,12 +229,19 @@ public class MagicSwordArts : Magic
         _doCharging  = false;
         _doAttack    = true;
         
-        _magicSwordArtsSword.MagicSword_Slash(_damageDatas[_chargeLevel - 1]);
+        _swordOfMagicSword.Slash_setParticle();
+        _swordOfMagicSword.MagicSword_Slash(_damageDatas[_chargeLevel]);
+        
+        // _magicSwordArtsTrajectory = _magicSwordArtsTrajectoryObj.GetComponent<MagicSwordArtsTrajectory>();
+        Debug.Log(_swordTrajectory == null);
+        _swordTrajectory.transform.position = castPlayer.transform.position;
+        _swordTrajectory.transform.rotation = castPlayer.transform.rotation;
+        _swordTrajectory.ChargeLevel3_Slash(); // 이거 사이즈에 맞게 바꾸지
         
         castPlayer.animation.PlayTargetAction("MagicSwrodArt_Attack", true, true, false, false);
         
-        
     }
+    
     
     public void ChargingStep0()
     {
