@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bde953cfb6c046d285c5e6e0fbd4359, type: 3}
-  m_Name: SkeletonWarrior
+  m_Name: ForgeGolem
   m_EditorClassIdentifier: 
-  name: 
-  maxHp: 1060
-  moveSpeed: 0.86
-  angularSpeed: 180
+  name: "\uB300\uC7A5\uAC04\uC758 \uACE8\uB818"
+  maxHp: 1800
+  moveSpeed: 0.95
+  angularSpeed: 90
   damageNegation:
-    _physical: 0.3
-    _magic: 0.1
-    _fire: 0.25
-    _frost: 0.25
-    _lightning: 0.25
-    _holy: -1
+    _physical: 0.45
+    _magic: 0.45
+    _fire: 0.85
+    _frost: 0.45
+    _lightning: 0.45
+    _holy: 0.45
   poiseBreakResistance: 65
-  corpseFadeTime: 3
+  corpseFadeTime: 5

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d854436ab6440795c8cfe9f97c2908, type: 3}
+  m_Name: ForgeGolem_CombatStance
+  m_EditorClassIdentifier: 
+  attackActions:
+  - {fileID: 11400000, guid: a55852e7413ee41eb8baa582774bd476, type: 2}
+  - {fileID: 11400000, guid: e28ee1075892f48788ec63d751cf60d6, type: 2}
+  - {fileID: 11400000, guid: 68582bcce903a4bc4b96b9b30c10fd85, type: 2}
+  - {fileID: 11400000, guid: a0babc4d5200845acb1ceaf2805dc97e, type: 2}
+  - {fileID: 11400000, guid: 6fec231b88b9848a4b048d37228a6c27, type: 2}
+  - {fileID: 11400000, guid: a3e7d8569329f4d83899c7b82ed1fe9e, type: 2}
+  exitCombatStanceRadius: 17
+  combatPursueMinDistance: 3
+  combatPursueMaxDistance: 10
+  maxStrafeTime: 10
