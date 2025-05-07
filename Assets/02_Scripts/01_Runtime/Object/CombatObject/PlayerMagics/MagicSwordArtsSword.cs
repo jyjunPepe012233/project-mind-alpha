@@ -21,6 +21,7 @@ public class MagicSwordArtsSword : MonoBehaviour
     [SerializeField] private GameObject chargeLevel2_Effect;
     [SerializeField] private GameObject chargeLevel3_Effect;
     [SerializeField] private GameObject slash_Effect;
+    [SerializeField] private GameObject explode_Effect;
     [Space(20)]
     
     private ParticleSystem _chargeLevel0_ParticleSystem;
@@ -28,15 +29,15 @@ public class MagicSwordArtsSword : MonoBehaviour
     private ParticleSystem _chargeLevel2_ParticleSystem;
     private ParticleSystem _chargeLevel3_ParticleSystem;
     private ParticleSystem _slash_ParticleSystem;
-    
+    private ParticleSystem _explode_ParticleSystem;
+
+    [SerializeField] private GameObject _sword;
     [SerializeField] public DamageCollider _damageCollider;
     [SerializeField] private CapsuleCollider _collider;
     
     
     [HideInInspector] public Player _castPlayer;
     
-    
-    /* Todo :: 콜라이더 사이즈 문제있음 */
     
     private void Awake()
     {
@@ -45,6 +46,7 @@ public class MagicSwordArtsSword : MonoBehaviour
         _chargeLevel2_ParticleSystem = chargeLevel2_Effect.GetComponent<ParticleSystem>();
         _chargeLevel3_ParticleSystem = chargeLevel3_Effect.GetComponent<ParticleSystem>();
         _slash_ParticleSystem = slash_Effect.GetComponent<ParticleSystem>();
+        _explode_ParticleSystem = explode_Effect.GetComponent<ParticleSystem>();
     }
 
     private void Update()
@@ -69,6 +71,7 @@ public class MagicSwordArtsSword : MonoBehaviour
 
         chargeLevel0_Effect.SetActive(true);
         _chargeLevel0_ParticleSystem?.Play(true);
+
     }
     
     public void ChargeLevel1_SetParticle()
@@ -104,7 +107,7 @@ public class MagicSwordArtsSword : MonoBehaviour
         {
             __elapsedTime += Time.deltaTime;
             transform.localScale = Vector3.Lerp( transform.localScale, __targetSize ,0.25f);
-            _collider.height = __targetSize.x * 1.8f;
+            _collider.height = __targetSize.x * 2;
             _collider.radius = __targetSize.y / 5;
 
             yield return null;
@@ -123,7 +126,11 @@ public class MagicSwordArtsSword : MonoBehaviour
 
     public void Explode()
     {
-        Destroy(gameObject);
+        explode_Effect.SetActive(true);
+        _explode_ParticleSystem.Play(true);
+        
+        _sword.SetActive(false);
+        Destroy(_sword, 3);
     }
     
     private IEnumerator ExplodeCoroutine()

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MinD.Runtime.Managers;
 using MinD.Runtime.Object.Magics;
 using MinD.SO.Item;
 using MinD.SO.Object;
@@ -37,7 +38,7 @@ public class MagicSwordArts : Magic
     private bool _doComboStandby;       // 공격 후 콤보 공격 사용을 대기 중인가
     private bool _comboAttack;          // 현재 공격이 콤보 어택인가
     private bool _doCharging;           // 현재 차지 중인가
-    private bool _ReadyAttack = false;  // 공격 준비가 완료 되었는가
+    private bool _readyAttack = false;  // 공격 준비가 완료 되었는가
 
     // 생성된 마법검 관리 및 저장 변수
     private GameObject _sword;
@@ -50,9 +51,13 @@ public class MagicSwordArts : Magic
     
     /* ToDo
      0. 열심히 하기..?
-     1. 파티클 크기 연동 안됨 - 차징단계에 따른 크기변화
-     2. 차징 고치기, 차징 안됨 ㅅㅂ
-     3. 록온 관련 기능 구현하gi
+     1. 파티클 크기 연동 안됨 - 차징단계에 따른 크기변화 : V
+     
+     2. 차징 고치기, 차징 안됨 ㅅㅂ : X
+     3. 록온 관련 기능 구현하gi : X
+     4. 칼 사라지기 : X -> 잰행중
+     5. 콤보 구현하기 (검기) : X
+     6. 파티클 개선 (차징, 확대, 스래쉬)
      */
     
     private void OnEnable()
@@ -67,7 +72,7 @@ public class MagicSwordArts : Magic
         _doAttack    = false;         
         _doCharging  = false;
         _comboAttack = false;            
-        _ReadyAttack = false;  
+        _readyAttack = false;  
         
         if (!castPlayer.isPerformingAction && !_doComboStandby) // 콤보 공격이 아님
         {
@@ -89,7 +94,7 @@ public class MagicSwordArts : Magic
         
         castPlayer.animation.PlayTargetAction("MagicSwrodArt_Charge_1",true, true, false, false); 
                     
-        _sword = Instantiate(_magicSwordArtsSwordObj);
+        _sword = Instantiate(_magicSwordArtsSwordObj, castPlayer.transform.position ,castPlayer.transform.rotation);
         _swordOfMagicSword = _sword.GetComponent<MagicSwordArtsSword>();
         
         _swordOfMagicSword._damageCollider.soData = _damageDatas[0];
@@ -108,8 +113,12 @@ public class MagicSwordArts : Magic
     
     public override void Tick()
     {
+        Debug.Log("isInputReleased : " + isInputReleased);
+        Debug.Log("PlayerInputManager.Instance.useMagicInput : " + PlayerInputManager.Instance.useMagicInput);
+        
+        
         // 중간에 차징 끓고 공격하는 조건문 - 문제가 심각함
-        if (isInputReleased && _ReadyAttack && !_doAttack)
+        if ( !PlayerInputManager.Instance.useMagicInput && _readyAttack && !_doAttack )
         {
             Debug.Log("not full Charge Attack");
             ChargeCompleate();
@@ -123,25 +132,25 @@ public class MagicSwordArts : Magic
             castPlayer.combat.ExitCurrentMagic();
         }
         
-        Debug.Log("isInputReleased : " + isInputReleased);
-        
         // 차징 시간에 따른 차징 단계 - 볼 거 있음
         
-        if (_doCharging)
+        if (_doCharging && PlayerInputManager.Instance.useMagicInput)
         {
             _chargeElapsedTime += Time.deltaTime;
             
-            // 0.6s ~ 3s
+            Debug.Log("doCharging");
+            
+            // 0.6s ~ 4s
             // 파티클 활성화 주석 상태임
             // 차징 시간에 따른 차징 단계의 변화
             switch (_chargeElapsedTime)
             {
-                case > 2.4f:
+                case > 3.4f:
                     Debug.Log("Charge Compleate");
                     ChargeCompleate();
                     break;
                 
-                case > 1.5f:
+                case > 2.4f:
                     if (_chargeLevel == 2)
                     {
                         Debug.Log("ChargingStep3");
@@ -151,7 +160,7 @@ public class MagicSwordArts : Magic
                     _chargeLevel = 3;
                     break;
                     
-                case > 0.7f:
+                case > 1.5f:
                     if (_chargeLevel == 1)
                     {
                         Debug.Log("ChargingStep2");
@@ -161,7 +170,7 @@ public class MagicSwordArts : Magic
                     _chargeLevel = 2;
                     break;
                                 
-                case > 0f:
+                case > 0.7f:
                     if (_chargeLevel == 0)
                     {
                         Debug.Log("ChargingStep1");
@@ -179,7 +188,7 @@ public class MagicSwordArts : Magic
 
     public override void OnReleaseInput()
     {
-        
+        Debug.Log("OnReleaseInput");
     }
 
     public override void OnCancel()
@@ -191,7 +200,7 @@ public class MagicSwordArts : Magic
     {
         _doAttack    = false;           
         _doCharging  = false;        
-        _ReadyAttack = false;  
+        _readyAttack = false;  
         
         if (!_comboAttack)
         {
@@ -218,7 +227,7 @@ public class MagicSwordArts : Magic
         else if (!_comboAttack)
         {
             _doCharging = true;
-            _ReadyAttack = true;
+            // _readyAttack = true;
         }
         
     }
@@ -230,7 +239,7 @@ public class MagicSwordArts : Magic
     
     private void ChargeCompleate()
     {
-        _ReadyAttack = false;
+        _readyAttack = false;
         _doCharging  = false;
         _doAttack    = true;
         
@@ -250,6 +259,8 @@ public class MagicSwordArts : Magic
     
     public void ChargingStep0()
     {
+        _readyAttack = true;
+        
         _chargeLevel = 0;
         // _magicSwordArtsTrajectory.ChargeLevel0_SetEffect(castPlayer);
         _swordOfMagicSword.ChargeLevel0_SetParticle(castPlayer);
