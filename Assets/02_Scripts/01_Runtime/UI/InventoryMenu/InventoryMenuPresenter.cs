@@ -100,6 +100,10 @@ public class InventoryMenuPresenter : PlayerMenu
         UpdatePlayerEquipmentSlots(item);
         UpdateSlots();
         UpdateSelection();
+        if (item is Weapon weapon)
+        {
+            Player.player.equipment.ChangeWeapon(item.isEquipped ? weapon : null);
+        }
     }
 
 
