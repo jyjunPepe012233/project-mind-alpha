@@ -1,16 +1,18 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public static class FogColorController
 {
-    private static Coroutine coroutine;
+    private static Coroutine currentCoroutine;
+    private static MonoBehaviour currentRunner;
 
     public static void ChangeFogColor(MonoBehaviour runner, Color targetColor, float duration)
     {
-        if (coroutine != null)
-            runner.StopCoroutine(coroutine);
+        if (currentCoroutine != null && currentRunner != null)
+            currentRunner.StopCoroutine(currentCoroutine);
 
-        coroutine = runner.StartCoroutine(ChangeFogColorCoroutine(targetColor, duration));
+        currentRunner = runner;
+        currentCoroutine = runner.StartCoroutine(ChangeFogColorCoroutine(targetColor, duration));
     }
 
     private static IEnumerator ChangeFogColorCoroutine(Color targetColor, float duration)
@@ -26,6 +28,7 @@ public static class FogColorController
         }
 
         RenderSettings.fogColor = targetColor;
-        coroutine = null;
+        currentCoroutine = null;
+        currentRunner = null;
     }
 }
