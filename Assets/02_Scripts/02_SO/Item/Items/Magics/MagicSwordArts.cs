@@ -77,7 +77,7 @@ public class MagicSwordArts : Magic
         // VV 차징이 풀렷을 때
         
         // 조건에 맞다면 일반 콤조 공격 진행
-                else if (!_doChargeAttack && !_doAttack)// && !_doStandbyCombo) 
+                else if ((!_doChargeAttack && !_doAttack))// && !_doStandbyCombo) 
                 {
                     Debug.Log("combo Attack");
                     _doAttack = true;
@@ -109,11 +109,11 @@ public class MagicSwordArts : Magic
             _chargingTime = 0;
         }
 
-        if (_doStandbyCombo && PlayerInputManager.Instance.useMagicInput)
-        {
-            Debug.Log("ComboStandby");
-            castPlayer.animator.SetBool("ComboStandby", true);
-        }
+        // if ( _doStandbyCombo  && PlayerInputManager.Instance.useMagicInput)
+        // {
+        //     Debug.Log("ComboStandby");
+        //     castPlayer.animator.SetBool("ComboStandby", true);
+        // }
         
         
         // 애니메이션 종료시 끝내기
@@ -206,12 +206,16 @@ public class MagicSwordArts : Magic
     
     public override void ComboStandbyStart()
     {
+        Debug.Log("ComboStandbyStart");
         _doStandbyCombo = true;
-        // castPlayer.animator.SetBool("ComboStandby", true);
+        castPlayer.animator.SetBool("ComboStandby", true);
     }
 
     public override void UseComboAttack()
     {
+        Debug.Log("UseComboAttack");
+        castPlayer.animator.SetBool("ComboStandby", false);
+        
         if ((castPlayer.CurMp >= this.mpCost) && (castPlayer.CurStamina >= this.staminaCost))
         {
             castPlayer.CurMp -= this.mpCost;

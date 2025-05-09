@@ -225,17 +225,29 @@ public class PlayerCombatHandler : EntityOwnedHandler {
 	
 	public virtual void ComboStandbyStart()
 	{
-		currentCastingMagic?.ComboStandbyStart();
+		if (currentCastingMagic != null)
+		{
+			currentCastingMagic.ComboStandbyStart();
+
+		}
 	}
 	
 	public virtual void ComboStandbyEnd()
 	{
-		currentCastingMagic?.ComboStandbyEnd();
+		if (currentCastingMagic != null)
+		{
+			currentCastingMagic.ComboStandbyEnd();
+
+		}
 	}
 
 	public virtual void UseComboAttack()
 	{
-		currentCastingMagic?.UseComboAttack();
+		if (currentCastingMagic != null)
+		{
+			currentCastingMagic.UseComboAttack();
+
+		}
 	}
 }
 
