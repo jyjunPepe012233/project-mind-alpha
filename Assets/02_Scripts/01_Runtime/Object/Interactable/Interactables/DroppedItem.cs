@@ -31,7 +31,7 @@ public class DroppedItem : Interactable, IWorldIndexable {
 	[SerializeField] private int itemCount;
 
 
-	public void Awake() {
+	public void Start() {
 
 		if (item == null)
 			Destroy(gameObject);
