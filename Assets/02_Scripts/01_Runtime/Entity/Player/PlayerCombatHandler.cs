@@ -194,6 +194,8 @@ public class PlayerCombatHandler : EntityOwnedHandler {
 		}
 
 		usingMagic = false;
+		
+		owner.animator.SetBool("ComboStandby", false);
 
 		currentCastingMagic.OnExit();
 		currentCastingMagic = null;

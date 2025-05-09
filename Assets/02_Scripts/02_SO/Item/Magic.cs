@@ -48,6 +48,16 @@ public abstract class Magic : Item {
 	public virtual void OnSuccessfullyCast() {
 	}
 
+	public virtual void ComboStandbyStart()
+	{
+		
+	}
+	
+	public virtual void ComboStandbyEnd()
+	{
+		
+	}
+
 
 }
 

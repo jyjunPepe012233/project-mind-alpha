@@ -125,7 +125,7 @@ public class MagicSwordArts : Magic
                             _magicSwordArtsMainObject.StartChargeAttack(3);
                             break;
                         
-                        case > 2.9f:
+                        case > 3.7f:
                             if (_chargeLevel != 2)
                             {
                                 Debug.Log("ChargingLavel3");
@@ -134,7 +134,7 @@ public class MagicSwordArts : Magic
                             _chargeLevel = 2;
                             break;
                             
-                        case > 1.7f:
+                        case > 2.4f:
                             if (_chargeLevel != 1)
                             {
                                 Debug.Log("ChargingLavel2");
@@ -143,7 +143,7 @@ public class MagicSwordArts : Magic
                             _chargeLevel = 1;
                             break;
                                         
-                        case > 0.9f:
+                        case > 1.1f:
                             if (_chargeLevel != 0)
                             {
                                 Debug.Log("ChargingLavel1");
@@ -169,7 +169,7 @@ public class MagicSwordArts : Magic
 
     public override void OnSuccessfullyCast()
     {
-        
+        ComboStandbyStart();
     }
 
     public override void OnReleaseInput()
@@ -190,7 +190,7 @@ public class MagicSwordArts : Magic
         _chargeLevel = 0;
         _doAttack = false;
         
-        StandbyAdditionalUse();
+        // StandbyAdditionalUse();
     }
     
     
@@ -211,7 +211,9 @@ public class MagicSwordArts : Magic
         _magicSwordArtsMainObject.MagicSwordExplode();
             
     }
-    
-    
 
+    public override void ComboStandbyStart()
+    {
+        castPlayer.animator.SetBool("ComboStandby", true);
+    }
 }
