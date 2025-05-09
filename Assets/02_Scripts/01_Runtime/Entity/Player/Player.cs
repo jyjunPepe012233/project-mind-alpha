@@ -121,7 +121,7 @@ public class Player : BaseEntity {
         
         if (WorldDataManager.Instance.GetDiscoveredGuffinsAnchorCount() > 0 && GameManager.Instance.willAwakeFromLatestAnchor) {
             GuffinsAnchor latestAnchor = WorldDataManager.Instance.GetGuffinsAnchorInstanceToId(WorldDataManager.Instance.latestUsedAnchorId);
-            if (NavMesh.SamplePosition(latestAnchor.transform.TransformPoint(GuffinsAnchor.playerPosition), out NavMeshHit hitInfo, 1.5f, NavMesh.AllAreas)) {
+            if (NavMesh.SamplePosition(latestAnchor.sittingPoint.position, out NavMeshHit hitInfo, 1.5f, NavMesh.AllAreas)) {
                 playerPosition = hitInfo.position;
                 playerDirx = latestAnchor.transform.position - playerPosition;
                 playerDirx.y = 0; 
