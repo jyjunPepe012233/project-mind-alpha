@@ -5,12 +5,12 @@ namespace MinD.Utility {
 
 public static class WorldUtility {
 	
-	public const string SCENENAME_dungeon = "PrototypeDungeon";
+	public const string SCENENAME_world = "Main";
 	public static bool IsWorldScene(Scene scene) {
-		return scene.name == SCENENAME_dungeon;
+		return scene.name == SCENENAME_world;
 	}
 	public static bool IsThisWorldScene() {
-		return SceneManager.GetActiveScene().name == SCENENAME_dungeon;
+		return SceneManager.GetActiveScene().name == SCENENAME_world;
 	}
 	
 	public const string LAYERNAME_environment = "Default";

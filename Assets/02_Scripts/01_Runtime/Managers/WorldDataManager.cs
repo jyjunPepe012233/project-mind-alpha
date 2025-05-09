@@ -80,7 +80,7 @@ public class WorldDataManager : Singleton<WorldDataManager> {
 	public AsyncOperation LoadWorldScene() {
 
 		if (_currentReloadSceneAsync == null) {
-			_currentReloadSceneAsync = SceneManager.LoadSceneAsync(WorldUtility.SCENENAME_dungeon);
+			_currentReloadSceneAsync = SceneManager.LoadSceneAsync(WorldUtility.SCENENAME_world);
 			StartCoroutine(ProcessLoadWorldSceneAsync());
 			
 		} else {
