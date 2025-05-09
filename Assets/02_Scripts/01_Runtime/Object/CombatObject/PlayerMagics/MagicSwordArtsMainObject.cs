@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using MinD.Runtime.Entity;
+using MinD.Runtime.Managers;
 using MinD.Runtime.Utils;
 using MinD.SO.Object;
 using UnityEngine;
+using UnityEngine.Diagnostics;
 using UnityEngine.Serialization;
 
 public class MagicSwordArtsMainObject : MonoBehaviour
@@ -17,7 +19,7 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     
 
     [Header("[ Set State ]")] [Space(5)]
-    [SerializeField] private DamageData[] _comboAttackDamageDatas   = new DamageData[2];
+    [SerializeField] private DamageData[] _comboAttackDamageDatas   = new DamageData[1];
     [SerializeField] private DamageData[] _chargeLevelToDamageDatas = new DamageData[4]; // 0: 차징X 부터, 차징 단계에 따른 것
     [SerializeField] private Vector3[]  _chargeToTargetScales       = new Vector3[4];
     
@@ -70,17 +72,20 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     }
     
 
-    public void StartComboAttack(int __comboAttackStep)
+    public void StartComboAttack()//int __comboAttackStep)
     {
-        switch (__comboAttackStep)
-        {
-            case 1:
-                ComboLevel1Attack();
-                break;
-            case 2:
-                ComboLevel2Attack();
-                break;
-        }
+        ChackNotNullMagicsword();
+        
+        // switch (__comboAttackStep)
+        // {
+        //     case 1:
+        
+        ComboAttack();
+                // break;
+            // case 2:
+            //     ComboLevel2Attack();
+            //     break;
+        // }
     }
 
     public void StartChargeAttack(int __chargeLevel)
@@ -92,17 +97,29 @@ public class MagicSwordArtsMainObject : MonoBehaviour
 
     #region Attacks
 
-    private void ComboLevel1Attack()
+    private void ComboAttack()
     {
-        Debug.Log("Play MagicSwordArt_Charge_1");
+        // ChackNotNullMagicsword();
+        // ChackNotNullMagicSwordTrajectory();
+        // _castPlayer = __castPlayer;
+        
+        ChackNotNullMagicsword();
+        ChackNotNullMagicSwordTrajectory();
+        
+        _magicSwordArtsSword.ComboAttack_Set(_castPlayer);
+        
+        Debug.Log("Play MagicSwordArt_Combo_1");
         _castPlayer.animation.PlayTargetAction("MagicSwordArt_Combo_1", true, true, false, false);
     }
-
-    private void ComboLevel2Attack()
-    {
-        Debug.Log("Play MagicSwordArt_Charge_2");
-        _castPlayer.animation.PlayTargetAction("MagicSwordArt_Combo_2", true, true, false, false);
-    }
+    //
+    // private void ComboLevel2Attack()
+    // {
+    //     ChackNotNullMagicsword();
+    //     ChackNotNullMagicSwordTrajectory();
+    //     
+    //     Debug.Log("Play MagicSwordArt_Charge_2");
+    //     _castPlayer.animation.PlayTargetAction("MagicSwordArt_Combo_2", true, true, false, false);
+    // }
 
     private void ChargeAttack(int __chargeLevel)
     {

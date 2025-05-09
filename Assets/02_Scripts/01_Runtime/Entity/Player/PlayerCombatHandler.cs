@@ -222,7 +222,21 @@ public class PlayerCombatHandler : EntityOwnedHandler {
 			currentCastingMagic.OnSuccessfullyCast();
 		}
 	}
+	
+	public virtual void ComboStandbyStart()
+	{
+		currentCastingMagic?.ComboStandbyStart();
+	}
+	
+	public virtual void ComboStandbyEnd()
+	{
+		currentCastingMagic?.ComboStandbyEnd();
+	}
 
+	public virtual void UseComboAttack()
+	{
+		currentCastingMagic?.UseComboAttack();
+	}
 }
 
 }

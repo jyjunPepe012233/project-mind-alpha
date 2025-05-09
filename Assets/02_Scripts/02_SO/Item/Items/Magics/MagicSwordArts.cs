@@ -76,33 +76,43 @@ public class MagicSwordArts : Magic
         
         // VV 차징이 풀렷을 때
         
+        // 조건에 맞다면 일반 콤조 공격 진행
+                else if (!_doChargeAttack && !_doAttack)// && !_doStandbyCombo) 
+                {
+                    Debug.Log("combo Attack");
+                    _doAttack = true;
+                    _magicSwordArtsMainObject.StartComboAttack();
+        
+                    if (_comboStep < 3)
+                    {
+                        _comboStep = 1;
+                    }
+                    _chargingTime = 0;
+                }
+        
         // 조건에 맞다면 차징 공격 진행
         else if ((_doChargeAttack || _comboStep == 3) && !_doAttack) 
         {
-            Debug.Log("not fullyCast Attack");
-            _magicSwordArtsMainObject.StartChargeAttack(_chargeLevel);
             _doAttack = true;
             _chargingTime = 0;
             _comboStep = 1;
+            
+            Debug.Log("not fullyCast Attack");
+            _magicSwordArtsMainObject.StartChargeAttack(_chargeLevel);
+            
         }
         
-        // 조건에 맞다면 일반 콤조 공격 진행
-        else if (!_doChargeAttack && !_doAttack) 
-        {
-            Debug.Log("combo Attack");
-            _doAttack = true;
-            _magicSwordArtsMainObject.StartComboAttack(_comboStep++);
-
-            if (_comboStep < 3)
-            {
-                _comboStep = 1;
-            }
-            _chargingTime = 0;
-        }
+        
         else
         {
             Debug.Log("reset to charge time");
             _chargingTime = 0;
+        }
+
+        if (_doStandbyCombo && PlayerInputManager.Instance.useMagicInput)
+        {
+            Debug.Log("ComboStandby");
+            castPlayer.animator.SetBool("ComboStandby", true);
         }
         
         
@@ -134,7 +144,7 @@ public class MagicSwordArts : Magic
                             _chargeLevel = 2;
                             break;
                             
-                        case > 2.4f:
+                        case > 2.1f:
                             if (_chargeLevel != 1)
                             {
                                 Debug.Log("ChargingLavel2");
@@ -152,10 +162,14 @@ public class MagicSwordArts : Magic
                             _chargeLevel = 0;
                             break;
                         
-                        case > 0.2f:
+                        // case > 0.2f:
+                        //     _magicSwordArtsMainObject.StartCharging();
+                        //     break;
+                        
+                        case > 0.3f:
                             
                             Debug.Log("charge Start");
-                            //_magicSwordArtsMainObject.StartCharging();
+                            _magicSwordArtsMainObject.StartCharging();
                             _magicSwordArtsMainObject.ChargingLavel0();
                             
                             _doChargeAttack = true;
@@ -167,10 +181,6 @@ public class MagicSwordArts : Magic
         
     }
 
-    public override void OnSuccessfullyCast()
-    {
-        ComboStandbyStart();
-    }
 
     public override void OnReleaseInput()
     {
@@ -190,30 +200,27 @@ public class MagicSwordArts : Magic
         _chargeLevel = 0;
         _doAttack = false;
         
-        // StandbyAdditionalUse();
-    }
-    
-    
-    async void StandbyAdditionalUse()
-    {
-        Debug.Log("StandbyAdditionalUse");
-
-        if (!_doChargeAttack)
-        {
-            _doStandbyCombo = true;
-            await Task.Delay(600);
-    
-            _doStandbyCombo = false;
-            
-        }
-        ;
-        _doChargeAttack = false;
         _magicSwordArtsMainObject.MagicSwordExplode();
-            
     }
-
+    
+    
     public override void ComboStandbyStart()
     {
-        castPlayer.animator.SetBool("ComboStandby", true);
+        _doStandbyCombo = true;
+        // castPlayer.animator.SetBool("ComboStandby", true);
+    }
+
+    public override void UseComboAttack()
+    {
+        if ((castPlayer.CurMp >= this.mpCost) && (castPlayer.CurStamina >= this.staminaCost))
+        {
+            castPlayer.CurMp -= this.mpCost;
+            castPlayer.CurStamina -= this.staminaCost;
+        }
+        else
+        {
+            // castPlayer.animation.PlayTargetAction("Default Movement", true, true, false, false);
+            castPlayer.combat.ExitCurrentMagic();
+        }
     }
 }

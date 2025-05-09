@@ -70,6 +70,13 @@ public class MagicSwordArtsSword : MonoBehaviour
         slash_Effect.SetActive(true);
         _slash_ParticleSystem?.Play(true);
     }
+
+    public void ComboAttack_Set(Player __castPlayer)
+    {
+        _castPlayer = __castPlayer;
+        Debug.Log("ComboAttack_Set");
+        PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
+    }
     
     public void ChargeLevel0_SetParticle(Player __castPlayer)
     {
@@ -88,6 +95,7 @@ public class MagicSwordArtsSword : MonoBehaviour
     public void ChargeLevel1_SetParticle()
     {
         Debug.Log("ChargeLevel1_SetParticle");
+        PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
         chargeLevel1_Effect.SetActive(true);
         _chargeLevel1_ParticleSystem?.Play(true);
     }
@@ -95,6 +103,7 @@ public class MagicSwordArtsSword : MonoBehaviour
     public void ChargeLevel2_SetParticle()
     {
         Debug.Log("ChargeLevel2_SetParticle");
+        PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
         chargeLevel2_Effect.SetActive(true);
         _chargeLevel2_ParticleSystem?.Play(true);
     }
@@ -102,6 +111,7 @@ public class MagicSwordArtsSword : MonoBehaviour
     public void ChargeLevel3_SetParticle()
     {
         Debug.Log("ChargeLevel3_SetParticle");
+        PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
         chargeLevel3_Effect.SetActive(true);
         _chargeLevel3_ParticleSystem?.Play(true);
      }
