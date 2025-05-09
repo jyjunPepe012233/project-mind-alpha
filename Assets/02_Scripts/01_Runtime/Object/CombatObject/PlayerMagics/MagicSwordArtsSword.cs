@@ -49,6 +49,12 @@ public class MagicSwordArtsSword : MonoBehaviour
         _explode_ParticleSystem = explode_Effect.GetComponent<ParticleSystem>();
     }
 
+    private void OnEnable()
+    {
+        // Debug.Log("PhysicUtility IgnoreCollisionUtil");
+        // PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
+    }
+
     private void Update()
     {
         if (_castPlayer != null)
@@ -60,6 +66,7 @@ public class MagicSwordArtsSword : MonoBehaviour
 
     public void Slash_setParticle()
     {
+        
         slash_Effect.SetActive(true);
         _slash_ParticleSystem?.Play(true);
     }
@@ -67,6 +74,10 @@ public class MagicSwordArtsSword : MonoBehaviour
     public void ChargeLevel0_SetParticle(Player __castPlayer)
     {
         _castPlayer = __castPlayer;
+        
+        Debug.Log("ChargeLevel0_SetParticle");
+        
+        Debug.Log("PhysicUtility IgnoreCollisionUtil");
         PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
 
         chargeLevel0_Effect.SetActive(true);
@@ -126,8 +137,8 @@ public class MagicSwordArtsSword : MonoBehaviour
 
     public void Explode()
     {
-        explode_Effect.SetActive(true);
-        _explode_ParticleSystem.Play(true);
+        // explode_Effect.SetActive(true);
+        // _explode_ParticleSystem.Play(true);
         
         _sword.SetActive(false);
         Destroy(_sword, 3);

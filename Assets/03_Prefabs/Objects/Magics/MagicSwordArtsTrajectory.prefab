@@ -9706,6 +9706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96d60900f6c7f4528bc9f41cb48868a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chargeLevel0_Slash_Effect: {fileID: 3060092295465735825}
   chargeLevel1_Slash_Effect: {fileID: 3060092295465735825}
   chargeLevel2_Slash_Effect: {fileID: 3060092295465735825}
   chargeLevel3_Slash_Effect: {fileID: 3060092295465735825}

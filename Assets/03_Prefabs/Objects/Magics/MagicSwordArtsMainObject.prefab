@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8841716291074279972
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7456613695978402085}
+  - component: {fileID: -6939769321996400133}
+  m_Layer: 0
+  m_Name: MagicSwordArtsMainObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7456613695978402085
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8841716291074279972}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.05986375, y: 22.046835, z: -206.29355}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-6939769321996400133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8841716291074279972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfc4ca860560b4992bcfd308e806f4dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _magicSwordArtsSword_Origin: {fileID: -203202932124760871, guid: 3c35c0c97b0f4405eb480305118ec826,
+    type: 3}
+  _magicSwordArtsSwordGameObject_Origin: {fileID: 808210125412934667, guid: 3c35c0c97b0f4405eb480305118ec826,
+    type: 3}
+  _magicSwordArtsTrajectoryGameObject_Origin: {fileID: 8841716291074279972, guid: ab4c532911e314931a8e9bb36b8e1cc2,
+    type: 3}
+  _comboAttackDamageDatas:
+  - {fileID: 11400000, guid: 14c3f9d81c7004dfe9d66534a7e02d85, type: 2}
+  - {fileID: 11400000, guid: d2502fb3fd9d94bedb039407860d6e03, type: 2}
+  _chargeLevelToDamageDatas:
+  - {fileID: 11400000, guid: c22efd748f3514230840b53bd6bb3e57, type: 2}
+  - {fileID: 11400000, guid: ac4a7806c3306434dad4ec5def254781, type: 2}
+  - {fileID: 11400000, guid: e5886e47547e74f7497f4d099be05807, type: 2}
+  - {fileID: 11400000, guid: 18f5b7e79dd1142b5af397ac5a6fc4e5, type: 2}
+  _chargeToTargetScales:
+  - {x: 1, y: 1, z: 1}
+  - {x: 1.4, y: 1.4, z: 1.4}
+  - {x: 2.1, y: 2.1, z: 2.1}
+  - {x: 3, y: 3, z: 3}

@@ -7,19 +7,32 @@ using UnityEngine.Serialization;
 
 public class MagicSwordArtsTrajectory : MonoBehaviour
 {
+    [SerializeField] private GameObject chargeLevel0_Slash_Effect;
     [SerializeField] private GameObject chargeLevel1_Slash_Effect;
     [SerializeField] private GameObject chargeLevel2_Slash_Effect;
     [SerializeField] private GameObject chargeLevel3_Slash_Effect;
 
+    private ParticleSystem _chargeLevel0_Slash_ParticleSystem;
     private ParticleSystem _chargeLevel1_Slash_ParticleSystem;
     private ParticleSystem _chargeLevel2_Slash_ParticleSystem;
     private ParticleSystem _chargeLevel3_Slash_ParticleSystem;
 
     private void Awake()
     {
-        
+        _chargeLevel0_Slash_ParticleSystem = chargeLevel0_Slash_Effect.GetComponent<ParticleSystem>();
+        _chargeLevel1_Slash_ParticleSystem = chargeLevel1_Slash_Effect.GetComponent<ParticleSystem>();
+        _chargeLevel2_Slash_ParticleSystem = chargeLevel2_Slash_Effect.GetComponent<ParticleSystem>();
+        _chargeLevel3_Slash_ParticleSystem = chargeLevel3_Slash_Effect.GetComponent<ParticleSystem>();
+
     }
     
+    public void ChargeLevel0_Slash() 
+    {
+        Debug.Log("ChargeLevel1_Slash");
+        _chargeLevel0_Slash_ParticleSystem = chargeLevel1_Slash_Effect.GetComponent<ParticleSystem>();
+        chargeLevel0_Slash_Effect.SetActive(true);
+        _chargeLevel0_Slash_ParticleSystem.Play(true);
+    }
     public void ChargeLevel1_Slash() 
     {
         Debug.Log("ChargeLevel1_Slash");

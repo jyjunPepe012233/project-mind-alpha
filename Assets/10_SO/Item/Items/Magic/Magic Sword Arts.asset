@@ -44,20 +44,11 @@ MonoBehaviour:
   staminaCostDuring: 0
   castPlayer: {fileID: 0}
   isInputReleased: 1
-  _magicSwordArtsSword: {fileID: -203202932124760871, guid: 3c35c0c97b0f4405eb480305118ec826,
+  _magicSwordArtsMainObject: {fileID: -6939769321996400133, guid: e28d5043391de4d2ca5e21b9e1729685,
     type: 3}
-  _magicSwordArtsSwordObj: {fileID: 808210125412934667, guid: 3c35c0c97b0f4405eb480305118ec826,
-    type: 3}
-  _magicSwordArtsTrajectoryObj: {fileID: 8841716291074279972, guid: ab4c532911e314931a8e9bb36b8e1cc2,
-    type: 3}
-  _damageDatas:
-  - {fileID: 11400000, guid: c22efd748f3514230840b53bd6bb3e57, type: 2}
-  - {fileID: 11400000, guid: ac4a7806c3306434dad4ec5def254781, type: 2}
-  - {fileID: 11400000, guid: e5886e47547e74f7497f4d099be05807, type: 2}
-  - {fileID: 11400000, guid: 18f5b7e79dd1142b5af397ac5a6fc4e5, type: 2}
-  _chargeToTargetScale:
-  - {x: 1.6, y: 1.1, z: 1}
-  - {x: 2.1, y: 1.5, z: 1.2}
-  - {x: 3, y: 2, z: 1.5}
-  _magicSword: []
-  _magicSwordProjectile: []
+  _comboStep: 1
+  _chargeLevel: 0
+  _chargingTime: 0
+  _doChargeAttack: 0
+  _doStandbyCombo: 0
+  _doAttack: 0
