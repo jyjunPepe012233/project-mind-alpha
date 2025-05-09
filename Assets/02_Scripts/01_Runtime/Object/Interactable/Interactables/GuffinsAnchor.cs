@@ -1,20 +1,14 @@
-using System.Collections;
 using MinD.Interfaces;
 using MinD.Runtime.Entity;
 using MinD.Runtime.Managers;
 using MinD.Runtime.Object.Utils;
-using MinD.Utility;
-using MinD.Runtime.UI;
 using MinD.SO.Object;
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.SceneManagement;
 
 namespace MinD.Runtime.Object.Interactables {
 
 public class GuffinsAnchor : Interactable, IWorldIndexable {
 	
-	public static readonly Vector3 playerPosition = new Vector3(0, 0f, 1.2f); // GLOBAL SETTING
 	private const float TIME_LightFading = 1.5f;
 
 	[SerializeField, HideInInspector] private bool _hasBeenIndexed;
@@ -32,6 +26,7 @@ public class GuffinsAnchor : Interactable, IWorldIndexable {
 	
 	[Header("[ Anchor Setting ]")]
 	public GuffinsAnchorInformation anchorInfo;
+	public Transform sittingPoint;
 	
 	[Header("[ Owned Object ]")]
 	[SerializeField] private ParticleSystem particleDiscovered;
