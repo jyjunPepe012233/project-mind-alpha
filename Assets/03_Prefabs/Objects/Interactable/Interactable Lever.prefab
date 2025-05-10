@@ -226,8 +226,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canInteraction: 1
-  interactionText: 
-  lever: {fileID: 0}
-  targetDoor: {fileID: 0}
-  oneTimeUse: 1
+  interactionText: "\uB808\uBC84\uB97C \uB2F9\uAE34\uB2E4"
+  lever: {fileID: 1247342287409090881}
   rotationSpeed: 60
+  oneTimeUse: 1
+  targetDoor: {fileID: 0}
+  targetLift: {fileID: 0}
+  controlsDoor: 0
+  controlsLift: 0

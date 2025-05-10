@@ -3,6 +3,7 @@ using System.Linq;
 using MinD.Runtime.Entity;
 using MinD.SO.Item;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TorchItemGiver : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class TorchItemGiver : MonoBehaviour
     [SerializeField] private GimmickTorch[] torches;
     [SerializeField] private Item item;
     [SerializeField] private int itemAmount = 1;
+
+    [SerializeField] private UnityEvent onItemGived;
 
     private int currentActivatedTorchCount;
     public int CurrentActivatedTorchCount => currentActivatedTorchCount;
@@ -40,7 +43,11 @@ public class TorchItemGiver : MonoBehaviour
 
     private void GiveItemAndDestroySelf()
     {
-        Player.player.inventory.AddItem(item.itemId, itemAmount);
+        if (item != null)
+        {
+            Player.player.inventory.AddItem(item.itemId, itemAmount);
+        }
+        onItemGived?.Invoke();
         itemGived?.Invoke();
     }
 }
