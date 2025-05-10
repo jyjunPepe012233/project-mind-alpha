@@ -49,37 +49,30 @@ public class StageManager : Singleton<StageManager>
 	private IEnumerator ChangeStageCoroutine(StageSetting stage, float delay)
 	{
 		yield return new WaitForSeconds(delay);
-		
+
 		if (!stage.stageName.Equals(m_firstStage))
 		{
 			PlayerHUDManager.Instance.FadeInToBlack(CHANGESTAGE_FADEDURATION_IN);
 			Player.player.canMove = false;
 			Player.player.canRotate = false;
 			yield return m_changeStageFadeInYield;
-			
-			stage.onEntered?.Invoke();
-
-			foreach (StageSetting s in m_stageSettings)
-			{	
-				s.stageParent.gameObject.SetActive(s.stageName.Equals(stage.stageName));
-			}
-			
-			Player.player.cc.enabled = false;
-			stage.stageStartPlayerPosition.GetPositionAndRotation(out var position, out var rotation);
-			Player.player.transform.SetPositionAndRotation(position, rotation);
-			Player.player.cc.enabled = true;
-			
-
-			yield return m_changeStageFadeDelayYield;
 		}
-		else
-		{
-			stage.onEntered?.Invoke();
+		
+		stage.onEntered?.Invoke();
 
-			foreach (StageSetting s in m_stageSettings)
-			{	
-				s.stageParent.gameObject.SetActive(s.stageName.Equals(stage.stageName));
-			}
+		foreach (StageSetting s in m_stageSettings)
+		{	
+			s.stageParent.gameObject.SetActive(s.stageName.Equals(stage.stageName));
+		}
+		
+		Player.player.cc.enabled = false;
+		stage.stageStartPlayerPosition.GetPositionAndRotation(out var position, out var rotation);
+		Player.player.transform.SetPositionAndRotation(position, rotation);
+		Player.player.cc.enabled = true;
+
+		if (!stage.stageName.Equals(m_firstStage))
+		{
+			yield return m_changeStageFadeDelayYield;
 		}
 		
 		PlayerHUDManager.Instance.FadeOutFromBlack(CHANGESTAGE_FADEDURATION_OUT);
