@@ -1,5 +1,6 @@
 using MinD.Runtime.Entity;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace MinD.Runtime.Object.Interactables
 {
@@ -15,6 +16,9 @@ namespace MinD.Runtime.Object.Interactables
         [SerializeField] private Lift targetLift; // 연동할 Lift 참조
         [SerializeField] private bool controlsDoor = true; // Door를 제어하는지 여부
         [SerializeField] private bool controlsLift = false; // Lift를 제어하는지 여부
+
+        [Header("Events")]
+        [SerializeField] private UnityEvent onPulled;
         
         private bool isUsed = false;
         private bool isRotating = false;
@@ -92,6 +96,8 @@ namespace MinD.Runtime.Object.Interactables
                 // 레버 상태 토글
                 isLeverUp = !isLeverUp;
             }
+
+            onPulled?.Invoke();
 
             // 한 번만 사용하는 레버인 경우
             if (oneTimeUse)

@@ -18,7 +18,7 @@ namespace MinD.Runtime.Managers {
 
 public class GameManager : Singleton<GameManager> {
 
-	private const float TIME_FirstGameLoadedFadeOut = 0.5f;
+	private const float TIME_FirstGameLoadedFadeOut = 1.5f;
 	private const float TIME_ReloadCauseDeathFadeIn = 1.5f;
 	private const float TIME_ReloadByGuffinsAnchorFadeIn = 1.5f;
 
@@ -37,7 +37,6 @@ public class GameManager : Singleton<GameManager> {
 		
 		Debug.Log("Scene Changed To '" + newScene.name + "'. \n Is This World Scene = " + WorldUtility.IsWorldScene(newScene));
 		
-		PlayerHUDManager.Instance.FadeOutFromBlack(TIME_FirstGameLoadedFadeOut);
 		WorldDataManager.Instance.FindAllWorldIndexable();
 		WorldDataManager.Instance.LoadGameData();
 		BossFightManager.Instance.Instantiate();
