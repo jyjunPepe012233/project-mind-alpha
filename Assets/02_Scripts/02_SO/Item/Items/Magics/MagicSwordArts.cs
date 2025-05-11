@@ -50,6 +50,7 @@ public class MagicSwordArts : Magic
         _chargeLevel  = 0;
         _doChargeAttack = false;
         _doAttack = false;
+        _doStandbyCombo = false;
         
         Debug.Log("SetCastPlayer Compleate");
         _magicSwordArtsMainObject._castPlayer = castPlayer;
@@ -109,11 +110,20 @@ public class MagicSwordArts : Magic
             _chargingTime = 0;
         }
 
-        // if ( _doStandbyCombo  && PlayerInputManager.Instance.useMagicInput)
-        // {
-        //     Debug.Log("ComboStandby");
-        //     castPlayer.animator.SetBool("ComboStandby", true);
-        // }
+        if ( _doStandbyCombo && PlayerInputManager.Instance.useMagicInput)
+        {
+            Debug.Log("ComboStandby");
+            _doStandbyCombo = false;
+            
+            if ((castPlayer.CurMp >= this.mpCost) && (castPlayer.CurStamina >= this.staminaCost))
+                    {
+                        castPlayer.CurMp -= this.mpCost;
+                        castPlayer.CurStamina -= this.staminaCost;
+                        castPlayer.animator.SetBool("ComboStandby", true);
+                    }
+            
+        }
+        
         
         
         // 애니메이션 종료시 끝내기
@@ -208,23 +218,18 @@ public class MagicSwordArts : Magic
     {
         Debug.Log("ComboStandbyStart");
         _doStandbyCombo = true;
-        castPlayer.animator.SetBool("ComboStandby", true);
+        // castPlayer.animator.SetBool("ComboStandby", true);
     }
 
     public override void UseComboAttack()
     {
+        
         Debug.Log("UseComboAttack");
         castPlayer.animator.SetBool("ComboStandby", false);
+        _magicSwordArtsMainObject.ReUseComboAttack();
         
-        if ((castPlayer.CurMp >= this.mpCost) && (castPlayer.CurStamina >= this.staminaCost))
-        {
-            castPlayer.CurMp -= this.mpCost;
-            castPlayer.CurStamina -= this.staminaCost;
-        }
-        else
-        {
-            // castPlayer.animation.PlayTargetAction("Default Movement", true, true, false, false);
-            castPlayer.combat.ExitCurrentMagic();
-        }
+        // castPlayer.animation.PlayTargetAction("Default Movement", true, true, false, false);
+        castPlayer.combat.ExitCurrentMagic();
+    
     }
 }

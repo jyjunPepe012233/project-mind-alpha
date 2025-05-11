@@ -45,7 +45,7 @@ public class MagicSwordArtsSword : MonoBehaviour
         _chargeLevel1_ParticleSystem = chargeLevel1_Effect.GetComponent<ParticleSystem>();
         _chargeLevel2_ParticleSystem = chargeLevel2_Effect.GetComponent<ParticleSystem>();
         _chargeLevel3_ParticleSystem = chargeLevel3_Effect.GetComponent<ParticleSystem>();
-        _slash_ParticleSystem = slash_Effect.GetComponent<ParticleSystem>();
+        _slash_ParticleSystem   = slash_Effect.GetComponent<ParticleSystem>();
         _explode_ParticleSystem = explode_Effect.GetComponent<ParticleSystem>();
     }
 

@@ -72,20 +72,25 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     }
     
 
-    public void StartComboAttack()//int __comboAttackStep)
+    public void StartComboAttack()
     {
+        Debug.Log("StartComboAttack");
+        
         ChackNotNullMagicsword();
         
-        // switch (__comboAttackStep)
-        // {
-        //     case 1:
+        _magicSwordArtsSword.ComboAttack_Set(_castPlayer);
+        _magicSwordTrajectory.ComboStep1_Slash();
         
         ComboAttack();
-                // break;
-            // case 2:
-            //     ComboLevel2Attack();
-            //     break;
-        // }
+    }
+
+    public void ReUseComboAttack()
+    {
+        _magicSwordTrajectory.transform.position = _castPlayer.transform.position;
+        _magicSwordTrajectory.transform.rotation = _castPlayer.transform.rotation;
+        _magicSwordTrajectory.ComboStep2_Slash();
+        
+        _magicSwordTrajectory.ComboStep2_Slash();
     }
 
     public void StartChargeAttack(int __chargeLevel)
@@ -99,27 +104,19 @@ public class MagicSwordArtsMainObject : MonoBehaviour
 
     private void ComboAttack()
     {
-        // ChackNotNullMagicsword();
-        // ChackNotNullMagicSwordTrajectory();
-        // _castPlayer = __castPlayer;
-        
         ChackNotNullMagicsword();
         ChackNotNullMagicSwordTrajectory();
+        
+        
+        _magicSwordTrajectory.transform.position = _castPlayer.transform.position;
+        _magicSwordTrajectory.transform.rotation = _castPlayer.transform.rotation;
+        _magicSwordTrajectory.ComboStep1_Slash();
         
         _magicSwordArtsSword.ComboAttack_Set(_castPlayer);
         
         Debug.Log("Play MagicSwordArt_Combo_1");
         _castPlayer.animation.PlayTargetAction("MagicSwordArt_Combo_1", true, true, false, false);
     }
-    //
-    // private void ComboLevel2Attack()
-    // {
-    //     ChackNotNullMagicsword();
-    //     ChackNotNullMagicSwordTrajectory();
-    //     
-    //     Debug.Log("Play MagicSwordArt_Charge_2");
-    //     _castPlayer.animation.PlayTargetAction("MagicSwordArt_Combo_2", true, true, false, false);
-    // }
 
     private void ChargeAttack(int __chargeLevel)
     {
@@ -159,6 +156,7 @@ public class MagicSwordArtsMainObject : MonoBehaviour
                 break;
         }
     }
+    
 
 
     public void MagicSwordExplode()
@@ -183,21 +181,18 @@ public class MagicSwordArtsMainObject : MonoBehaviour
         _magicSwordArtsSword.ChargeLevel0_SetParticle(_castPlayer);
         _magicSwordArtsSword.SetScale(_chargeToTargetScales[0]);
     }
-
     public void ChargingLavel1()
     {
         ChackNotNullMagicsword();
         _magicSwordArtsSword.ChargeLevel1_SetParticle();
         _magicSwordArtsSword.SetScale(_chargeToTargetScales[1]);
     }
-
     public void ChargingLavel2()
     {
         ChackNotNullMagicsword();
         _magicSwordArtsSword.ChargeLevel2_SetParticle();
         _magicSwordArtsSword.SetScale(_chargeToTargetScales[2]);
     }
-
     public void ChargingLavel3()
     {
         ChackNotNullMagicsword();
@@ -205,7 +200,7 @@ public class MagicSwordArtsMainObject : MonoBehaviour
         _magicSwordArtsSword.ChargeLevel3_SetParticle();
         _magicSwordArtsSword.SetScale(_chargeToTargetScales[3]);
     }
-
+    
     #endregion
     
 }
