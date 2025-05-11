@@ -68,7 +68,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""af0f2dba-129a-4063-810e-050c3d6a321d"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""path"": ""<SwitchProControllerHID>/leftStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Pro-Controller"",
@@ -259,7 +259,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""4efc24b3-a999-41fb-b886-e9ae7f6f4c37"",
-                    ""path"": ""<Gamepad>/rightStick"",
+                    ""path"": ""<SwitchProControllerHID>/rightStick"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Pro-Controller"",
@@ -270,7 +270,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2b61db36-6f06-433c-a85d-f5ccb3e7d554"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""path"": ""<SwitchProControllerHID>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Pro-Controller"",
@@ -384,7 +384,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b8574993-331a-4c18-a494-2666dfe3193e"",
-                    ""path"": ""<SwitchProControllerHID>/rightShoulder"",
+                    ""path"": ""<SwitchProControllerHID>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Pro-Controller"",
@@ -439,7 +439,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""f6418648-76e9-4e66-aa2e-945780b7426b"",
-                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""path"": ""<SwitchProControllerHID>/leftStick/up"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -450,7 +450,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""a36e22a7-1d47-4971-b7a7-04adef595ce1"",
-                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""path"": ""<SwitchProControllerHID>/leftStick/down"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -472,7 +472,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3bc48516-8647-4885-b626-df92d889c793"",
-                    ""path"": ""<SwitchProControllerHID>/leftShoulder"",
+                    ""path"": ""<SwitchProControllerHID>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Pro-Controller"",
@@ -549,7 +549,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""182d5ce7-d2d2-4bc0-b228-ca52b6ee0ced"",
-                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""path"": ""<SwitchProControllerHID>/rightStick/left"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -560,7 +560,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": ""positive"",
                     ""id"": ""3d8228d8-1eae-4d07-a44b-01661f289e89"",
-                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""path"": ""<SwitchProControllerHID>/rightStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -624,7 +624,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""002d6d7a-edf5-4672-9048-0cd64b7f4009"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""path"": ""<SwitchProControllerHID>/dpad"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Pro-Controller"",
@@ -701,7 +701,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e02b8ab1-3f16-4ff1-ae99-08a04cd1e82f"",
-                    ""path"": ""<SwitchProControllerHID>/buttonSouth"",
+                    ""path"": ""<SwitchProControllerHID>/select"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

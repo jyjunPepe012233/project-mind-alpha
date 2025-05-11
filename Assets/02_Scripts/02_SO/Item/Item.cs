@@ -20,6 +20,8 @@ namespace MinD.SO.Item
 
 		[Space(5)] public int itemMaxCount = 1;
 
+		[Space(5)] public int itemTypeNumber = 0;
+
 		[Header("[ Runtime Data ]")] public int itemCount = 0;
 
 		public int categoryId;

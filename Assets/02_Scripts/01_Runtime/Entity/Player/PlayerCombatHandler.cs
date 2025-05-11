@@ -115,11 +115,25 @@ public class PlayerCombatHandler : EntityOwnedHandler {
 				return;
 			}
 			
-
 			useTool.OnUse(((Player)owner));
-			useTool.remainingCoolTime = useTool.usingCoolTime;
+			
+
+			foreach (var __tool in ((Player)owner).inventory.toolSlots)
+			{
+				if (__tool == null)
+				{
+					continue;
+				}
+				Debug.Log(__tool);
+				if (__tool.itemTypeNumber == useTool.itemTypeNumber)
+				{
+					__tool.remainingCoolTime = useTool.usingCoolTime;
+				}
+			}
+			
 			var quickSlot = FindObjectOfType<QuickSlot>();
 			quickSlot.StartCooldownOnToolSlot(useTool.usingCoolTime);
+			
 		}
 	}
 
@@ -149,8 +163,6 @@ public class PlayerCombatHandler : EntityOwnedHandler {
 		
 		usingDefenseMagic = true; // IF THIS FLAG IS ENABLED, DAMAGE WILL CALCULATE SPECIAL
 		PhysicUtility.SetActiveChildrenColliders(transform, false, WorldUtility.damageableLayerMask, false);
-
-		
 		
 		// PLAY DEFENSE ANIMATION (LOOPING)
 		((Player)owner).animation.PlayTargetAction("Defense_Action_Start", 0.2f, true, true, true, false);
