@@ -44,6 +44,12 @@ public class PlayerCombatHandler : EntityOwnedHandler {
 			currentCastingMagic.Tick();
 		}
 
+		
+		
+		if (((Player)owner).inventory.weaponSlot == null)
+			return;
+		
+
 
 		if (PlayerInputManager.Instance.useMagicInput) {
 

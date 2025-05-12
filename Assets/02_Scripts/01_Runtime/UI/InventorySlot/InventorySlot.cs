@@ -10,7 +10,6 @@ public class InventorySlot : MonoBehaviour
     [SerializeField] private Image inventorySlotBackground;
     [SerializeField] private Image inventorySlotItemImage;
     [SerializeField] private TextMeshProUGUI equipedTMP;
-    [SerializeField] private TextMeshProUGUI countTMP;
 
     private Item item;
     private int count;
@@ -49,7 +48,6 @@ public class InventorySlot : MonoBehaviour
         inventorySlotItemImage.sprite = item.itemImage;
 
         equipedTMP.gameObject.SetActive(isEquipped);
-        countTMP.text = count > 1 ? count.ToString() : "";
     }
 
     // 아이템이 없는 슬롯을 비우는 메서드
@@ -59,7 +57,6 @@ public class InventorySlot : MonoBehaviour
         inventorySlotItemImage.sprite = null;
 
         equipedTMP.gameObject.SetActive(false);
-        countTMP.text = "";
     }
 
     // 선택 상태 표현
