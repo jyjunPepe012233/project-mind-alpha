@@ -28,7 +28,7 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     // 로직 내에서 사용 할 클래스 저장 변수들(위에 애들 복사본)
     private GameObject               _magicSwordGameObject;
     private MagicSwordArtsSword       _magicSwordArtsSword;
-    private MagicSwordArtsTrajectory _magicSwordTrajectory;
+    // private MagicSwordArtsTrajectory _magicSwordTrajectory;
     
     
     // 현재 차지 레벨과 차지를 진행한 시간
@@ -82,14 +82,32 @@ public class MagicSwordArtsMainObject : MonoBehaviour
         ChargeAttack(__chargeLevel);
     }
 
+    public void MagicSwordColliderActiveTrue()
+    {
+        ChackNotNullMagicsword();
+        if (_magicSwordArtsSword._collider == null)
+        {
+            _magicSwordArtsSword._collider = _magicSwordGameObject.GetComponent<CapsuleCollider>();
+        }
+        _magicSwordArtsSword._collider.enabled = true;
+    }
     
+    public void MagicSwordColliderActiveFalse()
+    {
+        ChackNotNullMagicsword();
+        if (_magicSwordArtsSword._collider == null)
+        {
+            _magicSwordArtsSword._collider = _magicSwordGameObject.GetComponent<CapsuleCollider>();
+        }
+        _magicSwordArtsSword._collider.enabled = false;
+    }
 
     #region Attacks
 
     private void ComboAttack(bool __comboStep) // 이거 콤보스텝에 연동하기
     {
         ChackNotNullMagicsword();
-        // ChackNotNullMagicSwordTrajectory();
+        // _magicSwordArtsSword.ReSetDamageCollider();
         
         _magicSwordArtsSword.ComboAttack_Set(_castPlayer);
         
@@ -124,7 +142,6 @@ public class MagicSwordArtsMainObject : MonoBehaviour
 
     public void MagicSwordExplode()
     {
-        Debug.Log(_magicSwordArtsSword == null);
         _magicSwordArtsSword?.Explode();
         _magicSwordArtsSword = null;
     }

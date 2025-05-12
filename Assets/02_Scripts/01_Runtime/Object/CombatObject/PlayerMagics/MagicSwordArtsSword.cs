@@ -33,7 +33,7 @@ public class MagicSwordArtsSword : MonoBehaviour
 
     [SerializeField] private GameObject _sword;
     [SerializeField] public DamageCollider _damageCollider;
-    [SerializeField] private CapsuleCollider _collider;
+    [SerializeField] public CapsuleCollider _collider;
     
     
     [HideInInspector] public Player _castPlayer;
@@ -155,11 +155,18 @@ public class MagicSwordArtsSword : MonoBehaviour
         _damageCollider.soData = __damagedata;
     }
 
+    public void ReSetDamageCollider()
+    {
+        _collider.enabled = false;
+        _collider.enabled = true;
+
+    }
+
     public void Explode()
     {
         
-        _sword.SetActive(false);
-        Destroy(_sword, 3);
+        gameObject.SetActive(false);
+        Destroy(gameObject, 3);
     }
     
     private IEnumerator ExplodeCoroutine()

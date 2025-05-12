@@ -59,9 +59,6 @@ public class MagicSwordArts : Magic
     public override void Tick()
     {
         
-        
-        
-        
         // castPlayer Setting
         if (_magicSwordArtsMainObject._castPlayer == null)
         {
@@ -69,21 +66,7 @@ public class MagicSwordArts : Magic
             _magicSwordArtsMainObject._castPlayer = castPlayer;
         }
         
-        // // 콤보 대기중이면 추가타 쓰기
-        // if ( _doStandbyCombo && PlayerInputManager.Instance.useMagicInput)
-        //         {
-        //             Debug.Log("next combo Attack, ComboStep : " + _comboStep );
-        //             _doStandbyCombo = false;    
-        //             
-        //             if ((castPlayer.CurMp >= this.mpCost) && (castPlayer.CurStamina >= this.staminaCost))
-        //                     {
-        //                         _comboStep = 0;
-        //                         castPlayer.CurMp -= this.mpCost;
-        //                         castPlayer.CurStamina -= this.staminaCost;
-        //                         
-        //                         _magicSwordArtsMainObject.StartComboAttack(_comboStep);
-        //                     }
-        //         }
+        
         
         
         // 차징 중인가?
@@ -101,6 +84,8 @@ public class MagicSwordArts : Magic
                 {
                     castPlayer.CurMp -= this.mpCost;
                     castPlayer.CurStamina -= this.staminaCost;
+
+                    _magicSwordArtsMainObject.MagicSwordColliderActiveTrue();
                                 
                     _magicSwordArtsMainObject.StartComboAttack(_comboStepIsOne);
                     _comboStepIsOne = !_comboStepIsOne;
@@ -131,21 +116,6 @@ public class MagicSwordArts : Magic
             Debug.Log("reset to charge time");
             _chargingTime = 0;
         }
-        // 평타 콤보는 취하위 우선순위
-        // if (_doStandbyCombo && PlayerInputManager.Instance.useMagicInput)
-        // {
-        //     Debug.Log("next combo Attack, ComboStepIsOne : " + _comboStepIsOne );
-        //     _doStandbyCombo = false;    
-        //             
-        //     if ((castPlayer.CurMp >= this.mpCost) && (castPlayer.CurStamina >= this.staminaCost))
-        //     {
-        //         _comboStepIsOne = !_comboStepIsOne;
-        //         castPlayer.CurMp -= this.mpCost;
-        //         castPlayer.CurStamina -= this.staminaCost;
-        //                         
-        //         _magicSwordArtsMainObject.StartComboAttack(_comboStepIsOne);
-        //     }
-        // }
         
         // 차징 시간에 따른 차징 단계
         if (!_doAttack)
@@ -239,6 +209,8 @@ public class MagicSwordArts : Magic
     {
         Debug.Log("ComboStandbyStart");
         _doStandbyCombo = true;
+        
+        _magicSwordArtsMainObject.MagicSwordColliderActiveFalse();
     }
 
     public override void ComboStandbyEnd()
@@ -246,6 +218,8 @@ public class MagicSwordArts : Magic
         Debug.Log("ComboStandbyEnd");
         _comboStepIsOne = true;
         _doStandbyCombo = false;
+        
+        _magicSwordArtsMainObject.MagicSwordColliderActiveFalse();
     }
 
 }
