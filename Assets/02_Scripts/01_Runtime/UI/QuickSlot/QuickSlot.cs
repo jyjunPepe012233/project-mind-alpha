@@ -9,7 +9,7 @@ using MinD.SO.Item;
 public class QuickSlot : MonoBehaviour
 {
     [Header("Magic QuickSlot UI")]
-    public List<Image> magicQuickSlots; // 왼, 가운데, 오
+    public List<Image> magicQuickSlots;
     public TextMeshProUGUI magicNameTMP;
     public Image magicEffectImage;
 
@@ -24,6 +24,14 @@ public class QuickSlot : MonoBehaviour
 
     [SerializeField] private int currentMagicIndex;
     [SerializeField] private int currentToolIndex;
+
+    private Dictionary<int, (float startTime, float endTime)> toolCooldownTimers = new();
+
+
+    private void Update()
+    {
+        UpdateCooldownUI();
+    }
 
     public void Initialize(Magic[] magicSlots, Tool[] toolSlots)
     {
@@ -47,7 +55,7 @@ public class QuickSlot : MonoBehaviour
             foreach (var slot in magicQuickSlots)
             {
                 slot.sprite = null;
-                slot.color = new Color(1, 1, 1, 0); // 투명하게
+                slot.color = new Color(1, 1, 1, 0);
             }
             magicNameTMP.text = "";
             return;
@@ -76,7 +84,7 @@ public class QuickSlot : MonoBehaviour
             foreach (var slot in toolQuickSlots)
             {
                 slot.sprite = null;
-                slot.color = new Color(1, 1, 1, 0); // 투명하게
+                slot.color = new Color(1, 1, 1, 0);
             }
             toolNameTMP.text = "";
             return;
@@ -95,7 +103,6 @@ public class QuickSlot : MonoBehaviour
         toolNameTMP.text = displayItems[1].itemName;
     }
 
-
     private List<Item> GetCircularTriple(List<Item> items, int centerIndex)
     {
         int count = items.Count;
@@ -113,7 +120,7 @@ public class QuickSlot : MonoBehaviour
 
         currentMagicIndex = (currentMagicIndex + direction + equippedMagics.Count) % equippedMagics.Count;
         UpdateMagicQuickSlot();
-        PlaySwapEffect(magicEffectImage); 
+        PlaySwapEffect(magicEffectImage);
     }
 
     public void HandleToolSlotSwapping(int direction)
@@ -121,34 +128,63 @@ public class QuickSlot : MonoBehaviour
         var equippedTools = toolSlots.Where(t => t != null && t.isEquipped).ToList();
         if (equippedTools.Count == 0) return;
 
+        var previousCenterItem = GetCircularTriple(equippedTools, currentToolIndex)[1];
+        int previousTypeNumber = previousCenterItem.itemTypeNumber;
+
         currentToolIndex = (currentToolIndex + direction + equippedTools.Count) % equippedTools.Count;
+
+        var newCenterItem = GetCircularTriple(equippedTools, currentToolIndex)[1];
+        int newTypeNumber = newCenterItem.itemTypeNumber;
+
         UpdateToolQuickSlot();
         PlaySwapEffect(toolEffectImage);
     }
 
-    // Cooldown method for the Tool slot center image
     public void StartCooldownOnToolSlot(float cooldownDuration)
     {
-        if (cooldownImage != null)
-        {
-            StartCoroutine(CooldownCoroutine(cooldownDuration));
-        }
+        var equippedTools = toolSlots.Where(t => t != null && t.isEquipped).ToList();
+        if (equippedTools.Count == 0) return;
+
+        var currentItem = GetCircularTriple(equippedTools, currentToolIndex)[1];
+        int type = currentItem.itemTypeNumber;
+
+        float startTime = Time.time;
+        float endTime = Time.time + cooldownDuration;
+
+        toolCooldownTimers[type] = (startTime, endTime);
     }
 
-    private IEnumerator CooldownCoroutine(float cooldownDuration)
+    public void UpdateCooldownUI()
     {
-        float elapsedTime = 0f;
-        cooldownImage.fillAmount = 1f; // 시작은 가득 참
+        var equippedTools = toolSlots.Where(t => t != null && t.isEquipped).ToList();
+        if (equippedTools.Count == 0) return;
 
-        while (elapsedTime < cooldownDuration)
+        var currentItem = GetCircularTriple(equippedTools, currentToolIndex)[1];
+        int type = currentItem.itemTypeNumber;
+
+        if (toolCooldownTimers.TryGetValue(type, out var timer))
         {
-            elapsedTime += Time.deltaTime;
-            cooldownImage.fillAmount = Mathf.Lerp(1f, 0f, elapsedTime / cooldownDuration);
-            yield return null;
-        }
+            float now = Time.time;
+            float duration = timer.endTime - timer.startTime;
+            float remaining = timer.endTime - now;
 
-        cooldownImage.fillAmount = 0f; // 끝에 확실히 비움
+            if (remaining <= 0f)
+            {
+                cooldownImage.fillAmount = 0f;
+                toolCooldownTimers.Remove(type);
+            }
+            else
+            {
+                cooldownImage.fillAmount = Mathf.Clamp01(remaining / duration);
+            }
+        }
+        else
+        {
+            cooldownImage.fillAmount = 0f;
+        }
     }
+
+
     private void PlaySwapEffect(Image effectImage)
     {
         if (effectImage == null) return;
@@ -159,12 +195,10 @@ public class QuickSlot : MonoBehaviour
     {
         float elapsed = 0f;
 
-        // 1. 투명하게
         Color color = image.color;
         color.a = 0f;
         image.color = color;
 
-        elapsed = 0f;
         while (elapsed < fadeTime)
         {
             elapsed += Time.deltaTime;
@@ -173,6 +207,4 @@ public class QuickSlot : MonoBehaviour
             yield return null;
         }
     }
-
-
 }

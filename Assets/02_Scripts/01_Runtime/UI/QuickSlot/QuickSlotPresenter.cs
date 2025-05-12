@@ -54,5 +54,7 @@ public class QuickSlotPresenter : MonoBehaviour
             quickSlotView.HandleToolSlotSwapping(1); // 다음 소모품
             UpdateQuickSlots();
         }
+        
+        quickSlotView.UpdateCooldownUI();
     }
 }
