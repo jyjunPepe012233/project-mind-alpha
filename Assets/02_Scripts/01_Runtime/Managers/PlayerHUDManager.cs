@@ -172,8 +172,11 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 		burstPopupDirector.Play();
 
 		yield return new WaitForSeconds((float)burstPopupDirector.duration);
-		
-		burstPopupDirector.gameObject.SetActive(false);
+
+		if (burstPopupDirector != null)
+		{
+			burstPopupDirector.gameObject.SetActive(false);
+		}
 
 	}
 
@@ -224,6 +227,49 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 		
 		playerHUD.blackScreen.color = new Color(0, 0, 0, fadeDirection ? 1 : 0);
 		
+	}
+	
+	public void PlayPopup(string message)
+	{
+		StopAllCoroutines();
+		playerHUD.popupUIController.popupText.text = message;
+		StartCoroutine(PopupRoutine());
+	}
+
+	private IEnumerator PopupRoutine()
+	{
+		CanvasGroup cg = playerHUD.popupUIController.popupCanvasGroup;
+		GameObject go = cg.gameObject;
+
+		float fadeDuration = 0.5f;
+		float t = 0f;
+
+		go.SetActive(true);
+		yield return new WaitForSeconds(0.3f);
+		
+		// Fade In
+		cg.alpha = 0f;
+		while (t < fadeDuration)
+		{
+			t += Time.deltaTime;
+			cg.alpha = Mathf.Lerp(0f, 1f, t / fadeDuration);
+			yield return null;
+		}
+		cg.alpha = 1f;
+
+		// 유지
+		yield return new WaitForSeconds(1f);
+
+		// Fade Out
+		t = 0f;
+		while (t < fadeDuration)
+		{
+			t += Time.deltaTime;
+			cg.alpha = Mathf.Lerp(1f, 0f, t / fadeDuration);
+			yield return null;
+		}
+		cg.alpha = 0f;
+		go.SetActive(false);
 	}
 
 

@@ -111,18 +111,17 @@ public class Player : BaseEntity {
         attribute.SetBaseAttributesAsPerStats();
         attribute.CalculateAttributesByEquipment();
         PlayerHUDManager.Instance.RefreshAllStatusBar();
-        
 
 
         
-        // TODO: Load camera direction
+        
         #region LOAD_CHARACTER_TRANSFORM_DATA
         Vector3 playerPosition = default;
         Vector3 playerDirx = default;
         
         if (WorldDataManager.Instance.GetDiscoveredGuffinsAnchorCount() > 0 && GameManager.Instance.willAwakeFromLatestAnchor) {
             GuffinsAnchor latestAnchor = WorldDataManager.Instance.GetGuffinsAnchorInstanceToId(WorldDataManager.Instance.latestUsedAnchorId);
-            if (NavMesh.SamplePosition(latestAnchor.transform.TransformPoint(GuffinsAnchor.playerPosition), out NavMeshHit hitInfo, 1.5f, NavMesh.AllAreas)) {
+            if (NavMesh.SamplePosition(latestAnchor.sittingPoint.position, out NavMeshHit hitInfo, 1.5f, NavMesh.AllAreas)) {
                 playerPosition = hitInfo.position;
                 playerDirx = latestAnchor.transform.position - playerPosition;
                 playerDirx.y = 0; 
@@ -140,7 +139,7 @@ public class Player : BaseEntity {
         
         transform.forward = playerDirx;
         #endregion
-        
+        camera.MoveCameraToAppropriatePosition();
         
         if (GameManager.Instance.willAwakeWithAnchorIdle) {
             animation.PlayTargetAction("Anchor_Idle", 0, true, true, false, false);

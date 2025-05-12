@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bde953cfb6c046d285c5e6e0fbd4359, type: 3}
   m_Name: SkeletonWarrior
   m_EditorClassIdentifier: 
+  name: 
   maxHp: 1060
   moveSpeed: 0.86
   angularSpeed: 180
@@ -23,4 +24,4 @@ MonoBehaviour:
     _lightning: 0.25
     _holy: -1
   poiseBreakResistance: 65
-  corpseFadeTime: 2
+  corpseFadeTime: 3

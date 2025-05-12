@@ -1,7 +1,11 @@
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using MinD.Runtime.Managers;
 using MinD.Utility;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using PlayerInputManager = MinD.Runtime.Managers.PlayerInputManager;
 
 namespace MinD.Runtime.Entity {
 
@@ -42,6 +46,7 @@ public class PlayerCamera : MonoBehaviour {
 	[HideInInspector]
 	public Transform currentTargetOption;
 	private List<Transform> availableTargets = new List<Transform>(); // SORTED BY PROXIMITY
+	private List<Transform> availableTargetsABAA = new List<Transform>(); // ALIGNED BY ABSOLUTE ANGLE(3D ANGLE BY CAMERA)
 
 
 	// POSITION OF VIRTUAL CAMERA ARM
@@ -52,7 +57,20 @@ public class PlayerCamera : MonoBehaviour {
 
 	private float releaseLockOnTimer;
 
+	private bool isTargetMoveInvalid = false;
+	private WaitForSeconds waitToMoveLockOnTarget = new WaitForSeconds(0.2f);
 
+
+	private void OnEnable()
+	{
+		isTargetMoveInvalid = false;
+	}
+
+	public void MoveCameraToAppropriatePosition()
+	{
+		targetCameraArm = owner.transform.position + Quaternion.Euler(transform.eulerAngles) * cameraOffset;
+		cameraArm = targetCameraArm;
+	}
 
 	public void HandleCamera() {
 
@@ -99,7 +117,7 @@ public class PlayerCamera : MonoBehaviour {
 
 		} else {
 
-			Vector2 rotationInput = PlayerInputManager.Instance.rotationInput;
+			Vector2 rotationInput = PlayerInputManager.Instance.GetRotation(out _);
 			Vector3 angle = transform.eulerAngles + new Vector3(-rotationInput.y * 0.35f, rotationInput.x) * rotationMultiplier;
 
 
@@ -166,13 +184,45 @@ public class PlayerCamera : MonoBehaviour {
 					SetLockOnTarget();
 				}
 				
-			} else if (PlayerInputManager.Instance.rotationInput.x < -3.5) {
-				MoveLockOnToLeftTarget();
-			} else if (PlayerInputManager.Instance.rotationInput.x > 3.5) {
-				MoveLockOnToRightTarget();
+			}
+			else
+			{
+				float horizInput = PlayerInputManager.Instance.GetRotation(out InputDevice device).x;
+
+				if (horizInput == 0)
+				{
+					releaseLockOnTimer = 0;
+					return;
+				}
+
+				if (isTargetMoveInvalid)
+				{
+					return;
+				}
 				
-			} else {
-				releaseLockOnTimer = 0;
+				switch (device)
+				{
+					case Gamepad:
+						if (horizInput >= 0.9)
+						{
+							MoveLockOnToRightTarget();
+						}
+						else if (horizInput <= -0.9)
+						{
+							MoveLockOnToLeftTarget();
+						}
+						break;
+					case Mouse:
+						if (horizInput >= 7)
+						{
+							MoveLockOnToRightTarget();
+						}
+						else if (horizInput <= -7)
+						{
+							MoveLockOnToLeftTarget();
+						}
+						break;
+				}
 			}
 
 		}
@@ -183,8 +233,30 @@ public class PlayerCamera : MonoBehaviour {
 	private void SetLockOnTarget() {
 		
 		RemoveLockOnTarget();
-		
+		ResetAvailableTargetList();
 
+		if (availableTargets.Count > 0) {
+
+			currentTargetOption = availableTargets[0];
+			owner.combat.target = currentTargetOption.GetComponentInParent<BaseEntity>();
+			owner.isLockOn = true;
+			
+			PlayerHUDManager.Instance.SetLockOnSpotActive(true);
+		}
+
+	}
+	private void RemoveLockOnTarget() {
+
+		currentTargetOption = null;
+		owner.isLockOn = false;
+		
+		PlayerHUDManager.Instance.SetLockOnSpotActive(false);
+
+		isTargetMoveInvalid = false;
+	}
+
+	private void ResetAvailableTargetList()
+	{
 		// GET ENTITY COLLIDERS IN AVAILABLE RADIUS
 		Collider[] colliders = Physics.OverlapSphere(transform.position, lockOnMaxRadius, WorldUtility.damageableLayerMask);
 
@@ -241,64 +313,47 @@ public class PlayerCamera : MonoBehaviour {
 
 
 		// SORTING TARGET OPTIONS BY PROXIMITY
-		for (int i = 0; i < availableTargets.Count; i++) {
-			// SELECTION SORT
-
-			Transform closest = availableTargets[i];
-
-			for (int j = i; j < availableTargets.Count; j++) {
-
-				Transform thisOption = availableTargets[j];
-
-				if (Vector3.Distance(transform.position, thisOption.position) < Vector3.Distance(transform.position, closest.position))
-					(availableTargets[i], availableTargets[j]) = (availableTargets[j], availableTargets[i]);
-			}
-		}
-
-		if (availableTargets.Count > 0) {
-
-			currentTargetOption = availableTargets[0];
-			owner.combat.target = currentTargetOption.GetComponentInParent<BaseEntity>();
-			owner.isLockOn = true;
-			
-			PlayerHUDManager.Instance.SetLockOnSpotActive(true);
-
-		}
-
+		availableTargets = availableTargets.OrderBy(target => Vector3.Distance(owner.transform.position, target.transform.position)).ToList();
+		// 카메라와의 좌우 방향 절대값(크기)를 기준으로 정렬
+		availableTargetsABAA = availableTargets.OrderBy(option => Mathf.Abs(Vector3.SignedAngle(transform.forward, option.position - transform.position, Vector3.up))).ToList();
 	}
-	private void RemoveLockOnTarget() {
 
-		currentTargetOption = null;
-		owner.isLockOn = false;
+	private IEnumerator MoveLockOnCool()
+	{
+		isTargetMoveInvalid = true;
+		yield return waitToMoveLockOnTarget;
+		isTargetMoveInvalid = false;
+	}
+	private void MoveLockOnToLeftTarget()
+	{
+		ResetAvailableTargetList();
 		
-		PlayerHUDManager.Instance.SetLockOnSpotActive(false);
-
-	}
-	
-	private void MoveLockOnToLeftTarget() {
-
-		foreach (Transform option in availableTargets) {
+		foreach (Transform option in availableTargetsABAA) {
 
 			if (option == currentTargetOption)
 				continue;
 
-			if (transform.InverseTransformPoint(option.position).x < 0) {
+			if (Vector3.SignedAngle(currentTargetOption.position - transform.position, option.position - transform.position, Vector3.up) < -3) {
 				currentTargetOption = option;
 				owner.combat.target = currentTargetOption.GetComponentInParent<BaseEntity>(); // TARGET UPDATE
+				StartCoroutine(MoveLockOnCool());
 				return;
 			}
 		}
 	}
-	private void MoveLockOnToRightTarget() {
-
-		foreach (Transform option in availableTargets) {
+	private void MoveLockOnToRightTarget()
+	{
+		ResetAvailableTargetList();
+		
+		foreach (Transform option in availableTargetsABAA) {
 
 			if (option == currentTargetOption)
 				continue;
 
-			if (transform.InverseTransformPoint(option.position).x > 0) {
+			if (Vector3.SignedAngle(currentTargetOption.position - transform.position, option.position - transform.position, Vector3.up) > 3) {
 				currentTargetOption = option;
 				owner.combat.target = currentTargetOption.GetComponentInParent<BaseEntity>(); // TARGET UPDATE
+				StartCoroutine(MoveLockOnCool());
 				return;
 			}
 		}

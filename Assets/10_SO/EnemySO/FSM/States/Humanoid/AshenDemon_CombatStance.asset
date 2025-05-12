@@ -14,11 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackActions:
   - {fileID: 11400000, guid: a84c08c5730694009a607a7e2600dbf5, type: 2}
-  - {fileID: 11400000, guid: 4ab7eb135aa95426b92947d48407f40b, type: 2}
-  - {fileID: 11400000, guid: 83b43ca33c4744d1393ef2625a6b4417, type: 2}
-  - {fileID: 11400000, guid: 146eb9e2d3fc845bdae2cee35dab5056, type: 2}
-  - {fileID: 11400000, guid: 501257b195a7e47eba8a3063851e8ab5, type: 2}
-  exitCombatStanceRadius: 11
-  combatPursueMinDistance: 1.5
-  combatPursueMaxDistance: 6
-  maxStrafeTime: 5
+  - {fileID: 11400000, guid: 639ba4342c42c415db52c66190aec5ba, type: 2}
+  - {fileID: 11400000, guid: baeb5b756b0784459b59b01e5d9dbc51, type: 2}
+  - {fileID: 11400000, guid: ad93bd5610e6749e587846ca6e32a254, type: 2}
+  - {fileID: 11400000, guid: 9d6e174460d744f2ab0ae61c58f82587, type: 2}
+  - {fileID: 11400000, guid: b2024ed8dfa7d48089b448549d00c095, type: 2}
+  - {fileID: 11400000, guid: edb1a06d6028b4d63a70f60bbf5f1bbc, type: 2}
+  - {fileID: 11400000, guid: dda49b04a323541279e8680291a2e5f0, type: 2}
+  exitCombatStanceRadius: 18
+  combatPursueMinDistance: 3
+  combatPursueMaxDistance: 8
+  maxStrafeTime: 6

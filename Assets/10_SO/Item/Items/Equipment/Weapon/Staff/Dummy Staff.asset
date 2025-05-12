@@ -24,10 +24,11 @@ MonoBehaviour:
   itemCount: 0
   categoryId: 1
   isEquipped: 0
-  weaponPrefab: {fileID: 6419165690001192968, guid: 742b7c14a7c424bba83041964b11dcd0,
+  equippedOrder: -1
+  weaponPrefab: {fileID: 762134473838850911, guid: 4fa63862612d647ca8deb08ef39bbde9,
     type: 3}
-  weaponPositionOffset: {x: 0.016, y: 0.115, z: -0.221}
-  weaponAngleOffset: {x: 358.18533, y: 167.66359, z: 182.9717}
+  weaponPositionOffset: {x: -0.00023, y: 0.000643, z: -0.00015}
+  weaponAngleOffset: {x: 335.852, y: 10.604257, z: 290.9649}
   weaponType: 0
   weaponRequiredAffinity:
     flame: 0

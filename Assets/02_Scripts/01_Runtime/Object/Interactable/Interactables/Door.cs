@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace MinD.Runtime.Object.Interactables {
-    public class Door : Interactable {
+    public class Door : Interactable 
+    {
 
         public enum DoorType { Single, Double }
 
@@ -18,7 +19,7 @@ namespace MinD.Runtime.Object.Interactables {
 
         [Header("Door Settings")]
         [SerializeField] private DoorType doorType = DoorType.Single;
-        [SerializeField] private float openSpeed = 10f;
+        [SerializeField] private float openSpeed = 60f;
         [SerializeField] private bool isLocked = false;
         
         [Header("Door Configuration")]
@@ -116,6 +117,23 @@ namespace MinD.Runtime.Object.Interactables {
         
         private void UpdateInteractionText() {
             interactionText = isLocked ? LOCKED_INTERACTION_TEXT : DEFAULT_INTERACTION_TEXT;
+        }
+
+        public void LoadDoorData(bool isOpened)
+        {
+            this.isOpened = isOpened;
+            isRotating = false;
+
+            foreach (var door in activeDoors)
+            {
+                if (door.doorTransform == null) continue;
+
+                Quaternion targetRot = isOpened ? door.targetRotation : door.initialRotation;
+                door.doorTransform.rotation = targetRot;
+            }
+
+            canInteraction = !isOpened;
+            UpdateInteractionText();
         }
     }
 }

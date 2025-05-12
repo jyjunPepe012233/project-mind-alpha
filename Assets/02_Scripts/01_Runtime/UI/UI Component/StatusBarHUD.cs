@@ -40,18 +40,24 @@ public class StatusBarHUD : MonoBehaviour {
 
     public void SetValue(int value) {
 
+        if (fillSlider.value < value)
+        {
+            fillTrailSlider.value = value;
+        }
         fillSlider.value = value;
-
     }
 
     public void HandleTrailFollowing() {
-
+        
         // IF NEED DRAIN THE TRAIL
         if (fillTrailSlider.value > fillSlider.value) {
             fillTrailSlider.value -= trailDampingSpeed * Time.deltaTime;
             
             // CLAMP MINIMUM
-            fillTrailSlider.value = Mathf.Max(fillTrailSlider.value, fillSlider.value);
+            if (fillTrailSlider.value < fillSlider.value)
+            {
+                fillTrailSlider.value = fillSlider.value;
+            }
         }
 
         // IF NEED FILL THE TRAIL
@@ -59,7 +65,10 @@ public class StatusBarHUD : MonoBehaviour {
             fillTrailSlider.value += trailDampingSpeed * Time.deltaTime;
             
             // CLAMP MAXIMUM
-            fillTrailSlider.value = Mathf.Min(fillTrailSlider.value, fillSlider.value);
+            if (fillTrailSlider.value > fillSlider.value)
+            {
+                fillTrailSlider.value = fillSlider.value;
+            }
         }
 
     }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae41d414c88446689c76e8ef361e951, type: 3}
   m_Name: AshenDemon_Idle
   m_EditorClassIdentifier: 
-  detectAngle: 80
-  detectRadius: 9
-  absoluteDetectRadius: 6
+  detectAngle: 65
+  detectRadius: 20
+  absoluteDetectRadius: 7

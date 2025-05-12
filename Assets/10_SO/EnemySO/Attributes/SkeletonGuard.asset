@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bde953cfb6c046d285c5e6e0fbd4359, type: 3}
   m_Name: SkeletonGuard
   m_EditorClassIdentifier: 
+  name: 
   maxHp: 470
   moveSpeed: 0.98
   angularSpeed: 180
@@ -23,4 +24,4 @@ MonoBehaviour:
     _lightning: 0
     _holy: -0.5
   poiseBreakResistance: 25
-  corpseFadeTime: 2
+  corpseFadeTime: 3

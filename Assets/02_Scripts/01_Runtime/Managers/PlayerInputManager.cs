@@ -15,7 +15,7 @@ public class PlayerInputManager : Singleton<PlayerInputManager> {
     private bool blinkInput; // HANDLING IN METHOD IN THIS MANAGER
 
     // CAMERA CONTROL
-    public Vector2 rotationInput;
+    private Vector2 rotationInput;
     public bool lockOnInput;
 
     // INTERACTION
@@ -36,6 +36,8 @@ public class PlayerInputManager : Singleton<PlayerInputManager> {
     public Vector2 menuDirectionInput;
     public int moveMenuTabInput;
     public bool openInventoryInput;
+
+    private InputDevice currentDevice;
 
 
     // on scene changed, Check the scene is world scene
@@ -63,7 +65,7 @@ public class PlayerInputManager : Singleton<PlayerInputManager> {
             
             
             // CAMERA CONTROL
-            playerControls.CameraControl.Rotation.performed += i => rotationInput = i.ReadValue<Vector2>();
+            playerControls.CameraControl.Rotation.performed += GetCameraRotationInputData;
             playerControls.CameraControl.LockOn.performed += i => lockOnInput = true; // IF INPUT IS PERFORMED, SET BOOL TO TRUE
             
             
@@ -96,6 +98,18 @@ public class PlayerInputManager : Singleton<PlayerInputManager> {
 
 
         }
+    }
+
+    private void GetCameraRotationInputData(InputAction.CallbackContext context)
+    {
+        rotationInput = context.ReadValue<Vector2>();
+        currentDevice = context.control.device;
+    }
+
+    public Vector2 GetRotation(out InputDevice device)
+    {
+        device = currentDevice;
+        return rotationInput;
     }
 
     void AttemptCallBlink(InputAction.CallbackContext callbackContext) {

@@ -22,7 +22,9 @@ public class PlayerHUD : MonoBehaviour {
     [Header("[ Black Screen ]")]
     public Image blackScreen;
 
-
+    [Header("[ Popup UI ]")] 
+    public PopupUIController popupUIController;
+    
     [Header("[ Menus ]")]
     public GuffinsAnchorMenu guffinsAnchorMenu;
     public InventoryMenuPresenter inventoryMenu;

@@ -7,12 +7,19 @@ namespace MinD.Runtime.Object.Interactables
     {
         [Header("Lever Settings")] 
         [SerializeField] private Transform lever;
-        [SerializeField] private Door targetDoor; // 연동할 Door 참조
+        [SerializeField] private float rotationSpeed = 60f; // 1초에 60도 회전
         [SerializeField] private bool oneTimeUse = true; // 한 번만 사용할 수 있는지
-        [SerializeField] private float rotationSpeed = 60f; // 1초에 60도 회전 (원하는 값으로 조절)
+        
+        [Header("Connected Objects")]
+        [SerializeField] private Door targetDoor; // 연동할 Door 참조
+        [SerializeField] private Lift targetLift; // 연동할 Lift 참조
+        [SerializeField] private bool controlsDoor = true; // Door를 제어하는지 여부
+        [SerializeField] private bool controlsLift = false; // Lift를 제어하는지 여부
+        
         private bool isUsed = false;
         private bool isRotating = false;
         private Quaternion targetRotation;
+        private bool isLeverUp = false; // 레버가 올라가 있는지 확인하는 변수
 
         private const string DEFAULT_INTERACTION_TEXT = "레버를 당긴다";
         private const string USED_INTERACTION_TEXT = "이미 사용된 레버다";
@@ -38,30 +45,59 @@ namespace MinD.Runtime.Object.Interactables
                 {
                     lever.localRotation = targetRotation;
                     isRotating = false;
+                    
+                    // 레버 회전이 끝나면 다시 상호작용 가능하도록 설정 (oneTimeUse가 아닌 경우)
+                    if (!oneTimeUse)
+                    {
+                        canInteraction = true;
+                    }
                 }
             }
         }
 
         public override void Interact(Player interactor)
         {
-            if (!canInteraction || isUsed)
-                return;
-
-            if (targetDoor != null)
+            // 상호작용이 불가능하거나 사용된 레버이거나 회전 중인 경우 상호작용 방지
+            if (!canInteraction || isUsed || isRotating || (controlsLift && targetLift != null && targetLift.IsMoving()))
             {
-                interactor.animation.PlayTargetAction("Anchor_Discover", true, true, false, false);
+                return;
+            }
+
+            // 플레이어 애니메이션 재생
+            interactor.animation.PlayTargetAction("Anchor_Discover", true, true, false, false);
+
+            // Door 제어 (설정된 경우)
+            if (controlsDoor && targetDoor != null)
+            {
                 targetDoor.Unlock();
             }
 
-            if (lever != null && !isRotating)
+            // Lift 제어 (설정된 경우)
+            if (controlsLift && targetLift != null)
             {
-                targetRotation = lever.localRotation * Quaternion.Euler(60f, 0f, 0f);
-                isRotating = true;
+                targetLift.TogglePosition();
             }
 
+            // 레버 회전 애니메이션
+            if (lever != null)
+            {
+                // 레버 회전 중에는 상호작용 비활성화
+                isRotating = true;
+                canInteraction = false;
+                
+                // 레버 상태에 따라 회전 방향 결정
+                float rotationAngle = isLeverUp ? -60f : 60f;
+                targetRotation = lever.localRotation * Quaternion.Euler(rotationAngle, 0f, 0f);
+                
+                // 레버 상태 토글
+                isLeverUp = !isLeverUp;
+            }
+
+            // 한 번만 사용하는 레버인 경우
             if (oneTimeUse)
             {
                 isUsed = true;
+                // oneTimeUse가 true인 경우 상호작용 비활성화 상태 유지
                 canInteraction = false;
                 UpdateInteractionText();
             }

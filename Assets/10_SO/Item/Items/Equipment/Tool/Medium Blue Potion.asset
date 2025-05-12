@@ -21,8 +21,10 @@ MonoBehaviour:
   itemCount: 0
   categoryId: 2
   isEquipped: 0
+  equippedOrder: -1
   isConsumable: 1
   usingCoolTime: 1
   remainingCoolTime: 0
   mpFillAmount: 80
-  healVfxPrefab: {fileID: 0}
+  healVfxPrefab: {fileID: 5184521679103169182, guid: 272ea8a824f874518a00117f218ce4d1,
+    type: 3}
