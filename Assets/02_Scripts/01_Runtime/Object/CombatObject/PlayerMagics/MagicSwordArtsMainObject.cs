@@ -14,8 +14,8 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     [SerializeField] private MagicSwordArtsSword _magicSwordArtsSword_Origin;
     [SerializeField] private GameObject          _magicSwordArtsSwordGameObject_Origin;
     
-    private MagicSwordArtsTrajectory             _magicSwordArtsTrajectory_Origin;
-    [SerializeField] private GameObject          _magicSwordArtsTrajectoryGameObject_Origin; // 이거 굳이 이렇게 해야 하는지 검사하기 그냥 바로 받아오면 안돼나?
+    // private MagicSwordArtsTrajectory             _magicSwordArtsTrajectory_Origin;
+    // [SerializeField] private GameObject          _magicSwordArtsTrajectoryGameObject_Origin; // 이거 굳이 이렇게 해야 하는지 검사하기 그냥 바로 받아오면 안돼나?
     
 
     [Header("[ Set State ]")] [Space(5)]
@@ -42,55 +42,39 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     private void OnEnable()
     {
         ChackNotNullMagicsword();
-        ChackNotNullMagicSwordTrajectory();
+        // ChackNotNullMagicSwordTrajectory();
     }
 
     private void ChackNotNullMagicsword()
     {
         if (_magicSwordArtsSword == null)
         {
-            Debug.Log("ChackNotNullMagicsword");
             _magicSwordArtsSword = Instantiate(_magicSwordArtsSword_Origin, _castPlayer.equipment.rightHand.position,
                 _castPlayer.equipment.rightHand.rotation);;
         }
     }
 
-    private void ChackNotNullMagicSwordTrajectory()
-    {
-        if (_magicSwordTrajectory == null)
-        {
-            Debug.Log("ChackNotNullMagicSwordTrajectory");
-
-            if (_magicSwordArtsTrajectory_Origin == null)
-            {
-                _magicSwordArtsTrajectory_Origin = _magicSwordArtsTrajectoryGameObject_Origin.GetComponent<MagicSwordArtsTrajectory>();
-            }
-            
-            _magicSwordTrajectory = Instantiate(_magicSwordArtsTrajectory_Origin, _castPlayer.transform.position,
-                _castPlayer.transform.rotation);;
-        }
-    }
+    // private void ChackNotNullMagicSwordTrajectory()
+    // {
+    //     if (_magicSwordTrajectory == null)
+    //     {
+    //
+    //         if (_magicSwordArtsTrajectory_Origin == null)
+    //         {
+    //             _magicSwordArtsTrajectory_Origin = _magicSwordArtsTrajectoryGameObject_Origin.GetComponent<MagicSwordArtsTrajectory>();
+    //         }
+    //         
+    //         _magicSwordTrajectory = Instantiate(_magicSwordArtsTrajectory_Origin, _castPlayer.transform.position,
+    //             _castPlayer.transform.rotation);;
+    //     }
+    // }
     
 
-    public void StartComboAttack()
+    public void StartComboAttack(bool __comboStep)
     {
         Debug.Log("StartComboAttack");
         
-        ChackNotNullMagicsword();
-        
-        _magicSwordArtsSword.ComboAttack_Set(_castPlayer);
-        _magicSwordTrajectory.ComboStep1_Slash();
-        
-        ComboAttack();
-    }
-
-    public void ReUseComboAttack()
-    {
-        _magicSwordTrajectory.transform.position = _castPlayer.transform.position;
-        _magicSwordTrajectory.transform.rotation = _castPlayer.transform.rotation;
-        _magicSwordTrajectory.ComboStep2_Slash();
-        
-        _magicSwordTrajectory.ComboStep2_Slash();
+        ComboAttack(__comboStep);
     }
 
     public void StartChargeAttack(int __chargeLevel)
@@ -102,61 +86,40 @@ public class MagicSwordArtsMainObject : MonoBehaviour
 
     #region Attacks
 
-    private void ComboAttack()
+    private void ComboAttack(bool __comboStep) // 이거 콤보스텝에 연동하기
     {
         ChackNotNullMagicsword();
-        ChackNotNullMagicSwordTrajectory();
-        
-        
-        _magicSwordTrajectory.transform.position = _castPlayer.transform.position;
-        _magicSwordTrajectory.transform.rotation = _castPlayer.transform.rotation;
-        _magicSwordTrajectory.ComboStep1_Slash();
+        // ChackNotNullMagicSwordTrajectory();
         
         _magicSwordArtsSword.ComboAttack_Set(_castPlayer);
         
-        Debug.Log("Play MagicSwordArt_Combo_1");
-        _castPlayer.animation.PlayTargetAction("MagicSwordArt_Combo_1", true, true, false, false);
+
+        if (!__comboStep)
+        {
+            Debug.Log("Play MagicSwrodArt_Combo_2");
+            _castPlayer.animation.PlayTargetAction("MagicSwordArt_Combo_2", true, true, false, false);
+        }
+        else
+        {
+            Debug.Log("Play MagicSwordArt_Combo_1");
+            _castPlayer.animation.PlayTargetAction("MagicSwordArt_Combo_1", true, true, false, false);
+        }
+        
     }
 
     private void ChargeAttack(int __chargeLevel)
     {
         ChackNotNullMagicsword();
-        ChackNotNullMagicSwordTrajectory();
+        // ChackNotNullMagicSwordTrajectory();
         
         _magicSwordArtsSword.Slash_setParticle();
         _magicSwordArtsSword.MagicSword_Slash(_chargeLevelToDamageDatas[__chargeLevel]);
         
-        _magicSwordTrajectory.transform.position = _castPlayer.transform.position;
-        _magicSwordTrajectory.transform.rotation = _castPlayer.transform.rotation;
-        ChargeLevelToSlash(__chargeLevel);
-        
-        Debug.Log("Play MagicSwrodArt_Attack");
+        Debug.Log("Play MagicSwrodArt_ChargeAttack");
         _castPlayer.animation.PlayTargetAction("MagicSwrodArt_Attack", true, true, false, false);
     }
     
     #endregion
-
-    private void ChargeLevelToSlash(int __chargeLevel)
-    {
-        ChackNotNullMagicSwordTrajectory();
-        
-        switch (__chargeLevel)
-        {
-            case 0:
-                _magicSwordTrajectory.ChargeLevel0_Slash();
-                break;
-            case 1:
-                _magicSwordTrajectory.ChargeLevel1_Slash();
-                break;
-            case 2:
-                _magicSwordTrajectory.ChargeLevel2_Slash();
-                break;
-            case 3:
-                _magicSwordTrajectory.ChargeLevel3_Slash();
-                break;
-        }
-    }
-    
 
 
     public void MagicSwordExplode()

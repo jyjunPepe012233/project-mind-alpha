@@ -32,6 +32,17 @@ public class MagicSwordArtsTrajectory : MonoBehaviour
         _comboStep2_Slash_ParticleSystem = comboStep2_Slash_Effect.GetComponent<ParticleSystem>();
         Debug.Log("Compleate prajectory Awake");
     }
+
+    public void AllParticleOff()
+    {
+        _chargeLevel0_Slash_ParticleSystem.Stop(true);
+        _chargeLevel1_Slash_ParticleSystem.Stop(true);
+        _chargeLevel2_Slash_ParticleSystem.Stop(true);
+        _chargeLevel3_Slash_ParticleSystem.Stop(true);
+        
+        _comboStep1_Slash_ParticleSystem.Stop(true);
+        _comboStep2_Slash_ParticleSystem.Stop(true);
+    }
     
     public void ChargeLevel0_Slash() 
     {
