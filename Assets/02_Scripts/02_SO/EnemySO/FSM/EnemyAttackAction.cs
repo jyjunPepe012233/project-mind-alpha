@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace MinD.SO.EnemySO {
 
@@ -23,6 +24,9 @@ public class EnemyAttackAction : ScriptableObject {
 	[Range(-180, 180)] public float maxAngle = 35f;
 	public float minDistance = 0f;
 	public float maxDistance = 2f;
+	[Space(10)]
+	public bool isLimitedByHealth;
+	[FormerlySerializedAs("liftingAttackPercent")] [FormerlySerializedAs("liftingHealthPercent")] public float[] liftingPercents;
 	
 	
 	

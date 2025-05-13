@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5d854436ab6440795c8cfe9f97c2908, type: 3}
+  m_Name: Baal_CombatStance
+  m_EditorClassIdentifier: 
+  attackActions:
+  - {fileID: 11400000, guid: 5553775f0afca4913892e3e9cdef4e19, type: 2}
+  - {fileID: 11400000, guid: 3a6feed499fe64e1d9a19f91ed7fc8e0, type: 2}
+  - {fileID: 11400000, guid: 6f13aaeb958e54b12991e072e32a61cf, type: 2}
+  - {fileID: 11400000, guid: 8eaec2aef03f64551aa11049e041224d, type: 2}
+  - {fileID: 11400000, guid: 19a52a8fa47864b99886338aa76a6430, type: 2}
+  - {fileID: 11400000, guid: 36cc232f292564ac89ccc8ea5fe5f682, type: 2}
+  - {fileID: 11400000, guid: 14b6836825fd74441bdfcf115ed25410, type: 2}
+  - {fileID: 11400000, guid: 35198e1609f0e42c6b968fdc8e83d8b6, type: 2}
+  - {fileID: 11400000, guid: 8971525df083f45d689c3768326360e5, type: 2}
+  - {fileID: 11400000, guid: f64900ccfb59e441fac2cc0888aeaafe, type: 2}
+  - {fileID: 11400000, guid: 5f0cc945ae6e54fabb092a6e052fb56f, type: 2}
+  - {fileID: 11400000, guid: c3aeed42058a94b13a02854164001672, type: 2}
+  - {fileID: 11400000, guid: e3767fdaae57148f5a92dc879b48ebfd, type: 2}
+  exitCombatStanceRadius: 55
+  combatPursueMinDistance: 3
+  combatPursueMaxDistance: 15
+  maxStrafeTime: 3

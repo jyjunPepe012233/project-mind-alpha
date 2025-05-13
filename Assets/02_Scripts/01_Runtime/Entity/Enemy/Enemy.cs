@@ -49,6 +49,7 @@ public abstract class Enemy : BaseEntity, IWorldIndexable {
 				OnDeath();
 			}
 			curHp = Mathf.Clamp(curHp, 0, attribute.MaxHp);
+			combat.HandleLimitedAttacks();
 		}
 	}
 	

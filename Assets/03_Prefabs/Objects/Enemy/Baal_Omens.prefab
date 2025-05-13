@@ -1,0 +1,413 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6233833793622779717
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 303340527074882655}
+  m_Layer: 0
+  m_Name: Baal_Omens
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &303340527074882655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6233833793622779717}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4202486983226993821}
+  - {fileID: 267480773109721274}
+  - {fileID: 488881205390345714}
+  - {fileID: 6174587816728453011}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1421599254095984923
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 303340527074882655}
+    m_Modifications:
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.116
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.48296288
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.12940949
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8365164
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.22414386
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: lifeTime
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: acceleration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: angularSpeed
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661820034716909969, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_Name
+      value: AshenDemon_Omen
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cc614c4202c6044fca2445b6e0da0dd3, type: 3}
+--- !u!4 &4202486983226993821 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1421599254095984923}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3053153577109880124
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 303340527074882655}
+    m_Modifications:
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.116
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.48296288
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.12940949
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.8365164
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.22414386
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: lifeTime
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: acceleration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: angularSpeed
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661820034716909969, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_Name
+      value: AshenDemon_Omen (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cc614c4202c6044fca2445b6e0da0dd3, type: 3}
+--- !u!4 &267480773109721274 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3053153577109880124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3395830141698658420
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 303340527074882655}
+    m_Modifications:
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.616
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.23911756
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.09904574
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8923992
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.3696438
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 210
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: lifeTime
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: acceleration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: angularSpeed
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661820034716909969, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_Name
+      value: AshenDemon_Omen (2)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cc614c4202c6044fca2445b6e0da0dd3, type: 3}
+--- !u!4 &488881205390345714 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3395830141698658420}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8959974954169174549
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 303340527074882655}
+    m_Modifications:
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.616
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.23911753
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.09904572
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.89239913
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.3696438
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -210
+      objectReference: {fileID: 0}
+    - target: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: lifeTime
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: acceleration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886934280846413159, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: angularSpeed
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 7661820034716909969, guid: cc614c4202c6044fca2445b6e0da0dd3,
+        type: 3}
+      propertyPath: m_Name
+      value: AshenDemon_Omen (3)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cc614c4202c6044fca2445b6e0da0dd3, type: 3}
+--- !u!4 &6174587816728453011 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3019860741112681862, guid: cc614c4202c6044fca2445b6e0da0dd3,
+    type: 3}
+  m_PrefabInstance: {fileID: 8959974954169174549}
+  m_PrefabAsset: {fileID: 0}

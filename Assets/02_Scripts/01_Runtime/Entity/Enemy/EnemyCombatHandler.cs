@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using MinD.SO.EnemySO;
 using MinD.Utility;
+using Unity.VisualScripting;
+using UnityEngine.Serialization;
 
 
 namespace MinD.Runtime.Entity {
@@ -15,7 +17,19 @@ public class EnemyCombatHandler : EntityOwnedHandler {
 	[HideInInspector] public bool willPerformCombo;
 	[HideInInspector] public EnemyAttackAction comboAttack;
 	
-	
+	public List<EnemyAttackAction> reservedAttackQueue; // HP 리미트가 해제되어 사용할 수 있는 공격
+	public List<EnemyAttackAction> liftedAttacks; // HP 리미트가 해제된 공격 
+
+
+
+	public void HandleLimitedAttacks()
+	{
+		foreach (var a in ((Enemy)owner).combatStanceState.GetLiftedAttacksByHealthLimit((Enemy)owner, liftedAttacks, owner.CurHp))
+		{
+			reservedAttackQueue.Add(a);
+			liftedAttacks.Add(a); 
+		}
+	}
 	
 	public float DistanceToTarget() {
 		return Vector3.Distance( ((Enemy)owner).currentTarget.transform.position, owner.transform.position);

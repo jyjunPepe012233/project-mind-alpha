@@ -16,6 +16,11 @@ public abstract class CombatStanceState : EnemyState {
 	
 
 	protected AttackState AttemptAttackAction(Enemy self, EnemyAttackAction thisAttack) {
+
+		if (thisAttack.isLimitedByHealth)
+		{
+			self.combat.reservedAttackQueue.Remove(thisAttack);
+		}
 		
 		self.combat.attackActionRecoveryTimer = 0;
 		((HumanoidEnemy)self).strafeTimer = 0;
@@ -47,6 +52,11 @@ public abstract class CombatStanceState : EnemyState {
 			if (!action.canRepeatAction && action == self.combat.latestAttack) {
 				return false;
 			}
+			
+			if (action.isLimitedByHealth && !self.combat.reservedAttackQueue.Contains(action))
+			{
+				return false;
+			}
 
 			return true;
 		}
@@ -67,7 +77,7 @@ public abstract class CombatStanceState : EnemyState {
 		if (availableAttacks.Length == 0) {
 			return null;
 		}
-
+		
 
 		float totalWeight = availableAttacks.Sum(i => i.actionWeight);
 		float randomPointOnWeight = Random.Range(0, totalWeight);
@@ -83,6 +93,32 @@ public abstract class CombatStanceState : EnemyState {
 		}
 		
 		throw new UnityException();
+	}
+
+	public List<EnemyAttackAction> GetLiftedAttacksByHealthLimit(Enemy self, List<EnemyAttackAction> usedLimitedAttacks, int currentHealth)
+	{
+		List<EnemyAttackAction> result = new(2);
+		
+		foreach (var attack in attackActions.Where(a => a.isLimitedByHealth))
+		{
+			if (attack.liftingPercents == null)
+			{
+				continue;
+			}
+			
+			// usedLimitedAttack에 저장된 So의 개수를 통해 해제될 수 있는 공격인지 판단
+			// 그 뒤 HP와 비교하여 반환 배열에 추가
+			int currentThresholdNumber = usedLimitedAttacks.Count(a => a == attack);
+			if (currentThresholdNumber < attack.liftingPercents.Length)
+			{
+				if ((float)currentHealth / self.attribute.MaxHp < attack.liftingPercents[currentThresholdNumber])
+				{
+					result.Add(attack);
+				}
+			}
+		}
+
+		return result;
 	}
 	
 }
