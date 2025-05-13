@@ -16711,7 +16711,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6833334
+        time: 0.68333334
         value: -0.41357458
         inSlope: 0.5997118
         outSlope: 0.5997118
@@ -16720,7 +16720,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.70000005
+        time: 0.7
         value: -0.4035292
         inSlope: 0.6048316
         outSlope: 0.6048316
@@ -70951,7 +70951,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.6833334
+        time: 0.68333334
         value: -0.41357458
         inSlope: 0.5997118
         outSlope: 0.5997118
@@ -70960,7 +70960,7 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.70000005
+        time: 0.7
         value: -0.4035292
         inSlope: 0.6048316
         outSlope: 0.6048316
@@ -107301,7 +107301,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.1
+  - time: 0.18333334
     functionName: OnDamageCollider
     data: 
     objectReferenceParameter: {fileID: 0}

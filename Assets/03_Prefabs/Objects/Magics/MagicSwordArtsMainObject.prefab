@@ -49,8 +49,8 @@ MonoBehaviour:
   _magicSwordArtsSwordGameObject_Origin: {fileID: 808210125412934667, guid: 3c35c0c97b0f4405eb480305118ec826,
     type: 3}
   _comboAttackColliders:
-  - {fileID: 3935832466082865475, guid: 32ed046a10d0a4b399a323bb987d56e2, type: 3}
-  - {fileID: 3935832466082865475, guid: 32ed046a10d0a4b399a323bb987d56e2, type: 3}
+  - {fileID: 3935832466082865475, guid: a4983ac9a9c374246beba1daa87cbfb4, type: 3}
+  - {fileID: 3935832466082865475, guid: a4983ac9a9c374246beba1daa87cbfb4, type: 3}
   _chargeAttackCollider: {fileID: 3935832466082865475, guid: 32ed046a10d0a4b399a323bb987d56e2,
     type: 3}
   _castPlayer: {fileID: 0}
