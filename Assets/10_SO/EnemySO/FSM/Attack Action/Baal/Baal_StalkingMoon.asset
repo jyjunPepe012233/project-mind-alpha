@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 329bd44861d843b69537f8788337cfe8, type: 3}
+  m_Name: Baal_StalkingMoon
+  m_EditorClassIdentifier: 
+  actionWeight: 1
+  motionStateName: StalkingMoon
+  actionRecoveryTime: 2
+  rotateInAttackAction: 0
+  minAngle: -35
+  maxAngle: 35
+  minDistance: 3
+  maxDistance: 14
+  isLimitedByHealth: 1
+  liftingPercents:
+  - 0.4
+  - 0.6
+  - 0.8
+  canRepeatAction: 0
+  canPerformCombo: 0
+  chanceToCombo: 0.5
+  comboAttack: {fileID: 0}
