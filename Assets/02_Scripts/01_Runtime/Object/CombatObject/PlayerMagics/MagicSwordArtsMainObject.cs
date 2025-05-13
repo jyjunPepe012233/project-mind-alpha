@@ -123,7 +123,7 @@ public class MagicSwordArtsMainObject : MonoBehaviour
         _magicSwordArtsSword.MagicSword_Slash();
         
         Debug.Log("Play MagicSwrodArt_ChargeAttack");
-        _castPlayer.animation.PlayTargetAction("MagicSwrodArt_Attack", true, true, false, true);
+        _castPlayer.animation.PlayTargetAction("MagicSwrodArt_Attack", true, true, false, false);
     }
     
     #endregion
