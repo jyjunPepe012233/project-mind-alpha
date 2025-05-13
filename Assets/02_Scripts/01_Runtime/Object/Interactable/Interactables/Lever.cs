@@ -1,4 +1,5 @@
 using MinD.Runtime.Entity;
+using MinD.Runtime.Managers;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -74,6 +75,8 @@ namespace MinD.Runtime.Object.Interactables
             if (controlsDoor && targetDoor != null)
             {
                 targetDoor.Unlock();
+                interactor.interaction.RemoveInteractableInList(this);
+                interactor.interaction.RefreshInteractableList();
             }
 
             // Lift 제어 (설정된 경우)

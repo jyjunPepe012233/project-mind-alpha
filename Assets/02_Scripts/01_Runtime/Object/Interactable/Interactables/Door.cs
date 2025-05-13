@@ -1,5 +1,6 @@
 using MinD.Runtime.Entity;
 using System.Collections.Generic;
+using MinD.Runtime.Managers;
 using UnityEngine;
 
 namespace MinD.Runtime.Object.Interactables {
@@ -112,6 +113,7 @@ namespace MinD.Runtime.Object.Interactables {
         }
 
         public void Unlock() {
+            PlayerHUDManager.Instance.PlayPopup("어디선가 문이 열리는 소리가 들린다.");
             isLocked = false;
             UpdateInteractionText();
         }
@@ -140,6 +142,11 @@ namespace MinD.Runtime.Object.Interactables {
 
             canInteraction = !isOpened;
             UpdateInteractionText();
+        }
+
+        public bool IsLocked()
+        {
+            return isLocked;
         }
     }
 }
