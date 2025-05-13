@@ -14,13 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 5
   itemName: "\uC18C\uD615 \uD478\uB978 \uD3EC\uC158"
-  itemDescription: "\uC18C\uB7C9\uC758 \uB9C8\uB098\uB97C \uCC44\uC6B4\uB2E4."
+  itemDescription: "\uC791\uACE0 \uB465\uADFC \uBCD1\uC5D0 \uB2F4\uAE34 \uD478\uB978\uD3EC\uC158\uC774\uB2E4.\n\n\uC2DD\uBB3C\uC5D0\uC11C
+    \uCD94\uCD9C\uD55C \uC815\uAE30\uC640 \uD76C\uC11D\uB41C \uB9C8\uB825\uC218\uAC00
+    \uB4E4\uC5B4 \uC788\uB2E4.\n\n\uB9C8\uB825\uC744 \uC18C\uB7C9 \uD68C\uBCF5\uD55C\uB2E4."
   itemImage: {fileID: 21300000, guid: 3985de44e5342499ab6432f3e96f2bfb, type: 3}
   itemRarity: 0
   itemMaxCount: 1
+  itemTypeNumber: 0
   itemCount: 0
   categoryId: 2
   isEquipped: 0
+  equippedOrder: -1
   isConsumable: 1
   usingCoolTime: 1
   remainingCoolTime: 0

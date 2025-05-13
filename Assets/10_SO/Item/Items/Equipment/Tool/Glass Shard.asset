@@ -15,12 +15,13 @@ MonoBehaviour:
   itemId: 8
   itemName: "\uC720\uB9AC \uC870\uAC01"
   itemDescription: "\uD0C1\uD55C \uBA3C\uC9C0\uAC00 \uB20C\uB7EC\uBD99\uC740 \uC720\uB9AC
-    \uC870\uAC01\uC774\uB2E4.\n\uC138\uC6D4\uC758 \uC5BC\uB8E9\uC774 \uD22C\uBA85\uD568\uC744
+    \uC870\uAC01\uC774\uB2E4.\n\n\uC138\uC6D4\uC758 \uC5BC\uB8E9\uC774 \uD22C\uBA85\uD568\uC744
     \uAC00\uB838\uACE0, \uB0A0\uCE74\uB85C\uC6B4 \uBAA8\uC11C\uB9AC\uB9CC \uB0A8\uC558\uB2E4.\n\n\uC0AC\uC6A9
     \uC2DC \uCCB4\uB825\uC744 \uC870\uAE08 \uC18C\uBAA8\uD55C\uB2E4."
-  itemImage: {fileID: 21300000, guid: afb0c3ffebffc46b384aaf7e0a96b563, type: 3}
+  itemImage: {fileID: 21300000, guid: 2f30e5de617194aeaa5e269f99c1c729, type: 3}
   itemRarity: 0
   itemMaxCount: 299
+  itemTypeNumber: 0
   itemCount: 0
   categoryId: 2
   isEquipped: 0

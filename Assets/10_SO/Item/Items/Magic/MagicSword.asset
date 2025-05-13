@@ -12,12 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c4d4d0b6c3c40ecbc5a0a487cd6802, type: 3}
   m_Name: MagicSword
   m_EditorClassIdentifier: 
-  itemId: 11
+  itemId: 12
   itemName: "\uB9C8\uAC80"
-  itemDescription: 
+  itemDescription: "\uD5C8\uACF5\uC5D0 \uBD80\uC720\uD558\uB294 3\uAC1C\uC758 \uB9C8\uB825\uAC80\uC774
+    \uC18C\uD658\uB41C\uB2E4.\n\n\uC801\uC744 \uCD94\uACA9\uD558\uC5EC \uB0A0\uCE74\uB85C\uC6B4
+    \uC77C\uACA9\uC744 \uAC00\uD55C\uB2E4."
   itemImage: {fileID: 21300000, guid: 8f45bd82c98f0404aa6e99794da500a0, type: 3}
   itemRarity: 0
   itemMaxCount: 1
+  itemTypeNumber: 0
   itemCount: 0
   categoryId: 0
   isEquipped: 0
