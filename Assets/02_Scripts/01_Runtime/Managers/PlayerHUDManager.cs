@@ -89,6 +89,9 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 			if (currentShowingMenu != null) {
 				currentShowingMenu.OnSelectInput();
 			}
+			if (playerHUD.tutorialPopupView.gameObject.activeSelf) {
+				CloseTutorialPopup();
+			}
 			PlayerInputManager.Instance.menuSelectInput = false;
 		}
 		
@@ -271,6 +274,18 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 		cg.alpha = 0f;
 		go.SetActive(false);
 	}
+	
+	public void ShowTutorialPopup(Sprite image, string title, string content)
+	{
+		playerHUD.tutorialPopupView.Show(image, title, content);
+		currentShowingMenu = null; // 혹시 열려있는 메뉴 있을 경우 무시
+	}
+
+	public void CloseTutorialPopup()
+	{
+		playerHUD.tutorialPopupView.Close();
+	}
+
 
 
 
