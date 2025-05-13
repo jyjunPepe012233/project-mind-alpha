@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonWarrior
   m_EditorClassIdentifier: 
   name: "\uD574\uACE8 \uC804\uC0AC"
-  maxHp: 1060
+  maxHp: 780
   moveSpeed: 0.86
   angularSpeed: 180
   damageNegation:

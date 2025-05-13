@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SkeletonMiner
   m_EditorClassIdentifier: 
   name: "\uD574\uACE8 \uAD11\uBD80"
-  maxHp: 470
+  maxHp: 290
   moveSpeed: 0.92
   angularSpeed: 180
   damageNegation:
