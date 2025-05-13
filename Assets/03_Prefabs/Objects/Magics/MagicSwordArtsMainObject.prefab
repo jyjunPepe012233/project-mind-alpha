@@ -48,19 +48,9 @@ MonoBehaviour:
     type: 3}
   _magicSwordArtsSwordGameObject_Origin: {fileID: 808210125412934667, guid: 3c35c0c97b0f4405eb480305118ec826,
     type: 3}
-  _magicSwordArtsTrajectoryGameObject_Origin: {fileID: 8841716291074279972, guid: ab4c532911e314931a8e9bb36b8e1cc2,
+  _comboAttackColliders:
+  - {fileID: 3935832466082865475, guid: 32ed046a10d0a4b399a323bb987d56e2, type: 3}
+  - {fileID: 3935832466082865475, guid: 32ed046a10d0a4b399a323bb987d56e2, type: 3}
+  _chargeAttackCollider: {fileID: 3935832466082865475, guid: 32ed046a10d0a4b399a323bb987d56e2,
     type: 3}
-  _comboAttackDamageDatas:
-  - {fileID: 11400000, guid: 14c3f9d81c7004dfe9d66534a7e02d85, type: 2}
-  - {fileID: 11400000, guid: d2502fb3fd9d94bedb039407860d6e03, type: 2}
-  _chargeLevelToDamageDatas:
-  - {fileID: 11400000, guid: c22efd748f3514230840b53bd6bb3e57, type: 2}
-  - {fileID: 11400000, guid: ac4a7806c3306434dad4ec5def254781, type: 2}
-  - {fileID: 11400000, guid: e5886e47547e74f7497f4d099be05807, type: 2}
-  - {fileID: 11400000, guid: 18f5b7e79dd1142b5af397ac5a6fc4e5, type: 2}
-  _chargeToTargetScales:
-  - {x: 1, y: 1, z: 1}
-  - {x: 1.8, y: 1.8, z: 1.8}
-  - {x: 2.4, y: 2.4, z: 2.4}
-  - {x: 3, y: 3, z: 3}
   _castPlayer: {fileID: 0}

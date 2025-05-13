@@ -9851,8 +9851,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6285650372652343151}
-  - component: {fileID: 4399684740167370403}
-  - component: {fileID: 7114385675822456523}
   - component: {fileID: 1577536175982050490}
   - component: {fileID: -203202932124760871}
   m_Layer: 9
@@ -9883,43 +9881,6 @@ Transform:
   - {fileID: 1812970154327705985}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 90}
---- !u!114 &4399684740167370403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808210125412934667}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18842f16ee46c4fc59fcac3b5aefea54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  soData: {fileID: 11400000, guid: bd8adad14353844f9a74e9d98150c089, type: 2}
-  blackList: []
---- !u!136 &7114385675822456523
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 808210125412934667}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.1
-  m_Height: 1
-  m_Direction: 2
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1577536175982050490
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9966,8 +9927,6 @@ MonoBehaviour:
   slash_Effect: {fileID: 2145490662107175945}
   explode_Effect: {fileID: 5056736399973766233}
   _sword: {fileID: 8146066911304744521}
-  _damageCollider: {fileID: 4399684740167370403}
-  _collider: {fileID: 7114385675822456523}
   _castPlayer: {fileID: 0}
 --- !u!1 &1045308076322510033
 GameObject:
@@ -87424,7 +87383,6 @@ GameObject:
   - component: {fileID: 8149342446506892109}
   - component: {fileID: 8178055864221050635}
   - component: {fileID: 8167694398684689983}
-  - component: {fileID: 8209059949122789763}
   m_Layer: 0
   m_Name: SM_Wep_Sword_Large_02
   m_TagString: Untagged
@@ -87497,28 +87455,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8209059949122789763
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8146066911304744521}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43323470456097912, guid: 84372fe7a3c361c4fb8a422edb1a50ec, type: 2}
 --- !u!1 &8206142194851577298
 GameObject:
   m_ObjectHideFlags: 0

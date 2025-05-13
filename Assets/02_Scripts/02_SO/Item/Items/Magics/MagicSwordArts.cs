@@ -38,7 +38,6 @@ public class MagicSwordArts : Magic
      */
     
     [SerializeField] private bool   _comboStepIsOne = true;  // 콤보가 얼마나 진행되었는지
-    [SerializeField] private int   _chargeLevel     = 0;  // 차지의 단계가 얼마나 되는지
     [SerializeField] private float _chargingTime    = 0;  // 차지를 진행한 시간이 얼마나 되는지
     [SerializeField] private bool  _doChargeAttack  = false;     // 차지 공격을 사욘ㅇ하는가? 
     [SerializeField] private bool  _doStandbyCombo  = false;     // 콤보 공격에 대해 대비중인가
@@ -48,12 +47,40 @@ public class MagicSwordArts : Magic
     public override void OnUse()
     {
         _chargingTime = 0;
-        _chargeLevel  = 0;
         _doChargeAttack = false;
         _doAttack = false;
         _doStandbyCombo = false;
+        CheckNullCastPlayerToMagicMainObj();
+    }
+
+    private void CheckNullCastPlayerToMagicMainObj()
+    {
+        if (_magicSwordArtsMainObject._castPlayer == null)
+        {
+            _magicSwordArtsMainObject._castPlayer = castPlayer;
+        }
+    }
+    
+    public override void OnDamageCollider()
+    {
+        Debug.Log("OnDamageCollider");
         
-        _magicSwordArtsMainObject._castPlayer = castPlayer;
+        CheckNullCastPlayerToMagicMainObj();
+        if (_doChargeAttack)
+        {
+            _magicSwordArtsMainObject.CreateChargeAttackCollider();
+        }
+        else
+        {
+            _magicSwordArtsMainObject.CreateComboAttackCollider(_comboStepIsOne);
+        }
+    }
+
+    public override void OffDamageCollider()
+    {
+        Debug.Log("OffDamageCollider");
+        CheckNullCastPlayerToMagicMainObj();
+        _magicSwordArtsMainObject.DestroyAttackCollider();
     }
     
     public override void Tick()
@@ -84,8 +111,6 @@ public class MagicSwordArts : Magic
                 {
                     castPlayer.CurMp -= this.mpCost;
                     castPlayer.CurStamina -= this.staminaCost;
-
-                    _magicSwordArtsMainObject.MagicSwordColliderActiveTrue();
                                 
                     _magicSwordArtsMainObject.StartComboAttack(_comboStepIsOne);
                     _comboStepIsOne = !_comboStepIsOne;
@@ -108,7 +133,7 @@ public class MagicSwordArts : Magic
             _chargingTime = 0;
             
             Debug.Log("not fullyCast Attack");
-            _magicSwordArtsMainObject.StartChargeAttack(_chargeLevel);
+            _magicSwordArtsMainObject.StartChargeAttack();
         }
         // 아무것도 아니면 차징시간 초기화
         else
@@ -118,57 +143,13 @@ public class MagicSwordArts : Magic
         }
         
         // 차징 시간에 따른 차징 단계
-        if (!_doAttack)
+        if (!_doAttack && _chargingTime > 0.3f)
         {
-            switch (_chargingTime)
-                    {
-                        case > 4f:
-                            _chargeLevel = 0;
-                            Debug.Log("StartChargeAttack");
-                            _doAttack = true;
-                            _magicSwordArtsMainObject.StartChargeAttack(3);
-                            break;
-                        
-                        case > 3.7f:
-                            if (_chargeLevel != 3)
-                            {
-                                _chargeLevel = 3;
-                                Debug.Log("ChargingLavel3");
-                                _magicSwordArtsMainObject.ChargingLavel3();
-                            }
-                            
-                            break;
-                            
-                        case > 2.1f:
-                            
-                            Debug.Log("ㅅㅂ? 뭐임?");
-                            if (_chargeLevel != 2)
-                            {
-                                _chargeLevel = 2;
-                                Debug.Log("ChargingLavel2");
-                                _magicSwordArtsMainObject.ChargingLavel2();
-                            }
-                            break;
-                                        
-                        case > 1.1f:
-                            if (_chargeLevel != 1)
-                            {
-                                _chargeLevel = 1;
-                                Debug.Log("ChargingLavel1");
-                                _magicSwordArtsMainObject.ChargingLavel1();
-                            }
-                            
-                            break;
-                        
-                        case > 0.3f:
-                            
-                            Debug.Log("charge Start");
-                            _magicSwordArtsMainObject.ChargingLavel0();
-                            
-                            _doChargeAttack = true;
-                            _chargeLevel = 0;
-                            break;
-                    }
+            Debug.Log("charge Attack");
+            _magicSwordArtsMainObject.StartChargeAttack();
+            
+            _doChargeAttack = true;
+            _chargingTime = 0;
                     
         }
         
@@ -197,7 +178,6 @@ public class MagicSwordArts : Magic
     {
         _chargingTime = 0;
         _doChargeAttack = false;
-        _chargeLevel = 0;
         _doAttack = false;
         _comboStepIsOne = true;
         
@@ -209,8 +189,9 @@ public class MagicSwordArts : Magic
     {
         Debug.Log("ComboStandbyStart");
         _doStandbyCombo = true;
-        
-        _magicSwordArtsMainObject.MagicSwordColliderActiveFalse();
+
+        // CheckNullCastPlayerToMagicMainObj();
+        // _magicSwordArtsMainObject.DestroyAttackCollider();
     }
 
     public override void ComboStandbyEnd()
@@ -218,8 +199,9 @@ public class MagicSwordArts : Magic
         Debug.Log("ComboStandbyEnd");
         _comboStepIsOne = true;
         _doStandbyCombo = false;
-        
-        _magicSwordArtsMainObject.MagicSwordColliderActiveFalse();
+
+        // CheckNullCastPlayerToMagicMainObj();
+        // _magicSwordArtsMainObject.DestroyAttackCollider();
     }
 
 }

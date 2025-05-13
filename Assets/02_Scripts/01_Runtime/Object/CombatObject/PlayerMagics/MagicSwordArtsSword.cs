@@ -31,10 +31,7 @@ public class MagicSwordArtsSword : MonoBehaviour
     private ParticleSystem _slash_ParticleSystem;
     private ParticleSystem _explode_ParticleSystem;
 
-    [SerializeField] private GameObject _sword;
-    [SerializeField] public DamageCollider _damageCollider;
-    [SerializeField] public CapsuleCollider _collider;
-    
+    [SerializeField] private GameObject _sword; //  이거 파티클임
     
     [HideInInspector] public Player _castPlayer;
     
@@ -47,22 +44,6 @@ public class MagicSwordArtsSword : MonoBehaviour
         _chargeLevel3_ParticleSystem = chargeLevel3_Effect.GetComponent<ParticleSystem>();
         _slash_ParticleSystem   = slash_Effect.GetComponent<ParticleSystem>();
         _explode_ParticleSystem = explode_Effect.GetComponent<ParticleSystem>();
-    }
-
-    private void OnEnable()
-    {
-        // Debug.Log("PhysicUtility IgnoreCollisionUtil");
-        // PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
-    }
-
-    public void AllPartucleOff()
-    {
-        _chargeLevel0_ParticleSystem.Stop(true);
-        _chargeLevel1_ParticleSystem.Stop(true);
-        _chargeLevel2_ParticleSystem.Stop(true);
-        _chargeLevel3_ParticleSystem.Stop(true);
-        _slash_ParticleSystem.Stop(true);
-        _explode_ParticleSystem.Stop(true);
     }
 
     private void Update()
@@ -86,7 +67,7 @@ public class MagicSwordArtsSword : MonoBehaviour
         _castPlayer = __castPlayer;
         Debug.Log("ComboAttack_Set");
         Slash_setParticle();
-        PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
+        
     }
     
     public void ChargeLevel0_SetParticle(Player __castPlayer)
@@ -94,57 +75,14 @@ public class MagicSwordArtsSword : MonoBehaviour
         _castPlayer = __castPlayer;
         
         Debug.Log("ChargeLevel0_SetParticle");
-        PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
 
         chargeLevel0_Effect.SetActive(true);
         _chargeLevel0_ParticleSystem?.Play(true);
 
     }
     
-    public void ChargeLevel1_SetParticle()
-    {
-        Debug.Log("ChargeLevel1_SetParticle");
-        PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
-        chargeLevel1_Effect.SetActive(true);
-        _chargeLevel1_ParticleSystem?.Play(true);
-    }
     
-    public void ChargeLevel2_SetParticle()
-    {
-        Debug.Log("ChargeLevel2_SetParticle");
-        PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
-        chargeLevel2_Effect.SetActive(true);
-        _chargeLevel2_ParticleSystem?.Play(true);
-    }
-    
-    public void ChargeLevel3_SetParticle()
-    {
-        Debug.Log("ChargeLevel3_SetParticle");
-        PhysicUtility.IgnoreCollisionUtil(_castPlayer, _collider);
-        chargeLevel3_Effect.SetActive(true);
-        _chargeLevel3_ParticleSystem?.Play(true);
-     }
-
-    public void SetScale(Vector3 __targetScale)
-    {
-        StartCoroutine(SetScaleCoroutine(__targetScale));
-    }
-    
-    private IEnumerator SetScaleCoroutine(Vector3 __targetSize)
-    {
-        float __elapsedTime = 0;
-        while (__elapsedTime < 0.3f)
-        {
-            __elapsedTime += Time.deltaTime;
-            transform.localScale = Vector3.Lerp( transform.localScale, __targetSize ,0.25f);
-            _collider.height = __targetSize.x * 2;
-            _collider.radius = __targetSize.y / 5;
-
-            yield return null;
-        }
-    }
-    
-    public void MagicSword_Slash(DamageData __damagedata)
+    public void MagicSword_Slash()
     {
         _chargeLevel0_ParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         _chargeLevel1_ParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
@@ -152,14 +90,6 @@ public class MagicSwordArtsSword : MonoBehaviour
         _chargeLevel3_ParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         
         Slash_setParticle();
-        _damageCollider.soData = __damagedata;
-    }
-
-    public void ReSetDamageCollider()
-    {
-        _collider.enabled = false;
-        _collider.enabled = true;
-
     }
 
     public void Explode()

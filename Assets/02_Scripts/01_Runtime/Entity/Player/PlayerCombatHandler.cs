@@ -249,6 +249,24 @@ public class PlayerCombatHandler : EntityOwnedHandler {
 
 		}
 	}
+	
+	public virtual void OnDamageCollider()
+	{
+		if (currentCastingMagic != null)
+		{
+			currentCastingMagic.OnDamageCollider();
+
+		}
+	}
+	
+	public virtual void OffDamageCollider()
+	{
+		if (currentCastingMagic != null)
+		{
+			currentCastingMagic.OffDamageCollider();
+
+		}
+	}
 }
 
 }
