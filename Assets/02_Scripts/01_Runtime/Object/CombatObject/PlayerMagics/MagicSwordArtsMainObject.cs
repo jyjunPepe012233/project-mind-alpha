@@ -47,9 +47,6 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     {
         if (_magicSwordArtsSword == null)
         {
-            Debug.Log("_castPlayer : " + (_castPlayer == null));
-            Debug.Log("_castPlayer.equipment" + (_castPlayer.equipment == null));
-            Debug.Log("_castPlayer.equipment.rightHand" + (_castPlayer.equipment.rightHand == null));
             _magicSwordArtsSword = Instantiate(_magicSwordArtsSword_Origin, _castPlayer.equipment.rightHand.position,
                 _castPlayer.equipment.rightHand.rotation);;
         }
@@ -57,18 +54,21 @@ public class MagicSwordArtsMainObject : MonoBehaviour
 
     public void StartComboAttack(bool __comboStep)
     {
-        Debug.Log("StartComboAttack");
-        
+        ChackNotNullMagicsword();
+        _magicSwordArtsSword._castPlayer = _castPlayer;
         ComboAttack(__comboStep);
     }
 
     public void StartChargeAttack()
     {
+        ChackNotNullMagicsword();
+        _magicSwordArtsSword._castPlayer = _castPlayer;
         ChargeAttack();
     }
     public void CreateComboAttackCollider(bool __stepIsOne)
     {
-        Debug.Log("CreateComboAttackCollider");
+        _magicSwordArtsSword.Attack_SetParticle(_castPlayer);
+        
         _damageCollider = Instantiate(_comboAttackColliders[(__stepIsOne) ? 0 : 1], _castPlayer.transform.position,
             _castPlayer.transform.rotation);
         PhysicUtility.IgnoreCollisionUtil(_castPlayer, _damageCollider.GetComponent<Collider>());
@@ -78,7 +78,8 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     
     public void CreateChargeAttackCollider()
     {
-        Debug.Log("CreateChargeAttackCollider");
+        _magicSwordArtsSword.Attack_SetParticle(_castPlayer);
+        
         _damageCollider = Instantiate(_chargeAttackCollider, _castPlayer.transform.position,
             _castPlayer.transform.rotation);
         PhysicUtility.IgnoreCollisionUtil(_castPlayer, _damageCollider.GetComponent<Collider>());
@@ -88,7 +89,8 @@ public class MagicSwordArtsMainObject : MonoBehaviour
 
     public void DestroyAttackCollider()
     {
-        Debug.Log("DestroyAttackCollider");
+        _magicSwordArtsSword.Attack_AndParticle();
+        
         Destroy(_damageCollider);
     }
 
@@ -97,19 +99,16 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     private void ComboAttack(bool __comboStep) // 이거 콤보스텝에 연동하기
     {
         ChackNotNullMagicsword();
-        
-        _magicSwordArtsSword.ComboAttack_Set(_castPlayer);
-        
 
         if (!__comboStep)
         {
             Debug.Log("Play MagicSwrodArt_Combo_2");
-            _castPlayer.animation.PlayTargetAction("MagicSwordArt_Combo_2", true, true, false, false);
+            _castPlayer.animation.PlayTargetAction("MagicSwrodArt_ReCombo_2", true, true, false, false);
         }
         else
         {
             Debug.Log("Play MagicSwordArt_Combo_1");
-            _castPlayer.animation.PlayTargetAction("MagicSwordArt_Combo_1", true, true, false, false);
+            _castPlayer.animation.PlayTargetAction("MagicSwrodArt_ReCombo_1", true, true, false, false);
         }
         
     }
@@ -117,13 +116,7 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     private void ChargeAttack()
     {
         ChackNotNullMagicsword();
-        
-        _magicSwordArtsSword.ChargeAttack_Set(_castPlayer);
-        _magicSwordArtsSword.Slash_setParticle();
-        _magicSwordArtsSword.MagicSword_Slash();
-        
-        Debug.Log("Play MagicSwrodArt_ChargeAttack");
-        _castPlayer.animation.PlayTargetAction("MagicSwrodArt_Attack", true, true, false, false);
+        _castPlayer.animation.PlayTargetAction("MagicSwrodArt_ReChargeAttack", true, true, false, false);
     }
     
     #endregion

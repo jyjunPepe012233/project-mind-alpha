@@ -66,6 +66,7 @@ public class MagicSwordArts : Magic
         Debug.Log("OnDamageCollider");
         
         CheckNullCastPlayerToMagicMainObj();
+        
         if (_doChargeAttack)
         {
             _magicSwordArtsMainObject.CreateChargeAttackCollider();
@@ -86,6 +87,7 @@ public class MagicSwordArts : Magic
     public override void Tick()
     {
         
+        CheckNullCastPlayerToMagicMainObj();
         // castPlayer Setting
         if (_magicSwordArtsMainObject._castPlayer == null)
         {
