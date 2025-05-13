@@ -12,15 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c134be9d927cf472188679fe2e28c972, type: 3}
   m_Name: Lazer
   m_EditorClassIdentifier: 
-  itemId: 10
+  itemId: 11
   itemName: "\uD3EC\uD1A4\uCE90\uB10C"
-  itemDescription: "\uD788\uD788 \uAD11\uC120\uBC1C\uC0AC"
+  itemDescription: "\uC555\uCD95\uB41C \uBE5B\uC758 \uC785\uC790\uB97C \uBC29\uCD9C\uD558\uB294
+    \uC77C\uC9C1\uC120\uC758 \uB9C8\uBC95.\n\n\uB208 \uAE5C\uC9DD\uD560 \uC0C8\uC5D0
+    \uD55C \uBA85\uC758 \uC801\uC744 \uAFF0\uB6AB\uB294 \uACE0\uC18D \uAD11\uC120\uC774
+    \uBC1C\uC0AC\uB41C\uB2E4."
   itemImage: {fileID: 21300000, guid: 13e72b6832a7e4af98516a979ca1abdd, type: 3}
   itemRarity: 0
   itemMaxCount: 1
+  itemTypeNumber: 0
   itemCount: 0
   categoryId: 0
   isEquipped: 0
+  equippedOrder: -1
   memoryCost: 1
   mpCost: 8
   staminaCost: 5

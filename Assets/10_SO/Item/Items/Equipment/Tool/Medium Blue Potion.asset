@@ -14,10 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 6
   itemName: "\uC911\uD615 \uD478\uB978 \uD3EC\uC158"
-  itemDescription: 
+  itemDescription: "\uC190\uC5D0 \uB4E4\uAE30 \uC88B\uC740 \uBCD1\uC5D0 \uB2F4\uAE34
+    \uD478\uB978\uD3EC\uC158\uC774\uB2E4.\n\n\uC815\uC2E0\uC744 \uB9D1\uAC8C \uD558\uB294
+    \uC815\uC218\uC640 \uB18D\uCD95\uB41C \uB9C8\uB825 \uACB0\uC815\uC774 \uB179\uC544
+    \uC788\uB2E4.\n\n\uB9C8\uB825\uC744 \uBCF4\uD1B5 \uC218\uC900 \uD68C\uBCF5\uD55C\uB2E4."
   itemImage: {fileID: 21300000, guid: 7426369abbf99444dacacca2c26f107b, type: 3}
   itemRarity: 0
   itemMaxCount: 1
+  itemTypeNumber: 0
   itemCount: 0
   categoryId: 2
   isEquipped: 0
