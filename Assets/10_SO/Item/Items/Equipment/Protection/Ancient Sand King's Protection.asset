@@ -13,14 +13,15 @@ MonoBehaviour:
   m_Name: Ancient Sand King's Protection
   m_EditorClassIdentifier: 
   itemId: 1
-  itemName: "\uACE0\uB300 \uC0AC\uB9C9\uC655\uC758 \uC218\uD638"
-  itemDescription: "\uACE0\uB300 \uC0AC\uB9C9\uC655\uC774 \uD0DC\uC591\uC758 \uC815\uC218\uC640
-    \uBAA8\uB798\uD3ED\uD48D\uC758 \uD798\uC744 \uB2F4\uC544 \uB9CC\uB4E0 \uBC29\uC5B4\uAD6C\uB85C,
-    \uCC29\uC6A9\uC790\uB97C \uAC15\uB825\uD55C \uC218\uD638\uC790\uC774\uC790 \uD30C\uAD34\uC790\uB85C
-    \uB9CC\uB4E0\uB2E4."
+  itemName: "\uC61B \uC0AC\uB9C9\uC655\uC758 \uC218\uD638"
+  itemDescription: "\uC78A\uD78C \uC2DC\uB300, \uC0AC\uB9C9\uC758 \uC655\uC740 \uC8FD\uC5B4\uC11C\uB3C4
+    \uC655\uC88C\uB97C \uC9C0\uCF30\uB2E4.\n\n\uADF8\uC758 \uC758\uC9C0\uAC00 \uB0A8\uC740
+    \uC218\uD638\uB839\uC774 \uCC29\uC6A9\uC790\uB97C \uAC10\uC2F8\uBA70 \n\n\uC704\uD611\uC744
+    \uB9C9\uC544\uB0B8\uB2E4."
   itemImage: {fileID: 21300000, guid: e139074658cad4ebab8f85abab12720f, type: 3}
   itemRarity: 2
   itemMaxCount: 1
+  itemTypeNumber: 0
   itemCount: 0
   categoryId: 3
   isEquipped: 0

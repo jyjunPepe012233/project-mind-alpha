@@ -12,15 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69be29eef9e34c7f9313137778b4106, type: 3}
   m_Name: Healing
   m_EditorClassIdentifier: 
-  itemId: 12
+  itemId: 13
   itemName: "\uD790\uB9C1"
-  itemDescription: 
+  itemDescription: "\uC0DD\uBA85\uC758 \uAE30\uC6B4\uC774 \uC190\uB05D\uC5D0\uC11C
+    \uD53C\uC5B4\uB09C\uB2E4.\n\n\uC0C1\uCC98 \uC785\uC740 \uC721\uC2E0\uC744 \uAC10\uC2F8\uBA70,
+    \uB530\uB73B\uD55C \uBE5B\uC774 \uCCB4\uC138\uD3EC \uAE4A\uC219\uC774 \n\n\uC2A4\uBA70\uB4E4\uC5B4
+    \uD68C\uBCF5\uC744 \uC774\uB048\uB2E4."
   itemImage: {fileID: 21300000, guid: 7a2a8422458724de2b35541d674ab726, type: 3}
   itemRarity: 0
   itemMaxCount: 1
+  itemTypeNumber: 0
   itemCount: 0
   categoryId: 0
   isEquipped: 0
+  equippedOrder: -1
   memoryCost: 1
   mpCost: 35
   staminaCost: 80

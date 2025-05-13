@@ -18,10 +18,10 @@ public class GuffinsAnchorMenu : PlayerMenu {
 	}
 
 	private static Dictionary<OptionType, string> optionTextDictionary = new Dictionary<OptionType, string>() {
-		{ OptionType.TeleportToOtherAnchor, "다른 닻으로 이동한다"}, 
-		{ OptionType.LevelUp, "레벨 업"}, 
-		{ OptionType.Memorize, "기억"}, 
-		{ OptionType.ReadTheStory, "이야기를 읽는다"}, 
+//		{ OptionType.TeleportToOtherAnchor, "다른 닻으로 이동한다"}, 
+//		{ OptionType.LevelUp, "레벨 업"}, 
+//		{ OptionType.Memorize, "기억"}, 
+//		{ OptionType.ReadTheStory, "이야기를 읽는다"}, 
 		{ OptionType.Leave, "떠난다"}, 
 	};
 
@@ -70,10 +70,10 @@ public class GuffinsAnchorMenu : PlayerMenu {
 	public void ApplyGuffinsAnchorData(GuffinsAnchor anchor) {
 		anchorName.text = anchor.anchorInfo.anchorName;
 
-		optionActiveDictionary[OptionType.TeleportToOtherAnchor] = true;
-		optionActiveDictionary[OptionType.LevelUp] = true;
-		optionActiveDictionary[OptionType.Memorize] = true;
-		optionActiveDictionary[OptionType.ReadTheStory] = anchor.anchorInfo.canReadStory;
+//		optionActiveDictionary[OptionType.TeleportToOtherAnchor] = true;
+//		optionActiveDictionary[OptionType.LevelUp] = true;
+//		optionActiveDictionary[OptionType.Memorize] = true;
+//		optionActiveDictionary[OptionType.ReadTheStory] = anchor.anchorInfo.canReadStory;
 		optionActiveDictionary[OptionType.Leave] = true;
 
 	}

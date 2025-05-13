@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7e0ead096f934902af5b5f221b92563, type: 3}
+  m_Name: Flame Of Hatred
+  m_EditorClassIdentifier: 
+  itemId: 0
+  itemName: "\uC99D\uC624\uC758 \uBD88\uAF43"
+  itemDescription: 
+  itemImage: {fileID: 0}
+  itemRarity: 0
+  itemMaxCount: 1
+  itemCount: 0
+  categoryId: 3
+  memoryCost: 1
+  mpCost: 0
+  staminaCost: 0
+  mpCostDuring: 0
+  staminaCostDuring: 0
+  castPlayer: {fileID: 0}
+  isInputReleased: 1
+  flameZonePrefab: {fileID: 6571577031369868765, guid: 8a9efce92f0ba4fccad0bcb206ed687e,
+    type: 3}
+  distance: 10
+  zoneDuration: 10
+  tickInterval: 1

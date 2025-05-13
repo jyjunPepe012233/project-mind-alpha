@@ -105,6 +105,12 @@ namespace MinD.Runtime.Object.Interactables {
             isRotating = true;
         }
 
+        public void UnlockAndOpen()
+        {
+            Unlock();
+            Open();
+        }
+
         public void Unlock() {
             isLocked = false;
             UpdateInteractionText();

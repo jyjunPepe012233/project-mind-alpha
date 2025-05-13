@@ -24,6 +24,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c6d57876cbd8e42d0a87412c57c31ee9, type: 2}
   - {fileID: 11400000, guid: 8c29f7d1dd03f461c80ad5071b519e1c, type: 2}
   - {fileID: 11400000, guid: 31ba63096da654d8f9b0a769875e55ef, type: 2}
+  - {fileID: 11400000, guid: 0c0399583d0e7448a8e1e58a60025878, type: 2}
   magicList:
   - {fileID: 11400000, guid: ae03470a4bda843eb9e4abfe84af54c1, type: 2}
   - {fileID: 11400000, guid: 92e3add1df5e84ca382ebb4d6ba66260, type: 2}
