@@ -118,11 +118,12 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     {
         ChackNotNullMagicsword();
         
+        _magicSwordArtsSword.ChargeAttack_Set(_castPlayer);
         _magicSwordArtsSword.Slash_setParticle();
         _magicSwordArtsSword.MagicSword_Slash();
         
         Debug.Log("Play MagicSwrodArt_ChargeAttack");
-        _castPlayer.animation.PlayTargetAction("MagicSwrodArt_Attack", true, true, false, false);
+        _castPlayer.animation.PlayTargetAction("MagicSwrodArt_Attack", true, true, false, true);
     }
     
     #endregion

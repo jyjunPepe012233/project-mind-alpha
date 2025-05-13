@@ -69,6 +69,12 @@ public class MagicSwordArtsSword : MonoBehaviour
         Slash_setParticle();
         
     }
+
+    public void ChargeAttack_Set(Player __castPlayer)
+    {
+        _castPlayer = __castPlayer;
+        Debug.Log("ChargeAttack_Set");
+    }
     
     public void ChargeLevel0_SetParticle(Player __castPlayer)
     {

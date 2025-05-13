@@ -148,6 +148,7 @@ public class MagicSwordArts : Magic
             Debug.Log("charge Attack");
             _magicSwordArtsMainObject.StartChargeAttack();
             
+            _doAttack = true;
             _doChargeAttack = true;
             _chargingTime = 0;
                     
