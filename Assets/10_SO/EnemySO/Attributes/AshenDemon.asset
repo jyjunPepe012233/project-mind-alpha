@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bde953cfb6c046d285c5e6e0fbd4359, type: 3}
   m_Name: AshenDemon
   m_EditorClassIdentifier: 
-  name: 
+  name: "\uC7AC\uC758 \uB370\uBAAC"
   maxHp: 1000
   moveSpeed: 1
   angularSpeed: 135

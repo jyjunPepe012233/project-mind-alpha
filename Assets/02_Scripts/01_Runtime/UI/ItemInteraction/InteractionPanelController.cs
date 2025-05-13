@@ -10,6 +10,7 @@ public class InteractionPanelController : MonoBehaviour
     public GameObject interactionPanel;
     public GameObject itemRootingPanel;
     public CanvasGroup rootingCanvasGroup;
+    public TextMeshProUGUI interactionText;
     public TextMeshProUGUI itemNameText;
     public Image itemImage;
     public float fadeOutDuration = 1f;
@@ -31,7 +32,7 @@ public class InteractionPanelController : MonoBehaviour
         else
         {
             DisplayItemInteractionPanel();
-            interactionPanel.GetComponentInChildren<TextMeshProUGUI>().text = Player.player.interaction.currentInteractables[0].interactionText;
+            interactionText.text = Player.player.interaction.currentInteractables[0].interactionText;
         }
     }
 

@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 7112824939059145077}
   - component: {fileID: 2125741284775160988}
   m_Layer: 5
-  m_Name: FullWitdhContainer
+  m_Name: FullWidthContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

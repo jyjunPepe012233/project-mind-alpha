@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bde953cfb6c046d285c5e6e0fbd4359, type: 3}
   m_Name: DreadDwarfMiner
   m_EditorClassIdentifier: 
-  name: 
+  name: "\uC624\uC5FC\uB41C \uB4DC\uC6CC\uD504 \uAD11\uBD80"
   maxHp: 370
   moveSpeed: 1.15
   angularSpeed: 135
