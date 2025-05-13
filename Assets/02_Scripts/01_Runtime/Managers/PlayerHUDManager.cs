@@ -50,6 +50,22 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 		HandleStatusBar();
 		HandleLockOnSpot();
 		HandleMenuInput();
+		HandlePauseMenuInput();
+	}
+
+	private void HandlePauseMenuInput()
+	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			if (currentShowingMenu != null)
+			{
+				CloseMenu(playerHUD.pauseMenu);
+			}
+			else
+			{
+				OpenMenu(playerHUD.pauseMenu);
+			}
+		}
 	}
 	
 	

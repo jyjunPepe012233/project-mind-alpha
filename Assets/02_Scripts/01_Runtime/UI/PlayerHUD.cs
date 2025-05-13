@@ -29,6 +29,7 @@ public class PlayerHUD : MonoBehaviour {
     [Header("[ Menus ]")]
     public GuffinsAnchorMenu guffinsAnchorMenu;
     public InventoryMenuPresenter inventoryMenu;
+    public PauseMenu pauseMenu;
 }
 
 }
