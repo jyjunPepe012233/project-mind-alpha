@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06eff5d653e884ec49049842d0af0aba, type: 3}
+  m_Name: Dark Talon
+  m_EditorClassIdentifier: 
+  itemId: 0
+  itemName: "\uC5B4\uB450\uC6B4 \uBC1C\uD1B1"
+  itemDescription: 
+  itemImage: {fileID: 0}
+  itemRarity: 0
+  itemMaxCount: 1
+  itemCount: 0
+  categoryId: 3
+  memoryCost: 1
+  mpCost: 0
+  staminaCost: 0
+  mpCostDuring: 0
+  staminaCostDuring: 0
+  castPlayer: {fileID: 0}
+  isInputReleased: 1
+  damageData: {fileID: 11400000, guid: ff32653fbc35c488b9a798ec381b99a0, type: 2}
+  thornPrefab: {fileID: 7008356074050953592, guid: cb1fbd8ead3b446b792bb888f060eba6,
+    type: 3}
