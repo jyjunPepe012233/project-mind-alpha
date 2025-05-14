@@ -4,7 +4,7 @@ using UnityEngine;
 public class TutorialPopupTrigger : MonoBehaviour
 {
     [Header("Tutorial Data")]
-    [SerializeField] private Sprite tutorialImage;
+    // [SerializeField] private Sprite tutorialImage;
     [SerializeField] private string tutorialTitle;
     [TextArea]
     [SerializeField] private string tutorialContent;
@@ -17,6 +17,6 @@ public class TutorialPopupTrigger : MonoBehaviour
 
         hasTriggered = true;
 
-        PlayerHUDManager.Instance.ShowTutorialPopup(tutorialImage, tutorialTitle, tutorialContent);
+        PlayerHUDManager.Instance.ShowTutorialPopup(tutorialTitle, tutorialContent);
     }
 }

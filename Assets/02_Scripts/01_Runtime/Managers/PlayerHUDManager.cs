@@ -291,9 +291,9 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 		go.SetActive(false);
 	}
 	
-	public void ShowTutorialPopup(Sprite image, string title, string content)
+	public void ShowTutorialPopup( string title, string content)
 	{
-		playerHUD.tutorialPopupView.Show(image, title, content);
+		playerHUD.tutorialPopupView.Show(title, content);
 		currentShowingMenu = null; // 혹시 열려있는 메뉴 있을 경우 무시
 	}
 

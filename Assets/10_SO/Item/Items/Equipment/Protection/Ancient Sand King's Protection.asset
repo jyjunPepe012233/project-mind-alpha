@@ -18,7 +18,7 @@ MonoBehaviour:
     \uC655\uC88C\uB97C \uC9C0\uCF30\uB2E4.\n\n\uADF8\uC758 \uC758\uC9C0\uAC00 \uB0A8\uC740
     \uC218\uD638\uB839\uC774 \uCC29\uC6A9\uC790\uB97C \uAC10\uC2F8\uBA70 \n\n\uC704\uD611\uC744
     \uB9C9\uC544\uB0B8\uB2E4."
-  itemImage: {fileID: 21300000, guid: e139074658cad4ebab8f85abab12720f, type: 3}
+  itemImage: {fileID: 21300000, guid: b54ab0d3fb19b419181d27053fe11e34, type: 3}
   itemRarity: 2
   itemMaxCount: 1
   itemTypeNumber: 0

@@ -17,9 +17,9 @@ public class TutorialPopupView : MonoBehaviour
 
     private Coroutine fadeCoroutine;
 
-    public void Show(Sprite image, string title, string content)
+    public void Show(string title, string content)
     {
-        tutorialImage.sprite = image;
+        // tutorialImage.sprite = image;
         titleText.text = title;
         contentText.text = content;
 
