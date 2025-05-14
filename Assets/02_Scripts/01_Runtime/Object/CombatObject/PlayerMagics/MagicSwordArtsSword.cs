@@ -62,9 +62,8 @@ public class MagicSwordArtsSword : MonoBehaviour
 
     public void Attack_AndParticle()
     {
-        _slash_ParticleSystem.Stop(true);
-        
-        
+        // _slash_ParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
+        slash_Effect.SetActive(false);
     }
 
 

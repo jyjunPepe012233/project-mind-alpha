@@ -90,7 +90,6 @@ public class MagicSwordArtsMainObject : MonoBehaviour
     public void DestroyAttackCollider()
     {
         _magicSwordArtsSword.Attack_AndParticle();
-        
         Destroy(_damageCollider);
     }
 
