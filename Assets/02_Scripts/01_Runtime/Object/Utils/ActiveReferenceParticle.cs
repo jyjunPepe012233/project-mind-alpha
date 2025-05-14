@@ -66,6 +66,7 @@ namespace MinD.Runtime.Object.Utils
 			}
 		}
 
+		#if UNITY_EDITOR
 		private void OnDrawGizmos()
 		{
 			if (activeReference == null)
@@ -76,6 +77,7 @@ namespace MinD.Runtime.Object.Utils
 			Gizmos.color = new Color(1, 0.5f, 0);
 			Gizmos.DrawSphere(particle.transform.position, 0.5f);
 
+			
 			Handles.color = Color.blue;
 			for (int i = 0; i < activeReference.Length; i++)
 			{
@@ -103,6 +105,7 @@ namespace MinD.Runtime.Object.Utils
 					);
 			}
 		}
+		#endif
 	}
 
 }

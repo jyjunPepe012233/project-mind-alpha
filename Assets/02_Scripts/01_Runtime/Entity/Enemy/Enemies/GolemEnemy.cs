@@ -1,9 +1,5 @@
-using System.Collections;
-using MinD.Runtime.Managers;
-using MinD.Utility;
 using MinD.SO.StatusFX.Effects;
-using UnityEditor.UI;
-using UnityEngine;
+using UnityEngine;	
 
 namespace MinD.Runtime.Entity {
 

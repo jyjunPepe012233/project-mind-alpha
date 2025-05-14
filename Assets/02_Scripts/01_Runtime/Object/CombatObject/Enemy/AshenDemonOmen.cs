@@ -82,9 +82,11 @@ namespace MinD.Runtime.Object
 		public void OnDrawGizmos()
 		{
 			Gizmos.color = Color.yellow;
-			Handles.color = Color.yellow;
 			Gizmos.DrawSphere(transform.position, 0.3f);
+			#if UNITY_EDITOR
+			Handles.color = Color.yellow;
 			Handles.ArrowHandleCap(0, transform.position, transform.rotation, 1, EventType.Repaint);
+			#endif
 		}
 	}
 
