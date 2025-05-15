@@ -27,7 +27,7 @@ MonoBehaviour:
   equippedOrder: -1
   memoryCost: 1
   mpCost: 15
-  staminaCost: 0
+  staminaCost: 10
   mpCostDuring: 0
   staminaCostDuring: 0
   castPlayer: {fileID: 0}
