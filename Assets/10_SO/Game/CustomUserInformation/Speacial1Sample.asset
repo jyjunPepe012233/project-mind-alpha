@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffad1f978b1142538c752b8bd77c0424, type: 3}
   m_Name: Speacial1Sample
   m_EditorClassIdentifier: 
-  m_averageSurviveTime: 15
+  m_totalPlayTime: 180
   m_damageDealt: 2000
   m_damageTaken: 1000
   m_healingUsed: 5

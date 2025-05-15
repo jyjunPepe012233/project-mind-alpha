@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using MinD.Runtime.Managers;
 using MinD.SO.EnemySO;
+using MinD.SO.StatusFX.Effects;
 
 namespace MinD.Runtime.Entity {
 
@@ -114,6 +115,11 @@ public abstract class Enemy : BaseEntity, IWorldIndexable {
 	private void LateUpdate() {
 		locomotion.ResetMoveDirectionParameter();
 		navAgent.nextPosition = transform.position;
+	}
+
+	public override void OnDamaged(TakeHealthDamage damage)
+	{
+		UserInfoManager.Instance.currentUser.damageDealt += damage.damage.AllDamage;
 	}
 
 	protected override void OnDeath() {

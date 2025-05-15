@@ -2,12 +2,15 @@ using MinD.Runtime.Entity;
 using MinD.SO.Game;
 using UnityEngine;
 
+
 namespace MinD.Runtime.Managers
 {
 
 	public class UserInfoManager : Singleton<UserInfoManager>
 	{
 		public UserInformationSo currentUser;
+
+		private float playTimeStack;
 		
 
 		public void Init()
@@ -28,7 +31,12 @@ namespace MinD.Runtime.Managers
 
 		private void Update()
 		{
-			currentUser.totalPlayTime = Time.time;
+			playTimeStack += Time.deltaTime;
+			if (playTimeStack > 1)
+			{
+				currentUser.totalPlayTime += 1;
+				playTimeStack -= 1;
+			}
 		}
 	}
 

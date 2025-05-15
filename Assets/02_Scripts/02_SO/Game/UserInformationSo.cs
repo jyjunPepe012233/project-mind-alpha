@@ -8,11 +8,11 @@ namespace MinD.SO.Game
 	[CreateAssetMenu(fileName = "Custom User Information", menuName = "MinD/Game/CustomUserInformation")]
 	public class UserInformationSo : ScriptableObject
 	{
-		[SerializeField] private float m_totalPlayTime;
+		[SerializeField] private float m_totalPlayTime; //(초)
 		public float totalPlayTime
 		{
 			get => m_totalPlayTime;
-			set => totalPlayTime = value;
+			set => m_totalPlayTime = value;
 		}
 		
 		private int m_deadCount;
@@ -26,34 +26,34 @@ namespace MinD.SO.Game
 		public int damageDealt
 		{
 			get => m_damageDealt;
-			set => damageDealt = value;
+			set => m_damageDealt = value;
 		}
 		
 		[SerializeField] private int m_damageTaken;
 		public int damageTaken
 		{
 			get => m_damageTaken;
-			set => damageTaken = value;
+			set => m_damageTaken = value;
 		}
 
-		public int damageRatio
+		public float damageRatio
 		{
-			get => damageDealt / (damageTaken + 1);
+			get => m_damageDealt / ((float)m_damageTaken + 1);
 		}
 
 		[SerializeField] private int m_healingUsed;
 		public int healingUsed
 		{
 			get => m_healingUsed;
-			set => healingUsed = value;
+			set => m_healingUsed = value;
 		}
 		
 		public float[] GetDataForReference()
 		{
-			float[] result = new float[4];
-			result[0] = this.totalPlayTime / (deadCount + 1); // 평균 생존 시간
-			result[1] = this.damageRatio; // 데미지 비율
-			result[2] = this.healingUsed; // 회복 사용 횟수
+			float[] result = new float[3];
+			result[0] = this.totalPlayTime / (deadCount + 1) / 600f; // 평균 생존 시간
+			result[1] = Mathf.Clamp(this.damageRatio / 3, -1, 1f); // 데미지 비율
+			result[2] = this.healingUsed / 30f; // 회복 사용 횟수
 			return result;
 		}
 	}
