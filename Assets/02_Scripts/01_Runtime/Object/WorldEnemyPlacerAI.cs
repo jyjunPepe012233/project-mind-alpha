@@ -2,6 +2,7 @@ using System;
 using MinD.SO.Game;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class WorldEnemyPlacerAI : MonoBehaviour
 {
@@ -75,13 +76,18 @@ public class WorldEnemyPlacerAI : MonoBehaviour
     
     private void OnDrawGizmos()
     {
-        void ShowUserData(Vector3 position, UserInformationSo data)
+        void ShowUserData(Vector3 position, UserInformationSo data, GUIStyle style)
         {
             Handles.Label(
                 position,
-                $"(Total Play Time:{data.totalPlayTime:F2}, DamageRatio:{data.damageRatio:F2}, HealingCount:{data.healingUsed})"
-                );    
+                $"(Total Play Time:{data.totalPlayTime:F2}, DamageRatio:{data.damageRatio:F2}, HealingCount:{data.healingUsed})",
+                style
+                );
         }
+        
+        GUIStyle style = new GUIStyle();
+        style.normal.textColor = Color.white;
+        style.alignment = TextAnchor.MiddleCenter;
         
         if (example == null)
         {
@@ -92,6 +98,8 @@ public class WorldEnemyPlacerAI : MonoBehaviour
         
         Gizmos.color = Color.white;
         Gizmos.DrawSphere(predictedPosition, 0.5f);
+        Handles.Label(predictedPosition + HandleUtility.GetHandleSize(predictedPosition) * Vector3.up * 0.45f, "Predicted Position", style);
+
         
         foreach (var reference in referenceUserInfo)
         {
@@ -100,8 +108,11 @@ public class WorldEnemyPlacerAI : MonoBehaviour
             Gizmos.DrawLine(reference.targetPoint.position, predictedPosition);
             
             Handles.color = reference.color;
-            Handles.Label(reference.targetPoint.position + HandleUtility.GetHandleSize(reference.targetPoint.position) * Vector3.up * 0.5f, $"{reference.userInformationSo.name}\n Weight: {reference.weight:F2}");   
-            ShowUserData(reference.targetPoint.position + HandleUtility.GetHandleSize(reference.targetPoint.position) * Vector3.up * 0.2f, reference.userInformationSo);
+            style.normal.textColor = reference.color;
+            Handles.Label(Vector3.Lerp(predictedPosition, reference.targetPoint.position, 0.5f), $"Weight: {reference.weight:F2}", style); 
+            
+            Handles.Label(reference.targetPoint.position + HandleUtility.GetHandleSize(reference.targetPoint.position) * Vector3.up * 0.6f, $"{reference.userInformationSo.name}\n", style);   
+            ShowUserData(reference.targetPoint.position + HandleUtility.GetHandleSize(reference.targetPoint.position) * Vector3.up * 0.5f, reference.userInformationSo, style);
 
         }
         

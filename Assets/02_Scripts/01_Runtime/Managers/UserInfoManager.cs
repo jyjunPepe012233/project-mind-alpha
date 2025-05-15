@@ -15,7 +15,7 @@ namespace MinD.Runtime.Managers
 
 		public void Init()
 		{
-			currentUser = ScriptableObject.CreateInstance<UserInformationSo>();
+			currentUser = new UserInformationSo(0, 0, 1, 1, 1);
 			
 			var placers = FindObjectsOfType<WorldEnemyPlacerAI>();
 			foreach (var placer in placers)
