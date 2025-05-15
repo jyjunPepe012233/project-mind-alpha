@@ -40,6 +40,7 @@ public class GameManager : Singleton<GameManager> {
 		WorldDataManager.Instance.FindAllWorldIndexable();
 		WorldDataManager.Instance.LoadGameData();
 		BossFightManager.Instance.Instantiate();
+		UserInfoManager.Instance.Init();
 
 		willAwakeWithAnchorIdle = false;
 		willAwakeFromLatestAnchor = false;

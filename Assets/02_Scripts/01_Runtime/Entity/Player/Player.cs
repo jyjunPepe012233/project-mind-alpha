@@ -183,7 +183,8 @@ public class Player : BaseEntity {
         // PLAY POISE BREAK ANIMATION
         int poiseBreakAmount = TakeHealthDamage.GetPoiseBreakAmount(damage.poiseBreakDamage, attribute.PoiseBreakResistance);
         animation.PlayTargetAction(animation.GetPoiseBreakAnimation(poiseBreakAmount, damage.attackAngle), true, true, false, false);
-        
+
+        UserInfoManager.Instance.currentUser.damageTaken += damage.damage.AllDamage;
     }
 
     protected override void OnDeath() {
