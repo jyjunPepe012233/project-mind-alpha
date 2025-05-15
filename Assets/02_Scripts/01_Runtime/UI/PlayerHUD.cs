@@ -24,7 +24,7 @@ public class PlayerHUD : MonoBehaviour {
 
     [Header("[ Popup UI ]")] 
     public PopupUIController popupUIController;
-    public TutorialPopupView tutorialPopupView;
+    public TutorialPopupController tutorialPopupController;
     
     [Header("[ Menus ]")]
     public GuffinsAnchorMenu guffinsAnchorMenu;

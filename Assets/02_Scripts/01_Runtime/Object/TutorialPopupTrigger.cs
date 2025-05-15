@@ -6,6 +6,7 @@ public class TutorialPopupTrigger : MonoBehaviour
     [Header("Tutorial Data")]
     // [SerializeField] private Sprite tutorialImage;
     [SerializeField] private string tutorialTitle;
+    [SerializeField] private float displayTime;
     [TextArea]
     [SerializeField] private string tutorialContent;
     
@@ -17,6 +18,6 @@ public class TutorialPopupTrigger : MonoBehaviour
 
         hasTriggered = true;
 
-        PlayerHUDManager.Instance.ShowTutorialPopup(tutorialTitle, tutorialContent);
+        PlayerHUDManager.Instance.ShowTutorialPopup(tutorialTitle, tutorialContent, displayTime);
     }
 }

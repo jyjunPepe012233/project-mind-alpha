@@ -55,6 +55,10 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 
 	private void HandlePauseMenuInput()
 	{
+		if (Input.GetKeyDown(KeyCode.T))
+		{
+			playerHUD.tutorialPopupController.ShowPopup("제목", "내용", 5f);
+		}
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			if (currentShowingMenu != null)
@@ -104,9 +108,6 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 			
 			if (currentShowingMenu != null) {
 				currentShowingMenu.OnSelectInput();
-			}
-			if (playerHUD.tutorialPopupView.gameObject.activeSelf) {
-				CloseTutorialPopup();
 			}
 			PlayerInputManager.Instance.menuSelectInput = false;
 		}
@@ -290,21 +291,13 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 		cg.alpha = 0f;
 		go.SetActive(false);
 	}
+
+	public void ShowTutorialPopup(string title, string contents, float displayTime)
+	{
+		playerHUD.tutorialPopupController.ShowPopup(title,contents, displayTime);
+		currentShowingMenu = null;
+	}
 	
-	public void ShowTutorialPopup( string title, string content)
-	{
-		playerHUD.tutorialPopupView.Show(title, content);
-		currentShowingMenu = null; // 혹시 열려있는 메뉴 있을 경우 무시
-	}
-
-	public void CloseTutorialPopup()
-	{
-		playerHUD.tutorialPopupView.Close();
-	}
-
-
-
-
 	public void OpenMenu(PlayerMenu menu, bool openWithForce = false) {
 		
 		if (FadeCanvasGroup.isFading) {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MinD.Enums;
 using MinD.Runtime.Entity;
+using MinD.Runtime.Managers;
 using MinD.Runtime.UI;
 using MinD.SO.Item;
 using UnityEngine;
@@ -90,13 +91,18 @@ public class InventoryMenuPresenter : PlayerMenu
         if (slots == null || selectedIndex >= slots.Count) return;
 
         var selectedSlot = slots[selectedIndex];
-        selectedSlot.ToggleEquippedState();
-
         var item = selectedSlot.GetItem();
         if (item == null) return;
 
-        item.isEquipped = !item.isEquipped;
+        if (!item.isEquipped && !CanEquipItem(item))
+        {
+            PlayerHUDManager.Instance.PlayPopup($"슬롯이 가득 차서 {item.itemName}을(를) 장착할 수 없습니다.");
+            return;
+        }
 
+        selectedSlot.ToggleEquippedState();
+        item.isEquipped = !item.isEquipped;
+    
         UpdatePlayerEquipmentSlots(item);
         UpdateSlots();
         UpdateSelection();
@@ -105,7 +111,6 @@ public class InventoryMenuPresenter : PlayerMenu
             Player.player.equipment.ChangeWeapon(item.isEquipped ? weapon : null);
         }
     }
-
 
     public override void OnMoveTabInput(int inputDir)
     {
@@ -358,5 +363,43 @@ private void RemoveFromEquipment(Item item)
             Count = count;
             IsEquipped = isEquipped;
         }
+    }
+    
+    private bool CanEquipItem(Item item)
+    {
+        switch (item.categoryId)
+        {
+            case 0: // Magic
+                if (item is Magic)
+                {
+                    for (int i = 0; i < playerInventoryHandler.magicSlots.Length; i++)
+                    {
+                        if (playerInventoryHandler.magicSlots[i] == null)
+                            return true; 
+                    }
+                    return false; 
+                }
+                break;
+
+            case 1: // Weapon
+                return true;
+
+            case 2: // Tool
+                if (item is Tool)
+                {
+                    for (int i = 0; i < playerInventoryHandler.toolSlots.Length; i++)
+                    {
+                        if (playerInventoryHandler.toolSlots[i] == null)
+                            return true;
+                    }
+                    return false; 
+                }
+                break;
+
+            case 3: // Protection
+                return true;
+        }
+
+        return true; // 기본적으로 장착 가능
     }
 }
