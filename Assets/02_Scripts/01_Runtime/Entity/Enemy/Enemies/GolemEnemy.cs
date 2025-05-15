@@ -39,6 +39,8 @@ public abstract class GolemEnemy : HumanoidEnemy
 
 	public override void OnDamaged(TakeHealthDamage damage)
 	{
+		base.OnDamaged(damage);
+		
 		currentPoiseBreakHp -= damage.poiseBreakDamage;
 		
 		if (currentPoiseBreakHp <= 0)

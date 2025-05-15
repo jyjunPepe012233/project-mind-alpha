@@ -19,6 +19,8 @@ public abstract class HumanoidEnemy : Enemy {
 
 	public override void OnDamaged(TakeHealthDamage damage) {
 
+		base.OnDamaged(damage);
+		
 		if (isDeath) {
 			return;
 		}
