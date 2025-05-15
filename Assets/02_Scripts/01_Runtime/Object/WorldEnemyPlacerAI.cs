@@ -41,6 +41,7 @@ public class WorldEnemyPlacerAI : MonoBehaviour
             float[] refVec = reference.userInformationSo.GetDataForReference();
             float similarity = CalculateCosineSimilarity(inputVector, refVec);
             similarity = Mathf.Pow(similarity, 4);
+            Debug.Log(similarity);
             float weightedSimilarity = similarity * reference.weight;
 
             weightedPositionSum += reference.targetPoint.position * weightedSimilarity;
