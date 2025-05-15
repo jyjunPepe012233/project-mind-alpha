@@ -50,7 +50,7 @@ MonoBehaviour:
     type: 3}
   _comboAttackColliders:
   - {fileID: 3935832466082865475, guid: a4983ac9a9c374246beba1daa87cbfb4, type: 3}
-  - {fileID: 3935832466082865475, guid: a4983ac9a9c374246beba1daa87cbfb4, type: 3}
+  - {fileID: 3935832466082865475, guid: 48a2d99830c344010ab81f8ca0d95574, type: 3}
   _chargeAttackCollider: {fileID: 3935832466082865475, guid: 32ed046a10d0a4b399a323bb987d56e2,
     type: 3}
   _castPlayer: {fileID: 0}

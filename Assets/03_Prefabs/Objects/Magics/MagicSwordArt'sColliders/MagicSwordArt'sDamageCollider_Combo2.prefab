@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5154003332501319675}
   - component: {fileID: -7553405427764435173}
   m_Layer: 0
-  m_Name: MagicSwordArt'sDamageCollider_Charge
+  m_Name: MagicSwordArt'sDamageCollider_Combo2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4.8, y: 0.5, z: 1.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4758450680061122618}
@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 1.5, z: 0.5}
+  m_Size: {x: 0.8, y: 0.5, z: 2.7}
+  m_Center: {x: 0, y: 1.5, z: 2}
 --- !u!114 &-7553405427764435173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18842f16ee46c4fc59fcac3b5aefea54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soData: {fileID: 11400000, guid: ac4a7806c3306434dad4ec5def254781, type: 2}
+  soData: {fileID: 11400000, guid: 14c3f9d81c7004dfe9d66534a7e02d85, type: 2}
   blackList: []
 --- !u!1 &4022961615344973496
 GameObject:
@@ -97,8 +97,8 @@ Transform:
   m_GameObject: {fileID: 4022961615344973496}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: 2}
+  m_LocalScale: {x: 0.8, y: 0.5, z: 2.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1130792928934386373}

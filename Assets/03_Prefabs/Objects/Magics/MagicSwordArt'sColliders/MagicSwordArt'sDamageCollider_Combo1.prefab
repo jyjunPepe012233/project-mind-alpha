@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5154003332501319675}
   - component: {fileID: -7553405427764435173}
   m_Layer: 0
-  m_Name: MagicSwordArt'sDamageCollider_Combo
+  m_Name: MagicSwordArt'sDamageCollider_Combo1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

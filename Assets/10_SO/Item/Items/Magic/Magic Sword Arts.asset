@@ -33,21 +33,21 @@ MonoBehaviour:
   itemImage: {fileID: 0}
   itemRarity: 2
   itemMaxCount: 1
+  itemTypeNumber: 0
   itemCount: 0
   categoryId: 0
   isEquipped: 0
   equippedOrder: -1
   memoryCost: 1
-  mpCost: 35
-  staminaCost: 20
+  mpCost: 13
+  staminaCost: 38
   mpCostDuring: 0
   staminaCostDuring: 0
   castPlayer: {fileID: 0}
   isInputReleased: 1
   _magicSwordArtsMainObject: {fileID: -6939769321996400133, guid: e28d5043391de4d2ca5e21b9e1729685,
     type: 3}
-  _comboStep: 1
-  _chargeLevel: 0
+  _comboStepIsOne: 1
   _chargingTime: 0
   _doChargeAttack: 0
   _doStandbyCombo: 0
