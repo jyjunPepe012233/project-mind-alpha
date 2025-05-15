@@ -1,5 +1,6 @@
-using MinD.Runtime.Entity;
-using UnityEngine;
+	using MinD.Runtime.Entity;
+	using MinD.Runtime.Managers;
+	using UnityEngine;
 
 namespace MinD.SO.Item.Items {
 
@@ -23,8 +24,11 @@ public class HpFillItem : Tool {
 
 	
 	
-	public override void OnUse(Player owner) {
+	public override void OnUse(Player owner)
+	{
 
+		UserInfoManager.Instance.currentUser.healingUsed += 1;
+		
 		owner.CurHp += hpFillAmount;
 
 		if (healVfxPrefab != null) {
