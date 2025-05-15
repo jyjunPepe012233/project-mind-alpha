@@ -26,8 +26,8 @@ MonoBehaviour:
   isEquipped: 0
   equippedOrder: -1
   memoryCost: 1
-  mpCost: 0
-  staminaCost: 0
+  mpCost: 15
+  staminaCost: 10
   mpCostDuring: 0
   staminaCostDuring: 0
   castPlayer: {fileID: 0}
@@ -35,6 +35,6 @@ MonoBehaviour:
   _magicSwordProjectileOrigin: {fileID: 808210125412934667, guid: 2616abf7889ce463f990e005863ad011,
     type: 3}
   _magicSwordSetPosition:
-  - {x: -1, y: -0.5, z: 0}
-  - {x: 1, y: -0.5, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: -1, y: -0.5, z: -0.4}
+  - {x: 1, y: -0.5, z: -0.4}
+  - {x: 0, y: 0, z: -0.4}
