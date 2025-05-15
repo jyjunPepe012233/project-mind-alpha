@@ -48,7 +48,19 @@ public abstract class Magic : Item {
 	public virtual void OnSuccessfullyCast() {
 	}
 
+	public virtual void ComboStandbyStart() {
+	}
+	
+	public virtual void ComboStandbyEnd() {
+	}
 
+	public virtual void UseComboAttack() {
+	}
+	
+	public virtual void OnDamageCollider() {
+	}
+	public virtual void OffDamageCollider() {
+	}
 }
 
 }
