@@ -26,7 +26,7 @@ MonoBehaviour:
   isEquipped: 0
   equippedOrder: -1
   memoryCost: 1
-  mpCost: 0
+  mpCost: 15
   staminaCost: 0
   mpCostDuring: 0
   staminaCostDuring: 0
