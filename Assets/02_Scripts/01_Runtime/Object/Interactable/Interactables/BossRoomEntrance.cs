@@ -6,6 +6,7 @@ using MinD.Runtime.Managers;
 using MinD.Runtime.Object;
 using MinD.SO.Game;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 public class BossRoomEntrance : Interactable, IWorldIndexable
@@ -20,11 +21,14 @@ public class BossRoomEntrance : Interactable, IWorldIndexable
     [SerializeField] private GameObject obstacleTransform;
     [SerializeField] private Transform reachTransform;
 
+    [SerializeField] private UnityEvent onBossFelled;
+    
     private bool isCleared = false;
     public bool IsCleared => isCleared;
 
     [SerializeField, HideInInspector] private bool _hasBeenIndexed;
     [SerializeField, HideInInspector] private int _worldIndex;
+    
     public bool hasBeenIndexed
     {
         get => _hasBeenIndexed;
@@ -73,12 +77,12 @@ public class BossRoomEntrance : Interactable, IWorldIndexable
 
     private void OnBossFightFinish(bool isBossFelled)
     {
-        Debug.Log("Line76 " + isBossFelled);
-        
         if (isBossFelled)
         {
             LoadBossData(true);
             isCleared = true;
+            
+            onBossFelled?.Invoke();
         }
 
         BossFightManager.Instance.OnBossFightFinish -= OnBossFightFinish;
