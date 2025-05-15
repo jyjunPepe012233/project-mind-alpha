@@ -81,7 +81,7 @@ public class MagicSwordProjectile : MonoBehaviour
                 if (!_castPlayer.combat.target.isDeath)
                 {
                     transform.rotation = Quaternion.RotateTowards(transform.rotation,
-                        Quaternion.LookRotation(_castPlayer.combat.target.transform.position  + new Vector3(0, _castPlayer.combat.target.transform.lossyScale.y * 1.2f ,0) - transform.position), 8 * Time.deltaTime);
+                        Quaternion.LookRotation(_castPlayer.combat.target.targetOptions[0].position - transform.position), 8 * Time.deltaTime);
                 }
                 rigidbody.velocity = (transform.forward * (5 + ( elapsedTime * (elapsedTime /2 )* 3f) * _speed ));
                 
@@ -137,7 +137,7 @@ public class MagicSwordProjectile : MonoBehaviour
 
             if (_castPlayer.isLockOn)  // is LookOn
             {
-                Vector3 __targetDirection = _castPlayer.transform.position - _castPlayer.combat.target.transform.position;
+                Vector3 __targetDirection = _castPlayer.combat.target.targetOptions[0].position + _castPlayer.transform.forward - _castPlayer.transform.position;
 
                 // 카메라 기준
                 transform.position = Vector3.Lerp(transform.position,
@@ -149,7 +149,7 @@ public class MagicSwordProjectile : MonoBehaviour
                     + new Vector3(0,__high ,0) + _castPlayer.transform.position 
                     , __lerpSpace);
                 
-                transform.rotation = Quaternion.LookRotation( _castPlayer.combat.target.transform.position - transform.position);
+                transform.rotation = Quaternion.LookRotation( _castPlayer.combat.target.targetOptions[0].position - transform.position);
                 
             }
             else
@@ -200,6 +200,7 @@ public class MagicSwordProjectile : MonoBehaviour
     {
         StartCoroutine(Explode());
     }
+    
     }
 }
 }
