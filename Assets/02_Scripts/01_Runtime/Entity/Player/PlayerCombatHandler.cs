@@ -243,6 +243,28 @@ public class PlayerCombatHandler : EntityOwnedHandler {
 			currentCastingMagic.OnSuccessfullyCast();
 		}
 	}
+	public void OnDamageCollider() {
+		if (currentCastingMagic != null) {
+			currentCastingMagic.OnDamageCollider();
+		}
+	}public void OffDamageCollider() {
+		if (currentCastingMagic != null) {
+			currentCastingMagic.OffDamageCollider();
+		}
+	}
+	public void ComboStandbyStart() {
+		if (currentCastingMagic != null) {
+			currentCastingMagic.ComboStandbyStart();
+		}
+	}
+
+	public void ComboStandbyEnd()
+	{
+		if (currentCastingMagic != null)
+		{
+			currentCastingMagic.ComboStandbyEnd();
+		}
+	}
 
 }
 
