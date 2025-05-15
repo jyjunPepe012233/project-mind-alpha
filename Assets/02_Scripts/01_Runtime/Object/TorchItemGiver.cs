@@ -15,6 +15,8 @@ public class TorchItemGiver : MonoBehaviour
     [SerializeField] private Item item;
     [SerializeField] private int itemAmount = 1;
 
+    [SerializeField] private UnityEvent onTorchActivated;
+    [SerializeField] private UnityEvent onFinalTorchActivated;
     [SerializeField] private UnityEvent onItemGived;
 
     private int currentActivatedTorchCount;
@@ -30,11 +32,13 @@ public class TorchItemGiver : MonoBehaviour
                 currentActivatedTorchCount++;
                 if (currentActivatedTorchCount >= torches.Length)
                 {
+                    onFinalTorchActivated?.Invoke();
                     finalTorchActivated?.Invoke();
                     GiveItemAndDestroySelf();
                 }
                 else
                 {
+                    onTorchActivated?.Invoke();
                     torchActivated?.Invoke();
                 }
             };
