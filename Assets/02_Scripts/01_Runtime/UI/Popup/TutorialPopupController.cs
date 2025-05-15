@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MinD.Runtime.Managers;
 using UnityEngine;
 
 public class TutorialPopupController : MonoBehaviour
@@ -55,6 +56,46 @@ public class TutorialPopupController : MonoBehaviour
             RectTransform rt = popup.GetComponent<RectTransform>();
             rt.anchoredPosition = new Vector2(0, offsetY);
             index++;
+        }
+    }
+    
+    private bool magic = false;
+    private bool tool = false;
+    private bool staff = false;
+    private bool protection = false;
+    private bool torch = false;
+
+    public void SetTutorial(int categoryid)
+    {
+        switch (categoryid)
+        {
+            case 0:
+                if (magic) return;
+                PlayerHUDManager.Instance.ShowTutorialPopup("마법", "장착한 후 [ 마우스 왼쪽 클릭 ] 으로 사용가능하다.", 10f);
+                magic = true;
+                break;
+            case 1:
+                if (staff) return;
+                PlayerHUDManager.Instance.ShowTutorialPopup("스태프", "스태프를 장착해야만 마법이 사용가능하다.", 10f);
+                staff = true;
+                break;
+            case 2:
+                if (tool) return;
+                PlayerHUDManager.Instance.ShowTutorialPopup("소모품", "장착한 후 [ R ] 로 사용가능하다.", 10f);
+                tool = true;
+                break;
+            case 3:
+                if (protection) return;
+                PlayerHUDManager.Instance.ShowTutorialPopup("수호", "장착한 후 [ 마우스 오른쪽 클릭 ] 을 길게 눌러 사용가능하다.", 10f);
+                protection = true;
+                break;
+            case 4:
+                if (torch) return;
+                PlayerHUDManager.Instance.ShowTutorialPopup("락온", "적에게 [ Q 또는 마우스 휠 클릭 ] 을 하면 락온 이 가능하다.", 10f);
+                torch = true;
+                break;
+            default:
+                return;
         }
     }
 }

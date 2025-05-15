@@ -1,5 +1,6 @@
 using System;
 using MinD.Runtime.Entity;
+using MinD.Runtime.Managers;
 using MinD.Runtime.Object;
 using UnityEngine;
 
@@ -28,5 +29,7 @@ public class GimmickTorch : Interactable
         canInteraction = false;
         interactor.interaction.RemoveInteractableInList(this);
         interactor.interaction.RefreshInteractableList();
+        
+        PlayerHUDManager.playerHUD.tutorialPopupController.SetTutorial(4);
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Numerics;
 using MinD.Runtime.Entity;
 using MinD.Runtime.UI;
+using MinD.SO.Item;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
@@ -291,7 +292,11 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 	public void ShowTutorialPopup(string title, string contents, float displayTime)
 	{
 		playerHUD.tutorialPopupController.ShowPopup(title,contents, displayTime);
-		currentShowingMenu = null;
+	}
+
+	public void SetFirtsTimeTutorial(Item item)
+	{
+		playerHUD.tutorialPopupController.SetTutorial(item.categoryId);
 	}
 	
 	public void OpenMenu(PlayerMenu menu, bool openWithForce = false) {

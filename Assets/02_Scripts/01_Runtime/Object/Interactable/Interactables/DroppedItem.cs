@@ -64,7 +64,9 @@ public class DroppedItem : Interactable, IWorldIndexable {
 			interactor.interaction.RefreshInteractableList();
       
 			canInteraction = false;
-
+			
+			PlayerHUDManager.Instance.SetFirtsTimeTutorial(item);
+			
 			StartCoroutine(FadeOutDestroy(2));
 
 		} else {
