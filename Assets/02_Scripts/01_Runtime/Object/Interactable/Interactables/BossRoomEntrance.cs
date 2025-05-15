@@ -49,24 +49,32 @@ public class BossRoomEntrance : Interactable, IWorldIndexable
         interactor.interaction.RemoveInteractableInList(this);
         interactor.interaction.RefreshInteractableList();
 
-        StartCoroutine(PlayEnteringBossRoomAction());
+        Player.player.animation.PlayTargetAction("Anchor_Discover", true, true, false, false);
+
+        StartEnteringBossRoomAction();
+    }
+
+    public void StartEnteringBossRoomAction()
+    {
+        StartCoroutine(ProduceEnteringBossRoomAction());
         
         BossFightManager.Instance.OnBossFightFinish += OnBossFightFinish;
     }
 
-    private IEnumerator PlayEnteringBossRoomAction()
+    private IEnumerator ProduceEnteringBossRoomAction()
     {
-        Player.player.animation.PlayTargetAction("Anchor_Discover", true, true, false, false);
-        
-        PlayerHUDManager.Instance.FadeInToBlack(fadeInTime);
-        yield return new WaitForSeconds(fadeInTime);
-        
-        Player.player.cc.enabled = false;
-        Player.player.transform.SetPositionAndRotation(reachTransform.position, reachTransform.rotation);
-        Player.player.cc.enabled = true;
-        yield return new WaitForSeconds(1f);
-        
-        PlayerHUDManager.Instance.FadeOutFromBlack(fadeOutTime);
+        if (reachTransform != null)
+        {
+            PlayerHUDManager.Instance.FadeInToBlack(fadeInTime);
+            yield return new WaitForSeconds(fadeInTime);
+
+            Player.player.cc.enabled = false;
+            Player.player.transform.SetPositionAndRotation(reachTransform.position, reachTransform.rotation);
+            Player.player.cc.enabled = true;
+            yield return new WaitForSeconds(1f);
+
+            PlayerHUDManager.Instance.FadeOutFromBlack(fadeOutTime);
+        }
     }
 
     public void LoadBossData(bool hasBeenFelled)
