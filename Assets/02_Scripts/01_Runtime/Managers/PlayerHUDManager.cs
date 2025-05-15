@@ -55,10 +55,6 @@ public class PlayerHUDManager : Singleton<PlayerHUDManager> {
 
 	private void HandlePauseMenuInput()
 	{
-		if (Input.GetKeyDown(KeyCode.T))
-		{
-			playerHUD.tutorialPopupController.ShowPopup("제목", "내용", 5f);
-		}
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			if (currentShowingMenu != null)
