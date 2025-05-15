@@ -75,6 +75,14 @@ public class WorldEnemyPlacerAI : MonoBehaviour
     
     private void OnDrawGizmos()
     {
+        void ShowUserData(Vector3 position, UserInformationSo data)
+        {
+            Handles.Label(
+                position,
+                $"(Total Play Time:{data.totalPlayTime:F2}, DamageRatio:{data.damageRatio:F2}, HealingCount:{data.healingUsed})"
+                );    
+        }
+        
         if (example == null)
         {
             return;
@@ -92,7 +100,9 @@ public class WorldEnemyPlacerAI : MonoBehaviour
             Gizmos.DrawLine(reference.targetPoint.position, predictedPosition);
             
             Handles.color = reference.color;
-            Handles.Label(reference.targetPoint.position + HandleUtility.GetHandleSize(reference.targetPoint.position) * Vector3.up * 0.3f, $"{reference.userInformationSo.name}\n Weight: {reference.weight:F2}");         
+            Handles.Label(reference.targetPoint.position + HandleUtility.GetHandleSize(reference.targetPoint.position) * Vector3.up * 0.5f, $"{reference.userInformationSo.name}\n Weight: {reference.weight:F2}");   
+            ShowUserData(reference.targetPoint.position + HandleUtility.GetHandleSize(reference.targetPoint.position) * Vector3.up * 0.2f, reference.userInformationSo);
+
         }
         
 //        if (referenceUserInfo != null && referenceUserInfo.Length > 0)
