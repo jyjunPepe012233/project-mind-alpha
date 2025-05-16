@@ -386,8 +386,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -87.8}
-  m_SizeDelta: {x: 390, y: 24}
+  m_AnchoredPosition: {x: 0, y: -90.8}
+  m_SizeDelta: {x: 390, y: 6.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7521956370339395509
 CanvasRenderer:
@@ -482,11 +482,7 @@ MonoBehaviour:
   popupRoot: {fileID: 8812598180068455310}
   canvasGroup: {fileID: 856987301544650770}
   timerBar: {fileID: 5146414500698752141}
-  popupRectTransform: {fileID: 0}
   fadeDuration: 0.3
-  slideDuration: 0.3
-  slideDistance: 300
-  rightScreenEdgeOffset: 20
   useTimer: 0
   displayTime: 5
 --- !u!1 &8812598180068455310
