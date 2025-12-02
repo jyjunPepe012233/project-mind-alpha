@@ -5757,6 +5757,7 @@ GameObject:
   - component: {fileID: 3545806849681260004}
   - component: {fileID: 1187501814747283919}
   - component: {fileID: 5074835382254514192}
+  - component: {fileID: 2190422350052802804}
   m_Layer: 8
   m_Name: Baal
   m_TagString: Untagged
@@ -5865,6 +5866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d23ca86f97c49c3b85abeb9d5d52889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionCollider: {fileID: 2190422350052802804}
   attackActionRecoveryTimer: 0
   latestAttack: {fileID: 0}
   willPerformCombo: 0
@@ -6010,6 +6012,27 @@ MonoBehaviour:
   isDashingToTarget: 0
   strafeTimer: 0
   strafeDirx: {x: 0, y: 0, z: 0}
+--- !u!135 &2190422350052802804
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640316844374476759}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1927739965430878132
 GameObject:
   m_ObjectHideFlags: 0

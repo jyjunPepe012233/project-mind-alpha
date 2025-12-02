@@ -1943,6 +1943,7 @@ GameObject:
   - component: {fileID: 1304087868995139411}
   - component: {fileID: 8409353929203251132}
   - component: {fileID: 6240443369674048705}
+  - component: {fileID: 3215070822153329923}
   m_Layer: 8
   m_Name: Skeleton Warrior
   m_TagString: Untagged
@@ -2049,9 +2050,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c6ca2a1b894f6fb97dd4d550bcfc69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statusFx: {fileID: 0}
   cc: {fileID: 0}
   animator: {fileID: 0}
+  statusFx: {fileID: 0}
   isDeath: 0
   isInvincible: 0
   immunePoiseBreak: 0
@@ -2065,6 +2066,8 @@ MonoBehaviour:
   locomotion: {fileID: 0}
   combat: {fileID: 0}
   utility: {fileID: 0}
+  _hasBeenIndexed: 0
+  _worldIndex: 0
   worldPlacedPosition: {x: 0, y: 0, z: 0}
   worldPlacedRotation: {x: 0, y: 0, z: 0, w: 0}
   currentTarget: {fileID: 0}
@@ -2143,10 +2146,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d23ca86f97c49c3b85abeb9d5d52889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionCollider: {fileID: 3215070822153329923}
   attackActionRecoveryTimer: 0
   latestAttack: {fileID: 0}
   willPerformCombo: 0
   comboAttack: {fileID: 0}
+  reservedAttackQueue: []
+  liftedAttacks: []
 --- !u!114 &8409353929203251132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2184,6 +2190,27 @@ MonoBehaviour:
   isImmuneToAllEffect: 0
   timedFxImmune: 
   stackingFxImmune: 
+--- !u!135 &3215070822153329923
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6941295515461347995}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6986047233370386530
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,7 +9,11 @@ using UnityEngine.Serialization;
 
 namespace MinD.Runtime.Entity {
 
-public class EnemyCombatHandler : EntityOwnedHandler {
+public class EnemyCombatHandler : EntityOwnedHandler
+{
+	private List<BaseEntity> potentialTargets = new List<BaseEntity>(8);
+
+	[SerializeField] private SphereCollider detectionCollider;
 	
 	public float attackActionRecoveryTimer; 
 	public EnemyAttackAction latestAttack;
@@ -41,46 +45,49 @@ public class EnemyCombatHandler : EntityOwnedHandler {
 		return Vector3.SignedAngle(transform.forward, ((Enemy)owner).navAgent.desiredVelocity, Vector3.up);
 	}
 
-	
+	public void OnTriggerEnter(Collider collider)
+	{
+		var potentialTargetEntity = collider.GetComponentInParent<BaseEntity>(true);
+
+		if (potentialTargetEntity == null) {
+			return;
+		}
+		if (potentialTargets.Contains(potentialTargetEntity)) {
+			return;
+		}
+		if (potentialTargetEntity == owner) {
+			return;
+		}
+		if (potentialTargetEntity.isInvincible) {
+			return;
+		}
+		if (potentialTargetEntity.isDeath) {
+			return;
+		}
+		if (potentialTargetEntity is Enemy) {
+			return;
+		}
+		
+		potentialTargets.Add(potentialTargetEntity);
+	}
+
+	public void OnTriggerExit(Collider collider)
+	{
+		var potentialTargetEntity = collider.GetComponentInParent<BaseEntity>(true);
+
+		if (potentialTargetEntity == null) {
+			return;
+		}
+		if (!potentialTargets.Contains(potentialTargetEntity)) {
+			return;
+		}
+		
+		potentialTargets.Remove(potentialTargetEntity);
+	}
 	
 	public BaseEntity FindTargetBySight(float detectRadius, float absoluteDetectRadius, float detectAngle) {
 		
-		Collider[] colliders = Physics.OverlapSphere(transform.position, detectRadius, WorldUtility.damageableLayerMask);
-		if (colliders.Length == 0) {
-			return null;
-		}
-		
-		
-		List<BaseEntity> potentialTargets = new List<BaseEntity>();
-		for (int i = 0; i < colliders.Length; i++) {
-
-			var potentialTargetEntity = colliders[i].GetComponentInParent<BaseEntity>();
-
-			if (potentialTargetEntity == null) {
-				continue;
-			}
-			if (potentialTargets.Contains(potentialTargetEntity)) {
-				continue;
-			}
-			if (potentialTargetEntity == owner) {
-				continue;
-			}
-			if (potentialTargetEntity.isInvincible) {
-				continue;
-			}
-			if (potentialTargetEntity.isDeath) {
-				continue;
-			}
-			if (potentialTargetEntity is Enemy) {
-				continue;
-			}
-			
-			potentialTargets.Add(potentialTargetEntity);
-		}
-		if (potentialTargets.Count == 0) {
-			return null;
-		}
-
+		detectionCollider.radius = detectRadius;
 		
 		// SELECT POTENTIAL TARGETS THAT AVAILABLE 
 		List<BaseEntity> availableTargets  = new List<BaseEntity>();

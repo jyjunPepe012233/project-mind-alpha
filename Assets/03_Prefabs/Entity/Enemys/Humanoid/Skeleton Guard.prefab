@@ -7154,6 +7154,7 @@ GameObject:
   - component: {fileID: 5195459851878440548}
   - component: {fileID: 1577291593580241424}
   - component: {fileID: 8199066622997014596}
+  - component: {fileID: -9088823696083068721}
   m_Layer: 8
   m_Name: Skeleton Guard
   m_TagString: Untagged
@@ -7261,10 +7262,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d23ca86f97c49c3b85abeb9d5d52889, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectionCollider: {fileID: -9088823696083068721}
   attackActionRecoveryTimer: 0
   latestAttack: {fileID: 0}
   willPerformCombo: 0
   comboAttack: {fileID: 0}
+  reservedAttackQueue: []
+  liftedAttacks: []
 --- !u!114 &1996464999624156431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7391,6 +7395,27 @@ MonoBehaviour:
   strafeDirx: {x: 0, y: 0, z: 0}
   swordTrailFlag: {fileID: 6155038213714613885}
   swordTrail: {fileID: 5674316875224371812}
+--- !u!135 &-9088823696083068721
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9218127246125948155}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1292091487622433947
 PrefabInstance:
   m_ObjectHideFlags: 0
