@@ -26,8 +26,43 @@
 | **월드** | 안개마을 조각상(퍼즐), 중간 보스, 최종 보스 |
 | **UI** | 인벤토리 메뉴, 퀵슬롯 HUD, 튜토리얼 팝업, 버스트 팝업(You Died) |
 
+## 발표 자료 (개발 버전 당시)
+
+이 자료는 개발 버전의 내용입니다.  
+
+현재 밀러의 마법은 알파 버전으로, 실제 필드와 보스가 추가되었고 그래픽 및 모델링 품질도 개선되었습니다.  
+(README 맨 아래의 알파 버전의 시연 영상 링크가 첨부되어 있습니다)
+
+### 개발 동기
+
+<img width="1470" height="792" alt="스크린샷 2026-06-15 오후 1 49 25" src="https://github.com/user-attachments/assets/baccdb2b-96ce-4d0e-9695-4912477296c3" />
+<img width="1470" height="792" alt="스크린샷 2026-06-15 오후 1 49 39" src="https://github.com/user-attachments/assets/ba1d5cda-269d-47cd-ae66-b0778b4bb855" />
+
+### 프로젝트 소개
+<img width="2940" height="1584" alt="image" src="https://github.com/user-attachments/assets/c03dd64b-d528-4dbc-b8f9-054c57abc409" />
+
+
+### 스토리
+<img width="2940" height="1584" alt="image" src="https://github.com/user-attachments/assets/5e8f4367-392c-413f-a129-fc8a019e37a6" />
+
+### 기능 소개
+<img width="2940" height="1584" alt="image" src="https://github.com/user-attachments/assets/8c26ad90-f7c9-415b-8835-f30bfcafa371" />
+
+<img width="2940" height="1584" alt="image" src="https://github.com/user-attachments/assets/6605fbf6-ce06-4add-88c6-180a3b061c1d" />
+
+<img width="2940" height="1584" alt="image" src="https://github.com/user-attachments/assets/0b16587c-25e7-4451-902d-5c3667747bce" />
+
+<img width="2940" height="1584" alt="image" src="https://github.com/user-attachments/assets/fe491f9c-bd59-4a67-95ca-bf64343419fb" />
+
+### 로드맵 및 팀 구성
+
+<img width="2940" height="1624" alt="image" src="https://github.com/user-attachments/assets/62579bcd-20b8-4b60-bb82-60c85b2b9dea" />
+
+<img width="2940" height="1562" alt="image" src="https://github.com/user-attachments/assets/d81f08ba-8310-4363-8a8a-4dda435886b1" />
+
+
 ## 더 많은 정보
 
-**시연 영상:** [Youtube](https://www.youtube.com/watch?v=Sl8fXatXy9E)
-
-**포트폴리오:** [Google Drive](https://drive.google.com/file/d/1WIUQXc3osruD6uwA9EvtlBadP_W_biTm/view)
+**최신(알파) 버전 시연 영상:** [Youtube](https://www.youtube.com/watch?v=Sl8fXatXy9E)
+ 
+**프로젝트 포트폴리오:** [Google Drive](https://drive.google.com/file/d/1WIUQXc3osruD6uwA9EvtlBadP_W_biTm/view)
