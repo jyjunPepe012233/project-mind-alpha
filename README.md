@@ -61,6 +61,16 @@
 <img width="2940" height="1562" alt="image" src="https://github.com/user-attachments/assets/d81f08ba-8310-4363-8a8a-4dda435886b1" />
 
 
+## AI EXPO 2025 전시
+
+<img width="1215" height="784" alt="Frame 663" src="https://github.com/user-attachments/assets/9c39066d-af05-4e15-8ad2-574c0743ccb7" />
+
+<img width="1195" height="803" alt="Frame 662" src="https://github.com/user-attachments/assets/e2c73708-bdc9-4845-a205-5ea5216b55a0" />
+
+<img width="1107" height="708" alt="Frame 661" src="https://github.com/user-attachments/assets/6e52743a-e0d1-4751-a454-f7a90a3a9ad8" />
+
+
+
 ## 더 많은 정보
 
 **최신(알파) 버전 시연 영상:** [Youtube](https://www.youtube.com/watch?v=Sl8fXatXy9E)
